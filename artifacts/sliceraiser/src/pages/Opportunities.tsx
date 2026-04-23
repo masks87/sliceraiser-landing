@@ -72,7 +72,11 @@ function OpportunityCard({ o }: { o: InvestmentOpportunity }) {
 
 export default function Opportunities() {
   const { data, isLoading, error } = useListOpportunities();
-  const [assetType, setAssetType] = useState<string>("All");
+  const initialAsset =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("asset") ?? "All"
+      : "All";
+  const [assetType, setAssetType] = useState<string>(initialAsset);
   const [risk, setRisk] = useState<string>("All");
 
   const opportunities = (data ?? []) as InvestmentOpportunity[];
