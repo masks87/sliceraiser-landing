@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Show, useClerk, useUser } from "@clerk/react";
+
+function useAuthModal() {
+  const { openSignIn, openSignUp } = useClerk();
+  const afterSignInUrl = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/dashboard`;
+  return {
+    openSignIn: () => openSignIn({ afterSignInUrl }),
+    openSignUp: () => openSignUp({ afterSignInUrl }),
+  };
+}
 import logoImg from "@/assets/logo.png";
 
 const navLinks = [
@@ -49,6 +58,7 @@ function SignedInMenu() {
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [location] = useLocation();
+  const { openSignIn, openSignUp } = useAuthModal();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.07)]">
@@ -109,18 +119,20 @@ export default function Header() {
 
           <div className="flex items-center gap-2">
             <Show when="signed-out">
-              <Link
-                href="/sign-in"
+              <button
+                type="button"
+                onClick={() => openSignIn()}
                 className="bg-[#4285f4] text-white text-[13px] font-medium px-5 py-2 rounded-lg hover:bg-[#3570d4] transition-colors whitespace-nowrap"
               >
                 Log In
-              </Link>
-              <Link
-                href="/sign-up"
+              </button>
+              <button
+                type="button"
+                onClick={() => openSignUp()}
                 className="bg-[#082f6f] text-white text-[13px] font-medium px-5 py-2 rounded-lg hover:bg-[#061f4a] transition-colors whitespace-nowrap"
               >
                 Sign Up
-              </Link>
+              </button>
             </Show>
             <Show when="signed-in">
               <SignedInMenu />
@@ -157,20 +169,26 @@ export default function Header() {
           ))}
           <Show when="signed-out">
             <div className="flex gap-3 pt-2 border-t border-gray-100">
-              <Link
-                href="/sign-in"
-                onClick={() => setMenuOpen(false)}
+              <button
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  openSignIn();
+                }}
                 className="flex-1 text-center bg-[#4285f4] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#3570d4] transition-colors"
               >
                 Log In
-              </Link>
-              <Link
-                href="/sign-up"
-                onClick={() => setMenuOpen(false)}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  openSignUp();
+                }}
                 className="flex-1 text-center bg-[#082f6f] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#061f4a] transition-colors"
               >
                 Sign Up
-              </Link>
+              </button>
             </div>
           </Show>
         </div>

@@ -60,24 +60,36 @@ const clerkAppearance = {
   },
   elements: {
     rootBox: "w-full",
-    cardBox: "bg-white rounded-2xl w-[440px] max-w-full overflow-hidden shadow-xl border border-gray-100",
-    card: "!shadow-none !border-0 !bg-transparent !rounded-none",
-    footer: "!shadow-none !border-0 !bg-transparent !rounded-none",
-    headerTitle: "text-[#020817] font-bold text-2xl",
-    headerSubtitle: "text-[#8e9196] text-sm",
+    modalBackdrop:
+      "!bg-[#020817]/55 backdrop-blur-md",
+    modalContent: "!shadow-none",
+    cardBox:
+      "bg-white rounded-[20px] w-[440px] max-w-full overflow-hidden shadow-[0_30px_80px_-20px_rgba(8,47,111,0.35),0_8px_24px_-12px_rgba(8,47,111,0.25)] border border-gray-100",
+    card:
+      "!shadow-none !border-0 !bg-transparent !rounded-none px-8 pt-8 pb-6 relative",
+    header: "flex flex-col items-center gap-2 pb-2",
+    footer:
+      "!shadow-none !border-0 !bg-[#f7f9ff] !rounded-none px-8 py-4 border-t border-gray-100",
+    headerTitle:
+      "text-[#020817] font-bold text-[22px] tracking-tight text-center",
+    headerSubtitle: "text-[#8e9196] text-[13px] text-center",
+    socialButtons: "gap-2",
     socialButtonsBlockButton:
-      "border border-gray-200 hover:bg-[#f1f0fb4d] text-[#020817] rounded-xl",
-    socialButtonsBlockButtonText: "text-[#020817] font-medium text-sm",
-    formFieldLabel: "text-[#020817] font-medium text-sm",
+      "border border-gray-200 hover:!bg-[#f7f9ff] hover:!border-[#4285f4]/40 text-[#020817] rounded-xl h-11 transition-colors shadow-none",
+    socialButtonsBlockButtonText: "text-[#020817] font-medium text-[13.5px]",
+    formFieldLabel: "text-[#020817] font-semibold text-[12.5px] tracking-wide",
     formFieldInput:
-      "bg-white border border-gray-200 rounded-xl text-[#020817] focus:border-[#4285f4]",
+      "bg-white border border-gray-200 rounded-xl text-[#020817] h-11 px-3.5 focus:!border-[#4285f4] focus:!ring-2 focus:!ring-[#4285f4]/15 transition-shadow",
+    formFieldInputShowPasswordButton: "text-[#8e9196] hover:text-[#4285f4]",
     formButtonPrimary:
-      "bg-[#4285f4] hover:bg-[#3570d4] text-white font-medium rounded-xl shadow-none",
-    footerActionLink: "text-[#4285f4] hover:text-[#3570d4] font-medium",
-    footerActionText: "text-[#8e9196]",
+      "bg-gradient-to-r from-[#4285f4] to-[#3570d4] hover:from-[#3570d4] hover:to-[#2a5fc0] text-white font-semibold rounded-xl h-11 shadow-[0_8px_20px_-8px_rgba(66,133,244,0.55)] transition-all",
+    footerActionLink:
+      "text-[#4285f4] hover:text-[#3570d4] font-semibold underline-offset-2 hover:underline",
+    footerActionText: "text-[#8e9196] text-[13px]",
     footerAction: "",
     dividerLine: "bg-gray-200",
-    dividerText: "text-[#8e9196] text-xs",
+    dividerText:
+      "text-[#8e9196] text-[11px] uppercase tracking-[0.12em] font-medium",
     identityPreviewEditButton: "text-[#4285f4]",
     formFieldSuccessText: "text-emerald-600 text-xs",
     alertText: "text-rose-700 text-xs",
@@ -85,9 +97,9 @@ const clerkAppearance = {
     otpCodeFieldInput:
       "bg-white border border-gray-200 rounded-lg text-[#020817] focus:border-[#4285f4]",
     formFieldRow: "",
-    logoBox: "mb-2",
-    logoImage: "h-7 w-auto",
-    main: "",
+    logoBox: "mb-2 mt-1 flex justify-center",
+    logoImage: "h-[26px] w-auto",
+    main: "gap-4",
   },
 };
 
@@ -117,6 +129,14 @@ function SignUpPage() {
   );
 }
 
+function SignedOutDashboardGate() {
+  const { openSignIn } = useClerk();
+  useEffect(() => {
+    openSignIn({ afterSignInUrl: `${basePath}/dashboard` });
+  }, [openSignIn]);
+  return <Redirect to="/" />;
+}
+
 function ProtectedDashboard() {
   return (
     <>
@@ -124,7 +144,7 @@ function ProtectedDashboard() {
         <Dashboard />
       </Show>
       <Show when="signed-out">
-        <Redirect to="/sign-in" />
+        <SignedOutDashboardGate />
       </Show>
     </>
   );

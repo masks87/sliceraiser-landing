@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { useClerk } from "@clerk/react";
 import heroImg from "@/assets/hero.png";
 import dashboardImg from "@/assets/dashboard.png";
 import locDubai from "@/assets/loc-dubai.jpg";
@@ -6,6 +7,20 @@ import locAbuDhabi from "@/assets/loc-abudhabi.jpg";
 import locSpain from "@/assets/loc-spain.jpg";
 import locFrance from "@/assets/loc-france.jpg";
 import locItaly from "@/assets/loc-italy.jpg";
+
+function CreateAccountButton() {
+  const { openSignUp } = useClerk();
+  const afterSignInUrl = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/dashboard`;
+  return (
+    <button
+      type="button"
+      onClick={() => openSignUp({ afterSignInUrl })}
+      className="border border-[#082f6f] text-[#082f6f] text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#082f6f] hover:text-white transition-colors"
+    >
+      Create Account
+    </button>
+  );
+}
 
 const locations = [
   { name: "Dubai, UAE", count: "120 Properties", img: locDubai },
@@ -127,12 +142,8 @@ export default function Home() {
               >
                 Browse Opportunities
               </Link>
-              <Link
-                href="/sign-up"
-                className="border border-[#082f6f] text-[#082f6f] text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#082f6f] hover:text-white transition-colors"
-              >
-                Create Account
-              </Link>
+              <CreateAccountButton />
+
             </div>
           </div>
 
