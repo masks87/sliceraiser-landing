@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "SliceRaiser"
+version = "1.0.0"
+id = "artifacts/sliceraiser"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22579
+
+[services.development]
+run = "pnpm --filter @workspace/sliceraiser run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/sliceraiser", "run", "build" ]
+publicDir = "artifacts/sliceraiser/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22579"
+BASE_PATH = "/"

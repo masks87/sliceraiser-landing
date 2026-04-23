@@ -1,0 +1,37 @@
+@layer theme, base, clerk, components, utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+
+  --color-primary: #4285f4;
+  --color-primary-dark: #3570d4;
+  --color-navy: #082f6f;
+  --color-navy-dark: #061f4a;
+  --color-dark: #020817;
+  --color-muted: #8e9196;
+  --color-soft: #f1f0fb;
+
+  --radius: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #ffffff;
+  color: #020817;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}

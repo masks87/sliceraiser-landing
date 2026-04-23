@@ -3,13 +3,17 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: SliceRaiser API specification
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: opportunities
+    description: Investment opportunity browsing
+  - name: portfolio
+    description: Authenticated user portfolio
 paths:
   /healthz:
     get:
@@ -24,6 +28,62 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /opportunities:
+    get:
+      operationId: listOpportunities
+      tags: [opportunities]
+      summary: List investment opportunities
+      responses:
+        "200":
+          description: A list of investment opportunities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/InvestmentOpportunity"
+  /opportunities/{id}:
+    get:
+      operationId: getOpportunity
+      tags: [opportunities]
+      summary: Get a single investment opportunity by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: The investment opportunity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvestmentOpportunity"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /portfolio:
+    get:
+      operationId: getPortfolio
+      tags: [portfolio]
+      summary: Get the authenticated user's portfolio snapshot
+      responses:
+        "200":
+          description: The user's portfolio snapshot
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PortfolioSnapshot"
+        "401":
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +93,144 @@ components:
           type: string
       required:
         - status
-
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+    RiskLevel:
+      type: string
+      enum: [Low, Medium, High]
+    InvestmentOpportunity:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        location:
+          type: string
+        assetType:
+          type: string
+        incomeType:
+          type: string
+        riskLevel:
+          $ref: "#/components/schemas/RiskLevel"
+        expectedReturn:
+          type: number
+          description: Annualized expected return percentage
+        minimumInvestment:
+          type: number
+        targetAmount:
+          type: number
+        fundedAmount:
+          type: number
+        imageUrl:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - title
+        - description
+        - location
+        - assetType
+        - incomeType
+        - riskLevel
+        - expectedReturn
+        - minimumInvestment
+        - targetAmount
+        - fundedAmount
+        - imageUrl
+        - createdAt
+        - updatedAt
+    Holding:
+      type: object
+      properties:
+        opportunityId:
+          type: integer
+        title:
+          type: string
+        units:
+          type: number
+        investedAmount:
+          type: number
+        currentValue:
+          type: number
+      required:
+        - opportunityId
+        - title
+        - units
+        - investedAmount
+        - currentValue
+    AllocationSlice:
+      type: object
+      properties:
+        category:
+          type: string
+        percentage:
+          type: number
+      required:
+        - category
+        - percentage
+    ReturnPoint:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Period label (YYYY-MM)
+        value:
+          type: number
+      required:
+        - date
+        - value
+    Totals:
+      type: object
+      properties:
+        totalInvested:
+          type: number
+        totalCurrentValue:
+          type: number
+        totalReturn:
+          type: number
+        totalReturnPct:
+          type: number
+      required:
+        - totalInvested
+        - totalCurrentValue
+        - totalReturn
+        - totalReturnPct
+    PortfolioSnapshot:
+      type: object
+      properties:
+        holdings:
+          type: array
+          items:
+            $ref: "#/components/schemas/Holding"
+        allocation:
+          type: array
+          items:
+            $ref: "#/components/schemas/AllocationSlice"
+        returnsHistory:
+          type: array
+          items:
+            $ref: "#/components/schemas/ReturnPoint"
+        totals:
+          $ref: "#/components/schemas/Totals"
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - holdings
+        - allocation
+        - returnsHistory
+        - totals
+        - updatedAt
