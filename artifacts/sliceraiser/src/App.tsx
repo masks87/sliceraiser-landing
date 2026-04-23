@@ -195,10 +195,10 @@ function ClerkProviderWithRoutes() {
         <Switch>
           <Route path="/sign-in/*?" component={SignInPage} />
           <Route path="/sign-up/*?" component={SignUpPage} />
+          <Route path="/" component={Home} />
           <Route>
             <Layout>
               <Switch>
-                <Route path="/" component={Home} />
                 <Route path="/opportunities" component={Opportunities} />
                 <Route path="/opportunities/:id" component={OpportunityDetail} />
                 <Route path="/dashboard" component={ProtectedDashboard} />

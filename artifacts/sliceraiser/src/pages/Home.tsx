@@ -1,395 +1,248 @@
-import type { ReactNode } from "react";
-import { Link } from "wouter";
-import { useListOpportunities, type InvestmentOpportunity } from "@workspace/api-client-react";
-import heroImg from "@/assets/hero.png";
-import locDubai from "@/assets/loc-dubai.jpg";
-import locAbuDhabi from "@/assets/loc-abudhabi.jpg";
-import locSpain from "@/assets/loc-spain.jpg";
-import locFrance from "@/assets/loc-france.jpg";
-import locItaly from "@/assets/loc-italy.jpg";
-import { formatCurrency, formatPercent } from "@/lib/format";
+import { useState } from 'react'
+import logoImg from '@/assets/logo.png'
+import dashboardImg from '@/assets/dashboard.png'
 
-function PhoneFrame({
-  children,
-  className = "",
-  rotate = "0deg",
-  z = 1,
-  shadow = "shadow-2xl",
-}: {
-  children: ReactNode;
-  className?: string;
-  rotate?: string;
-  z?: number;
-  shadow?: string;
-}) {
-  return (
-    <div
-      className={`relative ${className} ${shadow} rounded-[36px] bg-[#020817] p-[6px]`}
-      style={{ transform: `rotate(${rotate})`, zIndex: z }}
-    >
-      <div className="relative aspect-[9/19] w-full overflow-hidden rounded-[30px] bg-white">
-        <div className="absolute left-1/2 top-0 z-20 h-[18px] w-[90px] -translate-x-1/2 rounded-b-[12px] bg-[#020817]" />
-        {children}
-      </div>
-    </div>
-  );
-}
-
-function PhoneMockupTrio() {
-  return (
-    <div className="relative mx-auto flex h-[480px] w-full max-w-[520px] items-center justify-center">
-      {/* Soft brand glow */}
-      <div className="pointer-events-none absolute inset-x-8 inset-y-10 rounded-[60px] bg-gradient-to-br from-[#4285f4]/20 via-[#082f6f]/10 to-transparent blur-3xl" />
-
-      {/* Left phone — portfolio chart */}
-      <PhoneFrame
-        className="absolute left-0 top-8 w-[150px]"
-        rotate="-7deg"
-        z={1}
-      >
-        <div className="flex h-full flex-col bg-gradient-to-b from-[#f7f9ff] to-white p-3">
-          <div className="text-[8px] font-semibold text-[#8e9196]">Portfolio</div>
-          <div className="text-[14px] font-bold text-[#020817]">$46,290</div>
-          <div className="text-[8px] font-medium text-emerald-600">+10.2% YTD</div>
-          <div className="mt-3 flex-1">
-            <svg viewBox="0 0 120 80" className="h-full w-full">
-              <defs>
-                <linearGradient id="phgrad" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stopColor="#4285f4" stopOpacity="0.45" />
-                  <stop offset="100%" stopColor="#4285f4" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M0,60 L15,55 L30,50 L45,42 L60,38 L75,30 L90,28 L105,18 L120,12 L120,80 L0,80 Z"
-                fill="url(#phgrad)"
-              />
-              <path
-                d="M0,60 L15,55 L30,50 L45,42 L60,38 L75,30 L90,28 L105,18 L120,12"
-                fill="none"
-                stroke="#4285f4"
-                strokeWidth="1.6"
-              />
-            </svg>
-          </div>
-          <div className="mt-2 grid grid-cols-2 gap-1.5">
-            <div className="rounded-md bg-[#f1f0fb] p-1.5">
-              <div className="text-[6px] text-[#8e9196]">Invested</div>
-              <div className="text-[8px] font-bold text-[#020817]">$42k</div>
-            </div>
-            <div className="rounded-md bg-[#082f6f] p-1.5">
-              <div className="text-[6px] text-white/70">Return</div>
-              <div className="text-[8px] font-bold text-white">+$4.2k</div>
-            </div>
-          </div>
-        </div>
-      </PhoneFrame>
-
-      {/* Right phone — opportunity card */}
-      <PhoneFrame
-        className="absolute right-0 top-12 w-[150px]"
-        rotate="8deg"
-        z={1}
-      >
-        <div className="flex h-full flex-col">
-          <div className="relative h-[110px] w-full overflow-hidden">
-            <img src={locDubai} alt="" className="h-full w-full object-cover" />
-            <div className="absolute left-2 top-2 rounded-md bg-emerald-100 px-1.5 py-0.5 text-[7px] font-semibold text-emerald-700">
-              Low risk
-            </div>
-          </div>
-          <div className="flex-1 px-2.5 py-2">
-            <div className="text-[7px] text-[#8e9196]">Dubai Marina, UAE</div>
-            <div className="mt-0.5 text-[9px] font-bold leading-tight text-[#020817]">
-              Marina Bay Penthouse
-            </div>
-            <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-[#f1f0fb]">
-              <div className="h-full w-[75%] rounded-full bg-[#4285f4]" />
-            </div>
-            <div className="mt-1 flex justify-between text-[6px]">
-              <span className="text-[#8e9196]">Funded</span>
-              <span className="font-semibold text-[#020817]">75%</span>
-            </div>
-            <div className="mt-2 flex items-end justify-between">
-              <div>
-                <div className="text-[6px] text-[#8e9196]">Return</div>
-                <div className="text-[10px] font-bold text-[#4285f4]">8.4%</div>
-              </div>
-              <div className="rounded-md bg-[#4285f4] px-2 py-1 text-[7px] font-semibold text-white">
-                Invest
-              </div>
-            </div>
-          </div>
-        </div>
-      </PhoneFrame>
-
-      {/* Center phone — biggest, dashboard hero */}
-      <PhoneFrame className="relative w-[180px]" z={2} shadow="shadow-[0_30px_60px_-15px_rgba(8,47,111,0.45)]">
-        <div className="flex h-full flex-col bg-gradient-to-b from-white to-[#f7f9ff]">
-          <div className="flex items-center justify-between px-3 pt-5">
-            <div>
-              <div className="text-[8px] font-semibold text-[#8e9196]">Hello,</div>
-              <div className="text-[12px] font-bold text-[#020817]">Investor</div>
-            </div>
-            <div className="h-7 w-7 rounded-full bg-[#082f6f] text-white text-[10px] font-bold flex items-center justify-center">
-              I
-            </div>
-          </div>
-          <div className="mx-3 mt-3 rounded-xl bg-gradient-to-br from-[#4285f4] to-[#082f6f] p-3 text-white">
-            <div className="text-[8px] opacity-80">Total value</div>
-            <div className="text-[16px] font-bold">$46,290</div>
-            <div className="text-[8px] text-emerald-200">+ $4,290 this year</div>
-          </div>
-          <div className="mt-3 px-3 text-[8px] font-semibold uppercase tracking-wide text-[#8e9196]">
-            Top holdings
-          </div>
-          <div className="mx-3 mt-1.5 space-y-1.5">
-            {[
-              { c: "#4285f4", t: "Marina Bay", v: "$13.6k" },
-              { c: "#10b981", t: "Catalonia Coast", v: "$9.9k" },
-              { c: "#f59e0b", t: "Provence Vineyard", v: "$6.4k" },
-              { c: "#082f6f", t: "Tuscan Heritage", v: "$16.2k" },
-            ].map((h) => (
-              <div key={h.t} className="flex items-center justify-between rounded-lg border border-gray-100 bg-white px-2 py-1.5">
-                <div className="flex items-center gap-1.5">
-                  <span className="h-2 w-2 rounded-full" style={{ background: h.c }} />
-                  <span className="text-[8px] font-medium text-[#020817]">{h.t}</span>
-                </div>
-                <span className="text-[8px] font-bold text-[#020817]">{h.v}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-auto mx-3 mb-3 rounded-lg bg-[#082f6f] py-2 text-center text-[9px] font-semibold text-white">
-            View dashboard
-          </div>
-        </div>
-      </PhoneFrame>
-    </div>
-  );
-}
-
-function FeaturedProperties() {
-  const { data, isLoading } = useListOpportunities();
-  const featured = ((data ?? []) as InvestmentOpportunity[]).slice(0, 3);
-
-  return (
-    <section className="bg-white py-20 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-[30px] font-bold text-[#4285f4] mb-4 leading-[36px]">Featured Properties</h2>
-          <p className="text-[#8e9196] text-base max-w-md mx-auto leading-[24px] font-normal">
-            Explore our handpicked selection of premium properties across luxury locations in UAE and Europe.
-          </p>
-        </div>
-        {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[0, 1, 2].map((i) => (
-              <div key={i} className="h-[420px] rounded-2xl bg-[#f1f0fb] animate-pulse" />
-            ))}
-          </div>
-        ) : featured.length === 0 ? (
-          <p className="text-center text-[#8e9196] text-sm">No properties available yet.</p>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {featured.map((p) => (
-              <Link
-                key={p.id}
-                href={`/opportunities/${p.id}`}
-                className="group flex flex-col rounded-2xl overflow-hidden border border-gray-100 bg-white shadow-sm hover:shadow-xl transition-shadow"
-              >
-                <div className="relative h-[220px] overflow-hidden">
-                  <img
-                    src={p.imageUrl}
-                    alt={p.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute top-3 left-3 rounded-md bg-emerald-100 px-2 py-1 text-[11px] font-semibold text-emerald-700">
-                    {p.riskLevel} risk
-                  </div>
-                  <div className="absolute top-3 right-3 rounded-md bg-white/95 px-2 py-1 text-[11px] font-semibold text-[#020817]">
-                    {p.assetType}
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <div className="flex items-center gap-1.5 text-[12px] text-[#8e9196]">
-                    <svg className="h-3.5 w-3.5 text-[#4285f4]" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                    </svg>
-                    {p.location}
-                  </div>
-                  <h3 className="mt-1 text-[16px] font-bold leading-tight text-[#020817]">{p.title}</h3>
-                  <p className="mt-2 line-clamp-2 text-[13px] text-[#8e9196] leading-relaxed">{p.description}</p>
-                  <div className="mt-auto pt-4 grid grid-cols-2 gap-3 border-t border-gray-100">
-                    <div>
-                      <div className="text-[11px] text-[#8e9196]">Expected return</div>
-                      <div className="text-[15px] font-bold text-[#4285f4]">
-                        {formatPercent(p.expectedReturn)}
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-[11px] text-[#8e9196]">Min. investment</div>
-                      <div className="text-[15px] font-bold text-[#020817]">
-                        {formatCurrency(p.minimumInvestment)}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
-  );
-}
+// Figma assets
+const imgLuxuryProperty = "https://www.figma.com/api/mcp/asset/763237e7-9544-47f2-95d3-d99e408f8ad6"
+const imgFrame1000002023 = "https://www.figma.com/api/mcp/asset/023f3a49-d6a7-4116-bb4c-6dba771cabfc"
+const imgMultipleLineGraph = "https://www.figma.com/api/mcp/asset/6cf1a34f-0dac-44a7-8703-82a603e88f10"
+const imgGroup289192 = "https://www.figma.com/api/mcp/asset/61fc9281-116e-42cd-9a72-2edb3c71b3db"
+const imgGroup289193 = "https://www.figma.com/api/mcp/asset/1c26a17f-cfda-43f2-acb1-85cb28883fbb"
+const imgGroup289197 = "https://www.figma.com/api/mcp/asset/0b0f748f-1694-44cd-afce-0810215f25d0"
+const imgDubaiUae = "https://www.figma.com/api/mcp/asset/042e7b36-e60b-4f1a-9670-8c7d2d095147"
+const imgAbuDhabi = "https://www.figma.com/api/mcp/asset/1628a40a-ce8c-4aa2-9a2c-46334f6ffbc1"
+const imgSpain = "https://www.figma.com/api/mcp/asset/90d1357c-0405-49b2-9b5f-8238ff3c56d0"
+const imgFrance = "https://www.figma.com/api/mcp/asset/daa66c34-a192-456c-a7eb-8f403b001a57"
+const imgItaly = "https://www.figma.com/api/mcp/asset/739b36ea-6929-4086-abae-bcb4346e0e71"
+const imgGroup289194 = "https://www.figma.com/api/mcp/asset/abf2831e-ac22-426c-870d-b0d3417deb18"
+const imgGroup289195 = "https://www.figma.com/api/mcp/asset/11c45383-8665-4c12-b134-d66c3dbf3c78"
+const imgGroup289196 = "https://www.figma.com/api/mcp/asset/4ecc83fa-5659-4999-ae99-1e23767b07b0"
+const imgIconHighROI = "https://www.figma.com/api/mcp/asset/cb2ee8a2-5aa2-4f4e-be1f-a7d3f709f684"
+const imgIconSecure = "https://www.figma.com/api/mcp/asset/1f0da27d-da37-4abb-94c5-8ca1f7fc1901"
+const imgIconManagement = "https://www.figma.com/api/mcp/asset/72d0a2d9-0aa4-4c05-b667-1412dfed994a"
+const imgIconGlobal = "https://www.figma.com/api/mcp/asset/80b41464-6e0b-4952-a743-2dd559f7f93e"
+const imgSocialTwitter = "https://www.figma.com/api/mcp/asset/cdbeb314-2cce-4b17-98f4-a17aa79aa1eb"
+const imgSocialFacebook = "https://www.figma.com/api/mcp/asset/f437d7e8-0ada-421e-9f68-13c6a8b89536"
+const imgSocialInstagram = "https://www.figma.com/api/mcp/asset/9bc11b59-4ea6-42d3-978c-8076bc4ebe80"
+const imgSocialLinkedin = "https://www.figma.com/api/mcp/asset/dbf8da65-88e6-45a1-9f8e-54b197c90ec4"
 
 const locations = [
-  { name: "Dubai, UAE", count: "120 Properties", img: locDubai },
-  { name: "Abu Dhabi, UAE", count: "95 Properties", img: locAbuDhabi },
-  { name: "Spain", count: "78 Properties", img: locSpain },
-  { name: "France", count: "62 Properties", img: locFrance },
-  { name: "Italy", count: "56 Properties", img: locItaly },
-];
+  { name: 'Dubai, UAE', count: '120 Properties', img: imgDubaiUae },
+  { name: 'Abu Dhabi, UAE', count: '95 Properties', img: imgAbuDhabi },
+  { name: 'Spain', count: '78 Properties', img: imgSpain },
+  { name: 'France', count: '62 Properties', img: imgFrance },
+  { name: 'Italy', count: '56 Properties', img: imgItaly },
+]
 
 const features = [
-  {
-    title: "High ROI",
-    desc: "Enjoy exceptional returns on your real estate investments in booming markets.",
-    icon: (
-      <svg className="w-6 h-6 text-[#4285f4]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 17l6-6 4 4 8-8M14 7h7v7" />
-      </svg>
-    ),
-  },
-  {
-    title: "Secure Investment",
-    desc: "Our properties are carefully vetted to ensure security and long-term value appreciation.",
-    icon: (
-      <svg className="w-6 h-6 text-[#4285f4]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z" />
-      </svg>
-    ),
-  },
-  {
-    title: "Professional Management",
-    desc: "Full-service property management solutions to maximize your rental income.",
-    icon: (
-      <svg className="w-6 h-6 text-[#4285f4]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 9l9-6 9 6v11a2 2 0 01-2 2h-4v-7H9v7H5a2 2 0 01-2-2V9z" />
-      </svg>
-    ),
-  },
-  {
-    title: "Global Portfolio",
-    desc: "Diverse investment opportunities across premium locations in UAE and Europe.",
-    icon: (
-      <svg className="w-6 h-6 text-[#4285f4]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-        <circle cx="12" cy="12" r="9" strokeLinecap="round" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18" />
-      </svg>
-    ),
-  },
-];
+  { icon: imgIconHighROI, title: 'High ROI', desc: 'Enjoy exceptional returns on your real estate investments in booming markets.' },
+  { icon: imgIconSecure, title: 'Secure Investment', desc: 'Our properties are carefully vetted to ensure security and long-term value appreciation.' },
+  { icon: imgIconManagement, title: 'Professional Management', desc: 'Full-service property management solutions to maximize your rental income.' },
+  { icon: imgIconGlobal, title: 'Global Portfolio', desc: 'Diverse investment opportunities across premium locations in UAE and Europe.' },
+]
 
-function LocationCard({ loc, height }: { loc: typeof locations[number]; height: string }) {
+const desktopNavLinks = [
+  { label: 'HOME', active: true },
+  { label: 'PROPERTIES INVESTMENTS', active: false },
+  { label: 'EQUITY INVESTMENTS', active: false },
+  { label: 'FIXED INCOME', active: false },
+  { label: 'MARKETPLACE', active: false },
+]
+
+const mobileNavLinks = ['Home', 'Properties Investments', 'Equity Investments', 'Fixed Income', 'Marketplace']
+
+function Logo() {
   return (
-    <Link
-      href="/opportunities"
-      className={`group relative ${height} rounded-2xl overflow-hidden shadow-xl block`}
-    >
-      <img
-        src={loc.img}
-        alt={loc.name}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-      />
-      <div className="absolute inset-0 bg-black/35" />
-      <div className="absolute bottom-0 left-0 right-0 p-5">
-        <p className="text-white font-bold text-[18px] leading-[26px]">{loc.name}</p>
-        <p className="text-white/75 text-[13px] mt-0.5 font-normal">{loc.count}</p>
-      </div>
-    </Link>
-  );
+    <img src={logoImg} alt="Slice Raiser" className="h-[22px] w-auto object-contain" />
+  )
 }
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
-    <>
-      {/* Hero */}
-      <section className="relative min-h-[88vh] flex items-center justify-center overflow-hidden">
-        <img src={heroImg} alt="Luxury Property" className="absolute inset-0 w-full h-full object-cover opacity-50" />
+    <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>
+
+      {/* ── Header ── */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.07)]">
+
+        {/* Desktop nav */}
+        <nav className="hidden lg:flex items-center justify-center h-[60px] px-6">
+          <div className="flex items-center gap-3">
+
+            {/* Logo */}
+            <Logo />
+
+            {/* Nav links */}
+            <div className="flex items-center gap-5 ml-6">
+              {desktopNavLinks.map(({ label, active }) => (
+                <a
+                  key={label}
+                  href="#"
+                  className={`text-[11px] font-semibold tracking-wide whitespace-nowrap transition-colors ${
+                    active ? 'text-[#4285f4]' : 'text-[#020817] hover:text-[#4285f4]'
+                  }`}
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
+
+            {/* Divider */}
+            <div className="w-px h-8 bg-gray-200 mx-3 shrink-0" />
+
+            {/* Location */}
+            <div className="flex flex-col shrink-0">
+              <span className="text-[10px] text-[#8e9196] leading-tight">Location</span>
+              <div className="flex items-center gap-1">
+                <svg className="w-3 h-3 text-[#4285f4] shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                <span className="text-[13px] font-semibold text-[#020817]">Dubai</span>
+              </div>
+            </div>
+
+            {/* Search */}
+            <div className="flex items-center gap-2 border border-gray-200 rounded-lg px-3 py-1.5 w-40 shrink-0">
+              <svg className="w-4 h-4 text-[#8e9196] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input
+                type="text"
+                placeholder="Search here"
+                className="text-[12px] text-[#8e9196] bg-transparent outline-none w-full placeholder-[#8e9196]"
+              />
+            </div>
+
+            {/* Filter icon */}
+            <button className="shrink-0 text-[#8e9196] hover:text-[#4285f4] transition-colors">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h18M7 12h10M11 20h2" />
+              </svg>
+            </button>
+
+            {/* Auth buttons */}
+            <div className="flex items-center gap-2">
+              <button className="bg-[#4285f4] text-white text-[13px] font-medium px-5 py-2 rounded-lg hover:bg-[#3570d4] transition-colors whitespace-nowrap">
+                Log In
+              </button>
+              <button className="bg-[#082f6f] text-white text-[13px] font-medium px-5 py-2 rounded-lg hover:bg-[#061f4a] transition-colors whitespace-nowrap">
+                Sign Up
+              </button>
+            </div>
+
+          </div>
+        </nav>
+
+        {/* Mobile nav */}
+        <nav className="lg:hidden flex items-center justify-between h-14 px-6">
+          <Logo />
+          <button className="p-1" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+            <svg className="w-6 h-6 text-[#020817]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </nav>
+
+        {menuOpen && (
+          <div className="lg:hidden bg-white border-t border-gray-100 px-6 py-4 flex flex-col gap-4">
+            {mobileNavLinks.map(link => (
+              <a key={link} href="#" className="text-sm text-[#8e9196] hover:text-[#4285f4] transition-colors">
+                {link}
+              </a>
+            ))}
+            <div className="flex gap-3 pt-2 border-t border-gray-100">
+              <button className="flex-1 bg-[#4285f4] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#3570d4] transition-colors">
+                Log In
+              </button>
+              <button className="flex-1 bg-[#082f6f] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#061f4a] transition-colors">
+                Sign Up
+              </button>
+            </div>
+          </div>
+        )}
+      </header>
+
+      {/* ── Hero ── */}
+      <section className="relative min-h-screen flex items-center justify-center pt-14 lg:pt-[60px] overflow-hidden">
+        <img src={imgLuxuryProperty} alt="Luxury Property" className="absolute inset-0 w-full h-full object-cover opacity-50" />
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(26,31,44,0.8)] to-[rgba(0,0,0,0.92)]" />
         <div className="relative z-10 max-w-2xl mx-auto px-6 py-24 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-            Discover Your Perfect
-            <br />
+            Discover Your Perfect<br />
             <span className="text-[#4285f4]">Property Investment</span>
           </h1>
           <p className="text-white/80 text-base md:text-lg mb-10 max-w-md mx-auto leading-relaxed font-normal">
             Explore premium real estate opportunities in UAE and Europe with our curated selection of luxury properties.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/opportunities"
-              className="bg-[#4285f4] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors"
-            >
+            <button className="bg-[#4285f4] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors">
               Browse Properties
-            </Link>
-            <Link
-              href="/opportunities"
-              className="bg-[#082f6f] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#061f4a] transition-colors"
-            >
+            </button>
+            <button className="bg-[#082f6f] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#061f4a] transition-colors">
               Investment Opportunities
-            </Link>
+            </button>
           </div>
         </div>
       </section>
 
-      {/* Discipline Section */}
+      {/* ── Discipline Section ── */}
       <section className="bg-white py-20 px-6">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12">
-          <div className="flex-1 max-w-xl">
+          <div className="flex-1 max-w-lg">
             <h2 className="text-2xl md:text-[28px] font-bold text-[#4285f4] mb-6 leading-snug">
               Discipline will take you places motivation can't
             </h2>
-            <p className="text-[#8e9196] text-base leading-relaxed mb-5 font-normal">
-              Slice your capital across institutional-grade real estate, infrastructure, and alternative income
-              opportunities. We hand-pick deals from premium operators across the UAE and Europe so you can build a
-              diversified portfolio with as little as a few thousand dollars.
-            </p>
-            <p className="text-[#8e9196] text-base leading-relaxed mb-5 font-normal">
-              Every offering is structured by our investment team, vetted by independent legal and financial advisors,
-              and continuously monitored after funding. You stay in control with transparent reporting and a single
-              dashboard for every position.
-            </p>
             <p className="text-[#8e9196] text-base leading-relaxed mb-10 font-normal">
-              Whether you want predictable income, long-term capital growth, or both, SliceRaiser gives you the access
-              and tools to put your strategy on autopilot.
+              Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis
+              enim velit mollit. Exercitation veniam consequat sunt nostrud amet. Amet minim mollit non deserunt ullamco
+              est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam
+              consequat sunt nostrud amet.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link
-                href="/opportunities"
-                className="bg-[#4285f4] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors"
-              >
+              <button className="bg-[#4285f4] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors">
                 Schedule a Demo
-              </Link>
-              <a
-                href="mailto:info@sliceraiser.com"
-                className="border border-[#082f6f] text-[#082f6f] text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#082f6f] hover:text-white transition-colors"
-              >
+              </button>
+              <button className="border border-[#082f6f] text-[#082f6f] text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#082f6f] hover:text-white transition-colors">
                 Contact Sales
-              </a>
+              </button>
             </div>
           </div>
 
-          <div className="flex-1 w-full">
-            <PhoneMockupTrio />
+          {/* Phone cluster */}
+          <div className="flex-1 flex items-end justify-center gap-3 min-h-[340px] relative w-full">
+            <div className="flex flex-col gap-3 items-center self-start pt-10">
+              <img src={imgFrame1000002023} alt="" className="w-28 rounded-xl shadow-2xl" />
+              <img src={imgMultipleLineGraph} alt="" className="w-32 rounded-xl shadow-2xl" />
+            </div>
+            <div className="flex flex-col gap-3 items-center self-start pt-20">
+              <img src={imgGroup289193} alt="" className="w-28 rounded-xl shadow-2xl" />
+              <img src={imgGroup289197} alt="" className="w-28 rounded-xl shadow-2xl" />
+            </div>
+            <div className="self-start pt-4">
+              <img src={imgGroup289192} alt="" className="w-28 rounded-xl shadow-2xl" />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Properties */}
-      <FeaturedProperties />
+      {/* ── Featured Properties ── */}
+      <section className="bg-white py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-[30px] font-bold text-[#4285f4] mb-4 leading-[36px]">Featured Properties</h2>
+            <p className="text-[#8e9196] text-base max-w-md mx-auto leading-[24px] font-normal">
+              Explore our handpicked selection of premium properties across luxury locations in UAE and Europe.
+            </p>
+          </div>
+          {/* Dashboard screenshot */}
+          <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+            <img src={dashboardImg} alt="SliceRaiser Dashboard" className="w-full h-auto block" />
+          </div>
+        </div>
+      </section>
 
-      {/* Featured Locations */}
+      {/* ── Featured Locations ── */}
       <section className="bg-[#f1f0fb4d] py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
@@ -398,48 +251,159 @@ export default function Home() {
               Explore our exquisite properties in these premium locations across UAE and Europe.
             </p>
           </div>
+          {/* Row 1: 2 large cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-            {locations.slice(0, 2).map((loc) => (
+            {locations.slice(0, 2).map(loc => (
               <LocationCard key={loc.name} loc={loc} height="h-[260px]" />
             ))}
           </div>
+          {/* Row 2: 3 smaller cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {locations.slice(2).map((loc) => (
+            {locations.slice(2).map(loc => (
               <LocationCard key={loc.name} loc={loc} height="h-[200px]" />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features */}
+      {/* ── Invest in Premium Real Estate ── */}
       <section className="bg-white py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-[30px] font-bold text-[#4285f4] mb-4 leading-[36px]">Invest in Premium Real Estate</h2>
-            <p className="text-[#8e9196] text-base max-w-md mx-auto leading-[24px] font-normal">
-              Our curated investment opportunities offer exceptional returns in high-growth markets, combining luxury
-              with strong long-term potential.
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-14 items-start">
+
+          {/* Left: text + 2x2 cards + button */}
+          <div className="flex-1">
+            <h2 className="text-[30px] font-bold text-[#4285f4] mb-4 leading-[36px]">
+              Invest in Premium Real Estate
+            </h2>
+            <p className="text-[#8e9196] text-base leading-[24px] mb-8 font-normal">
+              Our curated real estate investment opportunities offer exceptional returns in high-growth markets.
+              With strategic locations across UAE and Europe, our properties combine luxury living with strong
+              investment potential.
             </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
-            {features.map((f) => (
-              <div key={f.title} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-                <div className="mb-4">{f.icon}</div>
-                <h3 className="text-[#020817] font-semibold text-[15px] mb-2">{f.title}</h3>
-                <p className="text-[#8e9196] text-[13px] leading-[20px] font-normal">{f.desc}</p>
-              </div>
-            ))}
-          </div>
-          <div className="text-center">
-            <Link
-              href="/opportunities"
-              className="inline-block bg-[#4285f4] text-white text-[14px] font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors"
-            >
+            {/* 2x2 feature cards */}
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              {features.map(f => (
+                <div key={f.title} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
+                  <img src={f.icon} alt="" className="w-6 h-6 mb-3" />
+                  <h3 className="text-[#020817] font-semibold text-[15px] mb-2">{f.title}</h3>
+                  <p className="text-[#8e9196] text-[13px] leading-[20px] font-normal">{f.desc}</p>
+                </div>
+              ))}
+            </div>
+            <button className="bg-[#4285f4] text-white text-[14px] font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors">
               Explore Investment Opportunities
-            </Link>
+            </button>
+          </div>
+
+          {/* Right: phone mockups */}
+          <div className="flex-1 flex items-end justify-center gap-4 min-h-[400px] relative">
+            <div className="self-end">
+              <img src={imgGroup289196} alt="" className="w-36 rounded-2xl shadow-2xl" />
+            </div>
+            <div className="self-start pt-8">
+              <img src={imgGroup289195} alt="" className="w-36 rounded-2xl shadow-2xl" />
+            </div>
+            <div className="self-end">
+              <img src={imgGroup289194} alt="" className="w-36 rounded-2xl shadow-2xl" />
+            </div>
           </div>
         </div>
       </section>
-    </>
-  );
+
+      {/* ── Footer ── */}
+      <footer className="bg-white py-14 px-6 border-t border-gray-100">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+            {/* Brand */}
+            <div>
+              <div className="mb-4">
+                <Logo />
+              </div>
+              <p className="text-[#8e9196] text-[14px] leading-[20px] mb-5 font-normal">
+                Discover your perfect property investment opportunity across UAE and Europe with our premium real estate marketplace.
+              </p>
+              <div className="flex items-center gap-4 mb-4">
+                {[imgSocialTwitter, imgSocialFacebook, imgSocialInstagram, imgSocialLinkedin].map((src, i) => (
+                  <a key={i} href="#" className="w-5 h-5 block hover:opacity-70 transition-opacity">
+                    <img src={src} alt="" className="w-full h-full object-contain" />
+                  </a>
+                ))}
+              </div>
+              <button className="bg-[#4285f4] text-white text-sm font-medium px-5 py-2 rounded-lg hover:bg-[#3570d4] transition-colors">
+                Sign Up
+              </button>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h3 className="text-[#020817] font-semibold text-[16px] mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                {['Home', 'Properties', 'Investments', 'About Us', 'Contact'].map(link => (
+                  <li key={link}>
+                    <a href="#" className="text-[#8e9196] text-[14px] leading-[24px] font-normal hover:text-[#4285f4] transition-colors">{link}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Regions */}
+            <div>
+              <h3 className="text-[#020817] font-semibold text-[16px] mb-4">Regions</h3>
+              <ul className="space-y-2">
+                {['Dubai, UAE', 'Abu Dhabi, UAE', 'Spain', 'France', 'Italy'].map(region => (
+                  <li key={region}>
+                    <a href="#" className="text-[#8e9196] text-[14px] leading-[24px] font-normal hover:text-[#4285f4] transition-colors">{region}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h3 className="text-[#020817] font-semibold text-[16px] mb-4">Contact</h3>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <svg className="w-4 h-4 mt-1 shrink-0 text-[#4285f4]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  <span className="text-[#8e9196] text-[14px] leading-[20px] font-normal">Sheikh Zayed Road, Dubai, UAE</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <svg className="w-4 h-4 shrink-0 text-[#4285f4]" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                  <span className="text-[#8e9196] text-[14px] leading-[20px] font-normal">+971 4 123 4567</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <svg className="w-4 h-4 shrink-0 text-[#4285f4]" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                  <span className="text-[#8e9196] text-[14px] leading-[20px] font-normal">info@sliceraiser.com</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="border-t border-gray-200 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-[#8e9196] text-[13px] font-normal">© 2025 GlassEstate. All rights reserved.</p>
+            <div className="flex items-center gap-6">
+              {['Privacy Policy', 'Terms of Service', 'Cookies Policy'].map(item => (
+                <a key={item} href="#" className="text-[#8e9196] text-[13px] font-normal hover:text-[#4285f4] transition-colors">
+                  {item}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
+
+function LocationCard({ loc, height }: { loc: { name: string; count: string; img: string }; height: string }) {
+  return (
+    <a href="#" className={`group relative ${height} rounded-2xl overflow-hidden shadow-xl block`}>
+      <img src={loc.img} alt={loc.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+      <div className="absolute inset-0 bg-black/35" />
+      <div className="absolute bottom-0 left-0 right-0 p-5">
+        <p className="text-white font-bold text-[18px] leading-[26px]">{loc.name}</p>
+        <p className="text-white/75 text-[13px] mt-0.5 font-normal">{loc.count}</p>
+      </div>
+    </a>
+  )
 }
