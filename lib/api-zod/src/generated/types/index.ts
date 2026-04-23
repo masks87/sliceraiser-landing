@@ -11,6 +11,8 @@ export * from "./errorResponse";
 export * from "./healthStatus";
 export * from "./holding";
 export * from "./investmentOpportunity";
+export * from "./listOpportunitiesParams";
+export * from "./opportunityCategory";
 export * from "./portfolioSnapshot";
 export * from "./returnPoint";
 export * from "./riskLevel";

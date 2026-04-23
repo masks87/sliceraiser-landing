@@ -18,11 +18,16 @@ export const HealthCheckResponse = zod.object({
 /**
  * @summary List investment opportunities
  */
+export const ListOpportunitiesQueryParams = zod.object({
+  category: zod.enum(["Property", "Equity", "Fixed Income"]).optional(),
+});
+
 export const ListOpportunitiesResponseItem = zod.object({
   id: zod.number(),
   title: zod.string(),
   description: zod.string(),
   location: zod.string(),
+  category: zod.enum(["Property", "Equity", "Fixed Income"]),
   assetType: zod.string(),
   incomeType: zod.string(),
   riskLevel: zod.enum(["Low", "Medium", "High"]),
@@ -52,6 +57,7 @@ export const GetOpportunityResponse = zod.object({
   title: zod.string(),
   description: zod.string(),
   location: zod.string(),
+  category: zod.enum(["Property", "Equity", "Fixed Income"]),
   assetType: zod.string(),
   incomeType: zod.string(),
   riskLevel: zod.enum(["Low", "Medium", "High"]),
@@ -87,7 +93,7 @@ export const GetPortfolioResponse = zod.object({
   ),
   returnsHistory: zod.array(
     zod.object({
-      date: zod.coerce.date(),
+      date: zod.string().describe("Period label (YYYY-MM)"),
       value: zod.number(),
     }),
   ),

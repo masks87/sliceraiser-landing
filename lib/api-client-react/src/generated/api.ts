@@ -17,6 +17,7 @@ import type {
   ErrorResponse,
   HealthStatus,
   InvestmentOpportunity,
+  ListOpportunitiesParams,
   PortfolioSnapshot,
 } from "./api.schemas";
 
@@ -108,41 +109,60 @@ export function useHealthCheck<
 /**
  * @summary List investment opportunities
  */
-export const getListOpportunitiesUrl = () => {
-  return `/api/opportunities`;
+export const getListOpportunitiesUrl = (params?: ListOpportunitiesParams) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? "null" : value.toString());
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0
+    ? `/api/opportunities?${stringifiedParams}`
+    : `/api/opportunities`;
 };
 
 export const listOpportunities = async (
+  params?: ListOpportunitiesParams,
   options?: RequestInit,
 ): Promise<InvestmentOpportunity[]> => {
-  return customFetch<InvestmentOpportunity[]>(getListOpportunitiesUrl(), {
+  return customFetch<InvestmentOpportunity[]>(getListOpportunitiesUrl(params), {
     ...options,
     method: "GET",
   });
 };
 
-export const getListOpportunitiesQueryKey = () => {
-  return [`/api/opportunities`] as const;
+export const getListOpportunitiesQueryKey = (
+  params?: ListOpportunitiesParams,
+) => {
+  return [`/api/opportunities`, ...(params ? [params] : [])] as const;
 };
 
 export const getListOpportunitiesQueryOptions = <
   TData = Awaited<ReturnType<typeof listOpportunities>>,
   TError = ErrorType<unknown>,
->(options?: {
-  query?: UseQueryOptions<
-    Awaited<ReturnType<typeof listOpportunities>>,
-    TError,
-    TData
-  >;
-  request?: SecondParameter<typeof customFetch>;
-}) => {
+>(
+  params?: ListOpportunitiesParams,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof listOpportunities>>,
+      TError,
+      TData
+    >;
+    request?: SecondParameter<typeof customFetch>;
+  },
+) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
 
-  const queryKey = queryOptions?.queryKey ?? getListOpportunitiesQueryKey();
+  const queryKey =
+    queryOptions?.queryKey ?? getListOpportunitiesQueryKey(params);
 
   const queryFn: QueryFunction<
     Awaited<ReturnType<typeof listOpportunities>>
-  > = ({ signal }) => listOpportunities({ signal, ...requestOptions });
+  > = ({ signal }) => listOpportunities(params, { signal, ...requestOptions });
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
     Awaited<ReturnType<typeof listOpportunities>>,
@@ -163,15 +183,18 @@ export type ListOpportunitiesQueryError = ErrorType<unknown>;
 export function useListOpportunities<
   TData = Awaited<ReturnType<typeof listOpportunities>>,
   TError = ErrorType<unknown>,
->(options?: {
-  query?: UseQueryOptions<
-    Awaited<ReturnType<typeof listOpportunities>>,
-    TError,
-    TData
-  >;
-  request?: SecondParameter<typeof customFetch>;
-}): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
-  const queryOptions = getListOpportunitiesQueryOptions(options);
+>(
+  params?: ListOpportunitiesParams,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof listOpportunities>>,
+      TError,
+      TData
+    >;
+    request?: SecondParameter<typeof customFetch>;
+  },
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getListOpportunitiesQueryOptions(params, options);
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;

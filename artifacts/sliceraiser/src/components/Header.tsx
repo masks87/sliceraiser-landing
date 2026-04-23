@@ -14,19 +14,17 @@ import logoImg from "@/assets/logo.png";
 
 const navLinks = [
   { label: "HOME", to: "/" },
-  { label: "PROPERTIES INVESTMENTS", to: "/opportunities?asset=Residential" },
-  { label: "EQUITY INVESTMENTS", to: "/opportunities?asset=Commercial" },
-  { label: "FIXED INCOME", to: "/opportunities?asset=Vineyard" },
-  { label: "MARKETPLACE", to: "/opportunities" },
+  { label: "PROPERTIES INVESTMENTS", to: "/opportunities" },
+  { label: "EQUITY INVESTMENTS", to: "/equity" },
+  { label: "FIXED INCOME", to: "/fixed-income" },
   { label: "DASHBOARD", to: "/dashboard" },
 ];
 
 const mobileLinks = [
   { label: "Home", to: "/" },
-  { label: "Properties investments", to: "/opportunities?asset=Residential" },
-  { label: "Equity investments", to: "/opportunities?asset=Commercial" },
-  { label: "Fixed income", to: "/opportunities?asset=Vineyard" },
-  { label: "Marketplace", to: "/opportunities" },
+  { label: "Properties investments", to: "/opportunities" },
+  { label: "Equity investments", to: "/equity" },
+  { label: "Fixed income", to: "/fixed-income" },
   { label: "Dashboard", to: "/dashboard" },
 ];
 
@@ -74,15 +72,7 @@ export default function Header() {
 
           <div className="flex items-center gap-5 ml-6">
             {navLinks.map(({ label, to }) => {
-              const [toPath, toQuery = ""] = to.split("?");
-              const currentSearch =
-                typeof window !== "undefined" ? window.location.search.replace(/^\?/, "") : "";
-              const active =
-                toQuery !== ""
-                  ? location === toPath && currentSearch === toQuery
-                  : to === "/"
-                    ? location === "/"
-                    : location === toPath && currentSearch === "";
+              const active = to === "/" ? location === "/" : location === to;
               return (
                 <Link
                   key={label}

@@ -5,6 +5,7 @@
  * SliceRaiser API specification
  * OpenAPI spec version: 0.1.0
  */
+import type { OpportunityCategory } from "./opportunityCategory";
 import type { RiskLevel } from "./riskLevel";
 
 export interface InvestmentOpportunity {
@@ -12,6 +13,7 @@ export interface InvestmentOpportunity {
   title: string;
   description: string;
   location: string;
+  category: OpportunityCategory;
   assetType: string;
   incomeType: string;
   riskLevel: RiskLevel;

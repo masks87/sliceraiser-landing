@@ -7,6 +7,7 @@
  */
 
 export interface ReturnPoint {
-  date: Date;
+  /** Period label (YYYY-MM) */
+  date: string;
   value: number;
 }

@@ -21,11 +21,21 @@ export const RiskLevel = {
   High: "High",
 } as const;
 
+export type OpportunityCategory =
+  (typeof OpportunityCategory)[keyof typeof OpportunityCategory];
+
+export const OpportunityCategory = {
+  Property: "Property",
+  Equity: "Equity",
+  Fixed_Income: "Fixed Income",
+} as const;
+
 export interface InvestmentOpportunity {
   id: number;
   title: string;
   description: string;
   location: string;
+  category: OpportunityCategory;
   assetType: string;
   incomeType: string;
   riskLevel: RiskLevel;
@@ -53,6 +63,7 @@ export interface AllocationSlice {
 }
 
 export interface ReturnPoint {
+  /** Period label (YYYY-MM) */
   date: string;
   value: number;
 }
@@ -71,3 +82,7 @@ export interface PortfolioSnapshot {
   totals: Totals;
   updatedAt: string;
 }
+
+export type ListOpportunitiesParams = {
+  category?: OpportunityCategory;
+};

@@ -33,6 +33,12 @@ paths:
       operationId: listOpportunities
       tags: [opportunities]
       summary: List investment opportunities
+      parameters:
+        - in: query
+          name: category
+          required: false
+          schema:
+            $ref: "#/components/schemas/OpportunityCategory"
       responses:
         "200":
           description: A list of investment opportunities
@@ -103,6 +109,9 @@ components:
     RiskLevel:
       type: string
       enum: [Low, Medium, High]
+    OpportunityCategory:
+      type: string
+      enum: [Property, Equity, Fixed Income]
     InvestmentOpportunity:
       type: object
       properties:
@@ -114,6 +123,8 @@ components:
           type: string
         location:
           type: string
+        category:
+          $ref: "#/components/schemas/OpportunityCategory"
         assetType:
           type: string
         incomeType:
@@ -142,6 +153,7 @@ components:
         - title
         - description
         - location
+        - category
         - assetType
         - incomeType
         - riskLevel

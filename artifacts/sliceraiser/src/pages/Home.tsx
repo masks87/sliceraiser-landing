@@ -48,17 +48,17 @@ const features = [
 const desktopNavLinks = [
   { label: 'HOME', to: '/', active: true },
   { label: 'PROPERTIES INVESTMENTS', to: '/opportunities', active: false },
-  { label: 'EQUITY INVESTMENTS', to: '/opportunities', active: false },
-  { label: 'FIXED INCOME', to: '/opportunities', active: false },
-  { label: 'MARKETPLACE', to: '/opportunities', active: false },
+  { label: 'EQUITY INVESTMENTS', to: '/equity', active: false },
+  { label: 'FIXED INCOME', to: '/fixed-income', active: false },
+  { label: 'DASHBOARD', to: '/dashboard', active: false },
 ]
 
 const mobileNavLinks = [
   { label: 'Home', to: '/' },
   { label: 'Properties Investments', to: '/opportunities' },
-  { label: 'Equity Investments', to: '/opportunities' },
-  { label: 'Fixed Income', to: '/opportunities' },
-  { label: 'Marketplace', to: '/opportunities' },
+  { label: 'Equity Investments', to: '/equity' },
+  { label: 'Fixed Income', to: '/fixed-income' },
+  { label: 'Dashboard', to: '/dashboard' },
 ]
 
 function Logo() {
