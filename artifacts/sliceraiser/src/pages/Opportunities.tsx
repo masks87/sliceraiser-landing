@@ -78,14 +78,19 @@ export default function Opportunities() {
       : "All";
   const [assetType, setAssetType] = useState<string>(initialAsset);
   const [risk, setRisk] = useState<string>("All");
+  const [incomeType, setIncomeType] = useState<string>("All");
 
   const opportunities = (data ?? []) as InvestmentOpportunity[];
 
   const assetTypes = useMemo(() => ["All", ...Array.from(new Set(opportunities.map((o) => o.assetType)))], [opportunities]);
+  const incomeTypes = useMemo(() => ["All", ...Array.from(new Set(opportunities.map((o) => o.incomeType)))], [opportunities]);
   const risks = ["All", "Low", "Medium", "High"];
 
   const filtered = opportunities.filter(
-    (o) => (assetType === "All" || o.assetType === assetType) && (risk === "All" || o.riskLevel === risk),
+    (o) =>
+      (assetType === "All" || o.assetType === assetType) &&
+      (risk === "All" || o.riskLevel === risk) &&
+      (incomeType === "All" || o.incomeType === incomeType),
   );
 
   return (
@@ -129,6 +134,24 @@ export default function Opportunities() {
                     risk === t
                       ? "bg-[#082f6f] text-white border-[#082f6f]"
                       : "bg-white text-[#020817] border-gray-200 hover:border-[#082f6f]"
+                  }`}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-[12px] font-semibold text-[#020817]">Income</span>
+            <div className="flex gap-1.5 flex-wrap">
+              {incomeTypes.map((t) => (
+                <button
+                  key={t}
+                  onClick={() => setIncomeType(t)}
+                  className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
+                    incomeType === t
+                      ? "bg-[#4285f4] text-white border-[#4285f4]"
+                      : "bg-white text-[#020817] border-gray-200 hover:border-[#4285f4]"
                   }`}
                 >
                   {t}

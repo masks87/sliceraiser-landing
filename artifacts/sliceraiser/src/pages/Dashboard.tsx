@@ -178,6 +178,9 @@ export default function Dashboard() {
           </div>
         </div>
 
+        {/* Compliance / onboarding checklist */}
+        <ComplianceChecklist />
+
         {/* Holdings table */}
         <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
           <div className="p-6 border-b border-gray-100">
@@ -224,6 +227,62 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function ComplianceChecklist() {
+  const steps = [
+    {
+      title: "Identity verification",
+      desc: "Upload a government ID and proof of address so we can satisfy KYC requirements.",
+    },
+    {
+      title: "Funding account",
+      desc: "Link a funding account so you can subscribe to deals when allocations open.",
+    },
+    {
+      title: "Accredited-investor status",
+      desc: "Confirm your accreditation to unlock private and institutional-grade offerings.",
+    },
+  ];
+  return (
+    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 mb-8">
+      <div className="flex items-start justify-between gap-4 mb-5">
+        <div>
+          <h2 className="text-[16px] font-semibold text-[#020817]">Onboarding & compliance</h2>
+          <p className="text-[12px] text-[#8e9196] mt-0.5">
+            Complete these steps to unlock investing. Demo placeholders — not connected to real regulated workflows.
+          </p>
+        </div>
+        <span className="shrink-0 inline-flex items-center text-[11px] font-semibold px-2.5 py-1 rounded-full bg-amber-100 text-amber-700">
+          Demo
+        </span>
+      </div>
+      <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {steps.map((s) => (
+          <li
+            key={s.title}
+            className="border border-gray-100 rounded-xl p-4 bg-[#f7f9ff]"
+          >
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-[13.5px] font-semibold text-[#020817]">{s.title}</span>
+              <span className="inline-flex items-center gap-1 text-[10.5px] font-semibold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                Pending
+              </span>
+            </div>
+            <p className="text-[12px] text-[#8e9196] leading-relaxed mb-3">{s.desc}</p>
+            <button
+              type="button"
+              disabled
+              className="text-[12px] font-medium text-[#4285f4] opacity-70 cursor-not-allowed"
+            >
+              Start step →
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

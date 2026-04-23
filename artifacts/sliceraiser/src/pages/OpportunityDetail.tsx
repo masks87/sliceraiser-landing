@@ -1,10 +1,105 @@
+import { useState, useEffect } from "react";
 import { Link, useRoute } from "wouter";
 import { useGetOpportunity } from "@workspace/api-client-react";
 import ProgressBar from "@/components/ProgressBar";
 import RiskBadge from "@/components/RiskBadge";
 import { formatCurrency, formatPercent } from "@/lib/format";
 
+function ExpressInterestDialog({
+  open,
+  onClose,
+  title,
+}: {
+  open: boolean;
+  onClose: () => void;
+  title: string;
+}) {
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (!open) setSubmitted(false);
+  }, [open]);
+
+  if (!open) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#020817]/55 backdrop-blur-md px-4"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-md bg-white rounded-2xl shadow-2xl border border-gray-100 p-7 relative"
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute top-4 right-4 text-[#8e9196] hover:text-[#020817]"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        {submitted ? (
+          <div className="text-center py-3">
+            <div className="mx-auto w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center mb-4">
+              <svg className="w-7 h-7 text-emerald-600" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h2 className="text-[20px] font-bold text-[#020817] mb-2">Interest registered</h2>
+            <p className="text-[13.5px] text-[#8e9196] leading-relaxed mb-6">
+              Thanks — our investor relations team will reach out shortly with full deal documents and next steps for{" "}
+              <span className="text-[#020817] font-medium">{title}</span>.
+            </p>
+            <button
+              type="button"
+              onClick={onClose}
+              className="bg-[#4285f4] text-white text-sm font-medium px-6 py-2.5 rounded-[12px] hover:bg-[#3570d4] transition-colors"
+            >
+              Close
+            </button>
+          </div>
+        ) : (
+          <>
+            <h2 className="text-[20px] font-bold text-[#020817] mb-2">Express interest</h2>
+            <p className="text-[13.5px] text-[#8e9196] leading-relaxed mb-5">
+              Confirm you'd like to express non-binding interest in <span className="text-[#020817] font-medium">{title}</span>.
+              This is a demo flow — no payment is taken and no commitment is made.
+            </p>
+            <div className="rounded-xl bg-[#f7f9ff] border border-gray-100 p-3 text-[12px] text-[#8e9196] mb-6">
+              Investor relations will follow up by email with the deal memo, subscription documents and minimum
+              ticket requirements.
+            </div>
+            <div className="flex gap-2 justify-end">
+              <button
+                type="button"
+                onClick={onClose}
+                className="border border-gray-200 text-[#020817] text-sm font-medium px-5 py-2.5 rounded-[12px] hover:bg-gray-50 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={() => setSubmitted(true)}
+                className="bg-[#4285f4] text-white text-sm font-medium px-5 py-2.5 rounded-[12px] hover:bg-[#3570d4] transition-colors"
+              >
+                Confirm interest
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function OpportunityDetail() {
+  const [interestOpen, setInterestOpen] = useState(false);
   const [, params] = useRoute("/opportunities/:id");
   const id = params?.id ? Number(params.id) : NaN;
   const { data, isLoading, error } = useGetOpportunity(id, {
@@ -133,15 +228,24 @@ export default function OpportunityDetail() {
               <ProgressBar value={fundedPct} />
             </div>
 
-            <button className="w-full bg-[#4285f4] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors mb-2">
-              Invest now
+            <button
+              type="button"
+              onClick={() => setInterestOpen(true)}
+              className="w-full bg-[#4285f4] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors mb-2"
+            >
+              Express interest
             </button>
             <button className="w-full border border-[#082f6f] text-[#082f6f] text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#082f6f] hover:text-white transition-colors">
               Add to watchlist
             </button>
+            <p className="text-[11px] text-[#8e9196] mt-3 text-center leading-relaxed">
+              Demo only — no real funds are processed.
+            </p>
           </aside>
         </div>
       </div>
+
+      <ExpressInterestDialog open={interestOpen} onClose={() => setInterestOpen(false)} title={o.title} />
     </div>
   );
 }
