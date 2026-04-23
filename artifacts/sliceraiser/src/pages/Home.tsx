@@ -1,6 +1,10 @@
 import { useState } from 'react'
+import { useLocation } from 'wouter'
+import { useClerk } from '@clerk/react'
 import logoImg from '@/assets/logo.png'
 import dashboardImg from '@/assets/dashboard.png'
+
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '')
 
 // Figma assets
 const imgLuxuryProperty = "https://www.figma.com/api/mcp/asset/763237e7-9544-47f2-95d3-d99e408f8ad6"
@@ -59,6 +63,14 @@ function Logo() {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [, setLocation] = useLocation()
+  const { openSignIn, openSignUp } = useClerk()
+
+  const goOpportunities = () => setLocation('/opportunities')
+  const handleSignIn = () =>
+    openSignIn({ afterSignInUrl: `${basePath}/dashboard` } as Parameters<typeof openSignIn>[0])
+  const handleSignUp = () =>
+    openSignUp({ afterSignUpUrl: `${basePath}/dashboard` } as Parameters<typeof openSignUp>[0])
 
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>
@@ -123,10 +135,10 @@ export default function Home() {
 
             {/* Auth buttons */}
             <div className="flex items-center gap-2">
-              <button className="bg-[#4285f4] text-white text-[13px] font-medium px-5 py-2 rounded-lg hover:bg-[#3570d4] transition-colors whitespace-nowrap">
+              <button onClick={handleSignIn} className="bg-[#4285f4] text-white text-[13px] font-medium px-5 py-2 rounded-lg hover:bg-[#3570d4] transition-colors whitespace-nowrap">
                 Log In
               </button>
-              <button className="bg-[#082f6f] text-white text-[13px] font-medium px-5 py-2 rounded-lg hover:bg-[#061f4a] transition-colors whitespace-nowrap">
+              <button onClick={handleSignUp} className="bg-[#082f6f] text-white text-[13px] font-medium px-5 py-2 rounded-lg hover:bg-[#061f4a] transition-colors whitespace-nowrap">
                 Sign Up
               </button>
             </div>
@@ -152,10 +164,10 @@ export default function Home() {
               </a>
             ))}
             <div className="flex gap-3 pt-2 border-t border-gray-100">
-              <button className="flex-1 bg-[#4285f4] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#3570d4] transition-colors">
+              <button onClick={() => { setMenuOpen(false); handleSignIn() }} className="flex-1 bg-[#4285f4] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#3570d4] transition-colors">
                 Log In
               </button>
-              <button className="flex-1 bg-[#082f6f] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#061f4a] transition-colors">
+              <button onClick={() => { setMenuOpen(false); handleSignUp() }} className="flex-1 bg-[#082f6f] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#061f4a] transition-colors">
                 Sign Up
               </button>
             </div>
@@ -176,10 +188,10 @@ export default function Home() {
             Explore premium real estate opportunities in UAE and Europe with our curated selection of luxury properties.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-[#4285f4] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors">
+            <button onClick={goOpportunities} className="bg-[#4285f4] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors">
               Browse Properties
             </button>
-            <button className="bg-[#082f6f] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#061f4a] transition-colors">
+            <button onClick={goOpportunities} className="bg-[#082f6f] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#061f4a] transition-colors">
               Investment Opportunities
             </button>
           </div>
@@ -290,7 +302,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <button className="bg-[#4285f4] text-white text-[14px] font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors">
+            <button onClick={goOpportunities} className="bg-[#4285f4] text-white text-[14px] font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors">
               Explore Investment Opportunities
             </button>
           </div>
@@ -329,7 +341,7 @@ export default function Home() {
                   </a>
                 ))}
               </div>
-              <button className="bg-[#4285f4] text-white text-sm font-medium px-5 py-2 rounded-lg hover:bg-[#3570d4] transition-colors">
+              <button onClick={handleSignUp} className="bg-[#4285f4] text-white text-sm font-medium px-5 py-2 rounded-lg hover:bg-[#3570d4] transition-colors">
                 Sign Up
               </button>
             </div>
