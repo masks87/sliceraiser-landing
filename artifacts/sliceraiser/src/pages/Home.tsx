@@ -46,14 +46,20 @@ const features = [
 ]
 
 const desktopNavLinks = [
-  { label: 'HOME', active: true },
-  { label: 'PROPERTIES INVESTMENTS', active: false },
-  { label: 'EQUITY INVESTMENTS', active: false },
-  { label: 'FIXED INCOME', active: false },
-  { label: 'MARKETPLACE', active: false },
+  { label: 'HOME', to: '/', active: true },
+  { label: 'PROPERTIES INVESTMENTS', to: '/opportunities', active: false },
+  { label: 'EQUITY INVESTMENTS', to: '/opportunities', active: false },
+  { label: 'FIXED INCOME', to: '/opportunities', active: false },
+  { label: 'MARKETPLACE', to: '/opportunities', active: false },
 ]
 
-const mobileNavLinks = ['Home', 'Properties Investments', 'Equity Investments', 'Fixed Income', 'Marketplace']
+const mobileNavLinks = [
+  { label: 'Home', to: '/' },
+  { label: 'Properties Investments', to: '/opportunities' },
+  { label: 'Equity Investments', to: '/opportunities' },
+  { label: 'Fixed Income', to: '/opportunities' },
+  { label: 'Marketplace', to: '/opportunities' },
+]
 
 function Logo() {
   return (
@@ -87,16 +93,17 @@ export default function Home() {
 
             {/* Nav links */}
             <div className="flex items-center gap-5 ml-6">
-              {desktopNavLinks.map(({ label, active }) => (
-                <a
+              {desktopNavLinks.map(({ label, to, active }) => (
+                <button
                   key={label}
-                  href="#"
-                  className={`text-[11px] font-semibold tracking-wide whitespace-nowrap transition-colors ${
+                  type="button"
+                  onClick={() => setLocation(to)}
+                  className={`text-[11px] font-semibold tracking-wide whitespace-nowrap transition-colors bg-transparent border-0 cursor-pointer ${
                     active ? 'text-[#4285f4]' : 'text-[#020817] hover:text-[#4285f4]'
                   }`}
                 >
                   {label}
-                </a>
+                </button>
               ))}
             </div>
 
@@ -158,10 +165,15 @@ export default function Home() {
 
         {menuOpen && (
           <div className="lg:hidden bg-white border-t border-gray-100 px-6 py-4 flex flex-col gap-4">
-            {mobileNavLinks.map(link => (
-              <a key={link} href="#" className="text-sm text-[#8e9196] hover:text-[#4285f4] transition-colors">
-                {link}
-              </a>
+            {mobileNavLinks.map(({ label, to }) => (
+              <button
+                key={label}
+                type="button"
+                onClick={() => { setMenuOpen(false); setLocation(to) }}
+                className="text-sm text-left text-[#8e9196] hover:text-[#4285f4] transition-colors bg-transparent border-0 cursor-pointer p-0"
+              >
+                {label}
+              </button>
             ))}
             <div className="flex gap-3 pt-2 border-t border-gray-100">
               <button onClick={() => { setMenuOpen(false); handleSignIn() }} className="flex-1 bg-[#4285f4] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#3570d4] transition-colors">
