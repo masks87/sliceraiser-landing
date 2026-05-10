@@ -1,0 +1,38 @@
+Do not touch any landing page files, Home.tsx, or any existing page.
+
+Create a new page: /contact
+
+This page has a smart contact form. At the top the user selects their inquiry type from a dropdown:
+- Platform Investor (I want to invest in listed properties)
+- Capital Investor / VC (I want to invest in SliceRaiser the company)
+- Enterprise / Partnership
+- SME / Fundraiser (I want to list my opportunity)
+- Press / Media
+- Career Application
+- Complaint or Support
+
+When the user selects a type, the form fields change to match:
+
+Platform Investor fields: Full name, Email, Phone with country code, Country of residence, Message
+Capital Investor / VC fields: Full name, Fund or company name, Estimated ticket size (dropdown: $50k-$250k / $250k-$1M / $1M-$5M / $5M+), Email, Phone, Message
+Enterprise / Partnership fields: Full name, Company name, Sector, Partnership type, Email, Message
+SME / Fundraiser fields: Full name, Company name, Sector, Amount seeking to raise, Stage (Pre-seed/Seed/Series A/Other), Email, Phone, Message
+Press / Media fields: Full name, Publication name, Topic, Deadline, Email, Message
+Career Application fields: Full name, Role you are interested in, LinkedIn profile URL, Email, Message
+Complaint or Support fields: Full name, Account email, Issue type (dropdown: Account / Investment / Payment / Other), Description
+
+All forms have a Submit button.
+
+On submit, send an email using Resend API to sliceraiser@gmail.com with all form fields clearly labeled. The from address is contact@sliceraiser.com. The email subject must include the inquiry type. Show a success message after submission.
+
+Also add to this page above the form:
+- A section with the title "Get in Touch"
+- CEO contact info: Mamoon Alkhatib, Founder & CEO
+- Email: mamoon@sliceraiser.com
+- Phone: +971 55 725 9299  
+- LinkedIn button linking to https://www.linkedin.com/in/mamoon-alkhatib-77541639/
+- A "Request a Meeting" button that opens a small modal with fields: Full name, Email, Purpose of meeting, Preferred date and time. On submit this also sends an email via Resend to sliceraiser@gmail.com with subject "Meeting Request - SliceRaiser"
+
+Add /contact to the navigation bar on all non-landing pages under the label "Contact"
+
+Use the same design style, colors, and fonts as the existing non-landing pages. Do not install unnecessary packages. Use Resend npm package for emails.
