@@ -1,4 +1,8 @@
+import { Link } from "wouter";
 import logoImg from "@/assets/logo.png";
+
+const DISCLAIMER =
+  "SliceRaiser is a regulated investment platform. Investing involves risk and capital is not guaranteed. Past performance is not indicative of future results. Please read our Risk Disclosure before investing. SliceRaiser operates under applicable European regulations. Open to eligible investors worldwide.";
 
 export default function Footer() {
   return (
@@ -29,16 +33,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[#020817] font-semibold text-[16px] mb-4">Regions</h3>
-            <ul className="space-y-2">
-              {["Dubai, UAE", "Abu Dhabi, UAE", "Spain", "France", "Italy"].map((region) => (
-                <li key={region}>
-                  <a href="#" className="text-[#8e9196] text-[14px] leading-[24px] font-normal hover:text-[#4285f4] transition-colors">
-                    {region}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <h3 className="text-[#020817] font-semibold text-[16px] mb-4">Markets</h3>
+            <p className="text-[#8e9196] text-[14px] leading-[24px] font-normal">
+              UAE · Australia · Worldwide
+            </p>
           </div>
 
           <div>
@@ -68,14 +66,22 @@ export default function Footer() {
 
         <div className="border-t border-gray-200 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-[#8e9196] text-[13px] font-normal">© 2026 SliceRaiser. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            {["Privacy Policy", "Terms of Service", "Cookies Policy"].map((item) => (
-              <a key={item} href="#" className="text-[#8e9196] text-[13px] font-normal hover:text-[#4285f4] transition-colors">
-                {item}
-              </a>
-            ))}
+          <div className="flex flex-wrap items-center justify-center sm:justify-end text-[#8e9196] text-[13px] font-normal">
+            <a href="#" className="hover:text-[#4285f4] transition-colors">Privacy Policy</a>
+            <span className="px-2">·</span>
+            <a href="#" className="hover:text-[#4285f4] transition-colors">Terms of Service</a>
+            <span className="px-2">·</span>
+            <a href="#" className="hover:text-[#4285f4] transition-colors">Risk Disclosure</a>
+            <span className="px-2">·</span>
+            <Link href="/legal" className="hover:text-[#4285f4] transition-colors">Legal &amp; Regulatory</Link>
+            <span className="px-2">·</span>
+            <a href="#" className="hover:text-[#4285f4] transition-colors">Cookie Policy</a>
           </div>
         </div>
+
+        <p className="mt-6 text-[#8e9196] text-[12px] leading-[18px] font-normal text-center sm:text-left">
+          {DISCLAIMER}
+        </p>
       </div>
     </footer>
   );
