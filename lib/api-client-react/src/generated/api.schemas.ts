@@ -75,6 +75,39 @@ export interface Totals {
   totalReturnPct: number;
 }
 
+export type InquiryType = (typeof InquiryType)[keyof typeof InquiryType];
+
+export const InquiryType = {
+  Platform_Investor: "Platform Investor",
+  "Capital_Investor_/_VC": "Capital Investor / VC",
+  "Enterprise_/_Partnership": "Enterprise / Partnership",
+  "SME_/_Fundraiser": "SME / Fundraiser",
+  "Press_/_Media": "Press / Media",
+  Career_Application: "Career Application",
+  Complaint_or_Support: "Complaint or Support",
+} as const;
+
+export interface ContactField {
+  label: string;
+  value: string;
+}
+
+export interface ContactSubmission {
+  inquiryType: InquiryType;
+  fields: ContactField[];
+}
+
+export interface MeetingRequest {
+  fullName: string;
+  email: string;
+  purpose: string;
+  preferredDateTime: string;
+}
+
+export interface SubmitAck {
+  ok: boolean;
+}
+
 export interface PortfolioSnapshot {
   holdings: Holding[];
   allocation: AllocationSlice[];

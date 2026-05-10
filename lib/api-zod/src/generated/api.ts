@@ -73,6 +73,45 @@ export const GetOpportunityResponse = zod.object({
 });
 
 /**
+ * @summary Submit a contact-form inquiry
+ */
+export const SubmitContactBody = zod.object({
+  inquiryType: zod.enum([
+    "Platform Investor",
+    "Capital Investor / VC",
+    "Enterprise / Partnership",
+    "SME / Fundraiser",
+    "Press / Media",
+    "Career Application",
+    "Complaint or Support",
+  ]),
+  fields: zod.array(
+    zod.object({
+      label: zod.string(),
+      value: zod.string(),
+    }),
+  ),
+});
+
+export const SubmitContactResponse = zod.object({
+  ok: zod.boolean(),
+});
+
+/**
+ * @summary Submit a meeting request
+ */
+export const SubmitMeetingRequestBody = zod.object({
+  fullName: zod.string(),
+  email: zod.string(),
+  purpose: zod.string(),
+  preferredDateTime: zod.string(),
+});
+
+export const SubmitMeetingRequestResponse = zod.object({
+  ok: zod.boolean(),
+});
+
+/**
  * @summary Get the authenticated user's portfolio snapshot
  */
 export const GetPortfolioResponse = zod.object({

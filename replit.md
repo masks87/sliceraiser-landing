@@ -16,12 +16,21 @@ Global real estate / alternative investment marketplace MVP.
 - `/opportunities/:id` Deal detail with progress, key terms, sponsor.
 - `/dashboard` Protected; portfolio analytics with KPIs, area chart, allocation pie, holdings table. Empty-state for new users.
 - `/sign-in`, `/sign-up` Clerk-rendered, themed with brand color.
+- `/contact` Smart 7-type contact form + "Get in Touch" CEO card (Mamoon Alkhatib) + "Request a Meeting" modal. Sends emails via Resend.
 
 ## API
 - `GET /api/healthz`
 - `GET /api/opportunities`
 - `GET /api/opportunities/:id`
 - `GET /api/portfolio` — requires Clerk auth; returns the authenticated user's snapshot, or a real empty snapshot (zeros + empty arrays) if they have no holdings yet. **No mocked data.**
+- `POST /api/contact` — smart contact form. Body: `{ inquiryType, fields: [{label, value}] }`. Sends email via Resend.
+- `POST /api/meeting-request` — meeting request from the CEO modal. Body: `{ fullName, email, purpose, preferredDateTime }`. Sends email via Resend.
+
+## Email (Resend)
+- Requires secret `RESEND_API_KEY`. Without it, both contact endpoints return `500 { error: "Email service not configured" }`.
+- FROM: `admin@sliceraiser.com` (the `sliceraiser.com` domain must be verified in the Resend dashboard for delivery).
+- TO: `mamoon@sliceraiser.com`.
+- Contact subject: `SliceRaiser Inquiry — <inquiryType>`. Meeting subject: `Meeting Request - SliceRaiser`.
 
 ## Conventions
 - `@workspace/db` re-exports schema via `export *`; import as `import * as schema from "@workspace/db"`.

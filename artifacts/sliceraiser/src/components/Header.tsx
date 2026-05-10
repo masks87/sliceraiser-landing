@@ -18,6 +18,7 @@ const navLinks = [
   { label: "EQUITY INVESTMENTS", to: "/equity" },
   { label: "FIXED INCOME", to: "/fixed-income" },
   { label: "DASHBOARD", to: "/dashboard" },
+  { label: "CONTACT", to: "/contact" },
 ];
 
 const mobileLinks = [
@@ -26,6 +27,7 @@ const mobileLinks = [
   { label: "Equity investments", to: "/equity" },
   { label: "Fixed income", to: "/fixed-income" },
   { label: "Dashboard", to: "/dashboard" },
+  { label: "Contact", to: "/contact" },
 ];
 
 function Logo() {

@@ -14,6 +14,8 @@ tags:
     description: Investment opportunity browsing
   - name: portfolio
     description: Authenticated user portfolio
+  - name: contact
+    description: Contact and meeting request inquiries
 paths:
   /healthz:
     get:
@@ -68,6 +70,66 @@ paths:
                 $ref: "#/components/schemas/InvestmentOpportunity"
         "404":
           description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /contact:
+    post:
+      operationId: submitContact
+      tags: [contact]
+      summary: Submit a contact-form inquiry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactSubmission"
+      responses:
+        "200":
+          description: Inquiry sent
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SubmitAck"
+        "400":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Email delivery failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /meeting-request:
+    post:
+      operationId: submitMeetingRequest
+      tags: [contact]
+      summary: Submit a meeting request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MeetingRequest"
+      responses:
+        "200":
+          description: Meeting request sent
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SubmitAck"
+        "400":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Email delivery failed
           content:
             application/json:
               schema:
@@ -220,6 +282,61 @@ components:
         - totalCurrentValue
         - totalReturn
         - totalReturnPct
+    InquiryType:
+      type: string
+      enum:
+        - Platform Investor
+        - Capital Investor / VC
+        - Enterprise / Partnership
+        - SME / Fundraiser
+        - Press / Media
+        - Career Application
+        - Complaint or Support
+    ContactField:
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+      required:
+        - label
+        - value
+    ContactSubmission:
+      type: object
+      properties:
+        inquiryType:
+          $ref: "#/components/schemas/InquiryType"
+        fields:
+          type: array
+          items:
+            $ref: "#/components/schemas/ContactField"
+      required:
+        - inquiryType
+        - fields
+    MeetingRequest:
+      type: object
+      properties:
+        fullName:
+          type: string
+        email:
+          type: string
+        purpose:
+          type: string
+        preferredDateTime:
+          type: string
+      required:
+        - fullName
+        - email
+        - purpose
+        - preferredDateTime
+    SubmitAck:
+      type: object
+      properties:
+        ok:
+          type: boolean
+      required:
+        - ok
     PortfolioSnapshot:
       type: object
       properties:

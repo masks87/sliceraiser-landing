@@ -7,13 +7,18 @@
  */
 
 export * from "./allocationSlice";
+export * from "./contactField";
+export * from "./contactSubmission";
 export * from "./errorResponse";
 export * from "./healthStatus";
 export * from "./holding";
+export * from "./inquiryType";
 export * from "./investmentOpportunity";
 export * from "./listOpportunitiesParams";
+export * from "./meetingRequest";
 export * from "./opportunityCategory";
 export * from "./portfolioSnapshot";
 export * from "./returnPoint";
 export * from "./riskLevel";
+export * from "./submitAck";
 export * from "./totals";
