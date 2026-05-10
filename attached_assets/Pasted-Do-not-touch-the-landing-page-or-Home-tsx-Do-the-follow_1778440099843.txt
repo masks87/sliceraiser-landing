@@ -1,0 +1,56 @@
+Do not touch the landing page or Home.tsx.
+
+Do the following 3 things only:
+
+1. GOOGLE ANALYTICS
+Add this exact script to the <head> of the HTML in 
+index.html or the root HTML file:
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1G7XL59RTT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1G7XL59RTT');
+</script>
+
+2. SEO META TAGS
+Add these meta tags inside the <head> of index.html:
+
+<title>SliceRaiser — Invest in Real Assets from $100 | UAE & Australia</title>
+<meta name="description" content="SliceRaiser is a global investment platform offering fractional real estate, SME equity, and fixed-income opportunities starting from $100. Available in UAE and Australia.">
+<meta name="keywords" content="fractional investment, real estate investment UAE, invest from 100 dollars, SME investment, fixed income, halal investment, Dubai property investment">
+<meta name="author" content="SliceRaiser">
+<meta property="og:title" content="SliceRaiser — Invest in Real Assets from $100">
+<meta property="og:description" content="Fractional real estate and SME investment platform. Start from $100. UAE and Australia.">
+<meta property="og:url" content="https://sliceraiser.com">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SliceRaiser — Invest in Real Assets from $100">
+<meta name="twitter:description" content="Fractional real estate and SME investment platform. Start from $100.">
+<link rel="canonical" href="https://sliceraiser.com">
+
+3. COOKIE CONSENT BANNER
+Add a simple cookie consent banner that appears at the 
+bottom of every page for first-time visitors.
+
+The banner shows:
+"We use cookies to improve your experience and comply with 
+EU regulations. By continuing you accept our cookie policy."
+
+Two buttons: "Accept All" and "Essential Only"
+
+When user clicks either button the banner disappears and 
+does not show again (save choice to localStorage).
+
+If user clicked "Accept All" — load Google Analytics 
+tracking (G-1G7XL59RTT).
+If user clicked "Essential Only" — do not load 
+Google Analytics.
+
+Style the banner to match the existing site colors — 
+dark navy background, white text, blue accept button.
+
+Do not install any new packages for this.
+Do not change anything else.
