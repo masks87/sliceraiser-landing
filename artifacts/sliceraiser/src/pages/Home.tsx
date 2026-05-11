@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'wouter'
-import { useClerk } from '@clerk/react'
+import { useClerk, useUser } from '@clerk/react'
 import logoImg from '@/assets/logo.png'
 import dashboardImg from '@/assets/dashboard.png'
 
@@ -71,12 +71,23 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [, setLocation] = useLocation()
   const { openSignIn, openSignUp } = useClerk()
+  const { isSignedIn } = useUser()
 
   const goOpportunities = () => setLocation('/opportunities')
-  const handleSignIn = () =>
+  const handleSignIn = () => {
+    if (isSignedIn) {
+      setLocation('/dashboard')
+      return
+    }
     openSignIn({ afterSignInUrl: `${basePath}/dashboard` } as Parameters<typeof openSignIn>[0])
-  const handleSignUp = () =>
+  }
+  const handleSignUp = () => {
+    if (isSignedIn) {
+      setLocation('/dashboard')
+      return
+    }
     openSignUp({ afterSignUpUrl: `${basePath}/dashboard` } as Parameters<typeof openSignUp>[0])
+  }
 
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>
