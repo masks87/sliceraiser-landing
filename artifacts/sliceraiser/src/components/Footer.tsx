@@ -103,8 +103,8 @@ function FooterLink({
   external?: boolean;
   children: React.ReactNode;
 }) {
-  const className = "text-[14px] leading-[28px] transition-colors";
-  const style = { color: MUTED, fontFamily: INTER, fontWeight: 400 };
+  const className = "text-[15px] leading-[28px] transition-colors";
+  const style = { color: MUTED, fontFamily: INTER, fontWeight: 600 };
   const onEnter = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = TEXT);
   const onLeave = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = MUTED);
   if (external) {
@@ -132,8 +132,8 @@ function FooterLink({
 function ComingSoon({ children }: { children: React.ReactNode }) {
   return (
     <span
-      className="text-[14px] leading-[28px] inline-flex items-center gap-2"
-      style={{ color: DIM, fontFamily: INTER, fontWeight: 400, cursor: "not-allowed" }}
+      className="text-[15px] leading-[28px] inline-flex items-center gap-2"
+      style={{ color: DIM, fontFamily: INTER, fontWeight: 600, cursor: "not-allowed" }}
       aria-disabled
       title="Coming soon"
     >
@@ -167,16 +167,7 @@ export default function Footer() {
             >
               Invest in real assets from $100. UAE · Australia · Worldwide.
             </p>
-            <a
-              href="mailto:contact@sliceraiser.com"
-              className="text-[14px] leading-[22px] mb-6 inline-block hover:underline"
-              style={{ color: MUTED, fontWeight: 400 }}
-            >
-              contact@sliceraiser.com
-            </a>
-            <div className="mt-6">
-              <SocialIcons />
-            </div>
+            <SocialIcons />
           </div>
 
           {/* Column 2 — Invest */}
@@ -229,8 +220,6 @@ export default function Footer() {
               <span className="px-2" style={{ color: DIVIDER }}>·</span>
               <FooterLink href="/cookie-policy">Cookie Policy</FooterLink>
             </div>
-
-            <SocialIcons size="w-8 h-8" iconSize="w-4 h-4" />
           </div>
         </div>
 
