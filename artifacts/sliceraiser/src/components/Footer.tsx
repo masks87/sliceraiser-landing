@@ -1,7 +1,158 @@
-import type { ComponentType, SVGProps } from "react";
+import { useState, type ComponentType, type SVGProps } from "react";
 import { Link } from "wouter";
 import { Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import logoImg from "@/assets/logo.png";
+
+const APP_BAND_BG = "#1E3A8A";
+const GOLD = "#D4AF37";
+
+function AppleIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
+      <path d="M16.365 1.43c0 1.14-.42 2.23-1.13 3.04-.77.86-2.04 1.53-3.07 1.45-.13-1.11.43-2.27 1.12-3.02.78-.84 2.13-1.46 3.08-1.47zM20.5 17.49c-.55 1.27-.81 1.84-1.52 2.96-.99 1.56-2.39 3.51-4.12 3.52-1.54.02-1.94-1.01-4.03-1-2.09.01-2.53 1.02-4.07 1-1.73-.02-3.06-1.78-4.05-3.34-2.77-4.36-3.06-9.48-1.35-12.21 1.21-1.94 3.13-3.08 4.93-3.08 1.83 0 2.98 1 4.5 1 1.47 0 2.36-1 4.48-1 1.6 0 3.3.87 4.51 2.38-3.96 2.17-3.32 7.84.72 9.77z" />
+    </svg>
+  );
+}
+
+function GooglePlayIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden {...props}>
+      <path fill="#00C6FF" d="M3.6 2.3C3.22 2.6 3 3.1 3 3.78v16.44c0 .68.22 1.18.6 1.48l8.66-8.7L3.6 2.3z" />
+      <path fill="#FFCE00" d="M16.7 14.3l-2.92-2.94 2.92-2.94 3.46 1.96c1.13.65 1.13 1.7 0 2.36L16.7 14.3z" />
+      <path fill="#FF3A44" d="M16.7 14.3l-3.7-3.7-9.4 9.42c.42.34 1 .36 1.66.02L16.7 14.3z" />
+      <path fill="#00F076" d="M16.7 9.7l-11.44-6.5c-.66-.34-1.24-.32-1.66.02l9.4 9.42 3.7-2.94z" />
+    </svg>
+  );
+}
+
+function StoreButton({
+  Icon,
+  topLine,
+  bottomLine,
+  tooltip,
+}: {
+  Icon: ComponentType<SVGProps<SVGSVGElement>>;
+  topLine: string;
+  bottomLine: string;
+  tooltip: string;
+}) {
+  return (
+    <div
+      role="button"
+      aria-disabled
+      title={tooltip}
+      className="inline-flex items-center gap-3 bg-black text-white rounded-xl px-5 py-3 select-none"
+      style={{ cursor: "default", border: "1px solid rgba(255,255,255,0.12)" }}
+    >
+      <Icon className="w-7 h-7 shrink-0" />
+      <div className="text-left leading-tight">
+        <div className="text-[11px] tracking-wide opacity-80">{topLine}</div>
+        <div className="text-[15px] font-semibold">{bottomLine}</div>
+      </div>
+    </div>
+  );
+}
+
+function AppWaitlistForm() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string>("");
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (status === "submitting") return;
+    setStatus("submitting");
+    setErrorMsg("");
+    try {
+      const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+      const res = await fetch(`${basePath}/api/app-waitlist`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+      if (!res.ok) {
+        const body = (await res.json().catch(() => ({}))) as { error?: string };
+        setErrorMsg(body.error ?? "Something went wrong. Please try again.");
+        setStatus("error");
+        return;
+      }
+      setEmail("");
+      setStatus("success");
+    } catch {
+      setErrorMsg("Network error. Please try again.");
+      setStatus("error");
+    }
+  };
+
+  if (status === "success") {
+    return (
+      <p className="text-[14px] text-white/90" role="status">
+        You are on the list! We will notify you when the app launches.
+      </p>
+    );
+  }
+
+  return (
+    <form onSubmit={onSubmit} className="flex flex-col sm:flex-row gap-2 max-w-md">
+      <input
+        type="email"
+        required
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Enter your email"
+        className="flex-1 h-11 px-4 rounded-lg bg-white text-[#0F172A] text-[14px] placeholder:text-[#64748B] outline-none border border-transparent focus:border-white/40"
+        aria-label="Email address"
+      />
+      <button
+        type="submit"
+        disabled={status === "submitting"}
+        className="h-11 px-5 rounded-lg text-[14px] font-semibold transition-opacity disabled:opacity-60"
+        style={{ backgroundColor: GOLD, color: "#0F172A" }}
+      >
+        {status === "submitting" ? "Sending…" : "Notify Me"}
+      </button>
+      {status === "error" ? (
+        <p className="text-[12px] text-white/90 sm:basis-full" role="alert">
+          {errorMsg}
+        </p>
+      ) : null}
+    </form>
+  );
+}
+
+function AppDownloadBand() {
+  return (
+    <section style={{ backgroundColor: APP_BAND_BG }} className="text-white">
+      <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 className="text-[26px] md:text-[30px] font-bold leading-tight">Invest on the Go</h2>
+          <p className="mt-3 text-[15px] leading-[24px] text-white/85 max-w-xl">
+            The SliceRaiser app is coming soon to iOS and Android. Join the waitlist and be the first to know.
+          </p>
+        </div>
+        <div className="flex flex-col gap-4 lg:items-end">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <StoreButton
+              Icon={AppleIcon}
+              topLine="Coming Soon"
+              bottomLine="Download on the App Store"
+              tooltip="iOS app coming soon"
+            />
+            <StoreButton
+              Icon={GooglePlayIcon}
+              topLine="Coming Soon"
+              bottomLine="Get it on Google Play"
+              tooltip="Android app coming soon"
+            />
+          </div>
+          <div className="w-full lg:max-w-md">
+            <AppWaitlistForm />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 const INSTAGRAM_URL = "https://www.instagram.com/sliceraiser/";
 
@@ -151,6 +302,7 @@ function ComingSoon({ children }: { children: React.ReactNode }) {
 export default function Footer() {
   return (
     <footer style={{ backgroundColor: BG, fontFamily: INTER }}>
+      <AppDownloadBand />
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Column 1 — Brand */}
