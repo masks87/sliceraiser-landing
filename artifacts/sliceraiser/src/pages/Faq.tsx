@@ -140,7 +140,7 @@ const BRAND = {
   primary: "#1E3A8A",
   gold: "#D4AF37",
   text: "#2C2C2C",
-  inter: "'Inter', sans-serif",
+  inter: "'Plus Jakarta Sans', sans-serif",
 };
 
 function AccordionItem({
