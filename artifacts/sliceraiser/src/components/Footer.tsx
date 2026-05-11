@@ -1,98 +1,232 @@
 import { Link } from "wouter";
 import logoImg from "@/assets/logo.png";
 
-const DISCLAIMER =
-  "SliceRaiser is a regulated investment platform. Investing involves risk and capital is not guaranteed. Past performance is not indicative of future results. Please read our Risk Disclosure before investing. SliceRaiser operates under applicable European regulations. Open to eligible investors worldwide.";
+const INSTAGRAM_URL = "https://www.instagram.com/sliceraiser/";
+const LINKEDIN_URL = "https://www.linkedin.com/in/mamoon-alkhatib-77541639/";
+
+const BG = "#0F172A";
+const DIVIDER = "#334155";
+const TEXT = "#FFFFFF";
+const MUTED = "#94A3B8";
+const DIM = "#64748B";
+const INTER = "'Inter', sans-serif";
+
+function InstagramIcon({ className = "w-5 h-5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function LinkedInIcon({ className = "w-5 h-5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 11.001-4.121 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
+    </svg>
+  );
+}
+
+function ColHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <h3
+      className="text-[13px] tracking-[0.14em] uppercase mb-5"
+      style={{ color: TEXT, fontFamily: INTER, fontWeight: 600 }}
+    >
+      {children}
+    </h3>
+  );
+}
+
+function FooterLink({
+  href,
+  external = false,
+  children,
+}: {
+  href: string;
+  external?: boolean;
+  children: React.ReactNode;
+}) {
+  const className = "text-[14px] leading-[28px] transition-colors";
+  const style = { color: MUTED, fontFamily: INTER, fontWeight: 400 };
+  const onEnter = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = TEXT);
+  const onLeave = (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.color = MUTED);
+  if (external) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+        style={style}
+        onMouseEnter={onEnter}
+        onMouseLeave={onLeave}
+      >
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} className={className} style={style} onMouseEnter={onEnter} onMouseLeave={onLeave}>
+      {children}
+    </Link>
+  );
+}
+
+function ComingSoon({ children }: { children: React.ReactNode }) {
+  return (
+    <span
+      className="text-[14px] leading-[28px] inline-flex items-center gap-2"
+      style={{ color: DIM, fontFamily: INTER, fontWeight: 400, cursor: "not-allowed" }}
+      aria-disabled
+      title="Coming soon"
+    >
+      {children}
+      <span
+        className="text-[10px] uppercase tracking-[0.12em] px-1.5 py-[2px] rounded"
+        style={{ border: `1px solid ${DIVIDER}`, color: DIM }}
+      >
+        Soon
+      </span>
+    </span>
+  );
+}
+
+function SocialIconLink({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="inline-flex items-center justify-center w-9 h-9 rounded-full transition-colors"
+      style={{ color: MUTED, border: `1px solid ${DIVIDER}` }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.color = TEXT;
+        e.currentTarget.style.borderColor = TEXT;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.color = MUTED;
+        e.currentTarget.style.borderColor = DIVIDER;
+      }}
+    >
+      {children}
+    </a>
+  );
+}
 
 export default function Footer() {
   return (
-    <footer className="bg-white py-14 px-6 border-t border-gray-100">
-      <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+    <footer style={{ backgroundColor: BG, fontFamily: INTER }}>
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+          {/* Column 1 — Brand */}
           <div>
-            <div className="mb-4">
-              <img src={logoImg} alt="Slice Raiser" className="h-[22px] w-auto object-contain" />
+            <img
+              src={logoImg}
+              alt="SliceRaiser"
+              className="h-[24px] w-auto object-contain mb-5"
+              style={{ filter: "brightness(0) invert(1)" }}
+            />
+            <p
+              className="text-[14px] leading-[22px] mb-6"
+              style={{ color: MUTED, fontWeight: 400 }}
+            >
+              Invest in real assets from $100. UAE · Australia · Worldwide.
+            </p>
+            <div className="flex items-center gap-3">
+              <SocialIconLink href={INSTAGRAM_URL} label="Instagram">
+                <InstagramIcon />
+              </SocialIconLink>
+              <SocialIconLink href={LINKEDIN_URL} label="LinkedIn">
+                <LinkedInIcon />
+              </SocialIconLink>
             </div>
-            <p className="text-[#8e9196] text-[14px] leading-[20px] mb-5 font-normal">
-              Discover your perfect property investment opportunity across UAE and Europe with our premium real estate
-              marketplace.
-            </p>
           </div>
 
+          {/* Column 2 — Invest */}
           <div>
-            <h3 className="text-[#020817] font-semibold text-[16px] mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-[#8e9196] text-[14px] leading-[24px] font-normal hover:text-[#4285f4] transition-colors">Home</a>
-              </li>
-              <li>
-                <a href="#" className="text-[#8e9196] text-[14px] leading-[24px] font-normal hover:text-[#4285f4] transition-colors">Opportunities</a>
-              </li>
-              <li>
-                <a href="#" className="text-[#8e9196] text-[14px] leading-[24px] font-normal hover:text-[#4285f4] transition-colors">Dashboard</a>
-              </li>
-              <li>
-                <a href="#" className="text-[#8e9196] text-[14px] leading-[24px] font-normal hover:text-[#4285f4] transition-colors">About Us</a>
-              </li>
-              <li>
-                <Link href="/faq" className="text-[#8e9196] text-[14px] leading-[24px] font-normal hover:text-[#4285f4] transition-colors">FAQ</Link>
-              </li>
-              <li>
-                <a href="#" className="text-[#8e9196] text-[14px] leading-[24px] font-normal hover:text-[#4285f4] transition-colors">Contact</a>
-              </li>
+            <ColHeading>Invest</ColHeading>
+            <ul className="space-y-1">
+              <li><FooterLink href="/opportunities">Properties</FooterLink></li>
+              <li><ComingSoon>Equity</ComingSoon></li>
+              <li><ComingSoon>Fixed Income</ComingSoon></li>
             </ul>
           </div>
 
+          {/* Column 3 — Learn */}
           <div>
-            <h3 className="text-[#020817] font-semibold text-[16px] mb-4">Markets</h3>
-            <p className="text-[#8e9196] text-[14px] leading-[24px] font-normal">
-              UAE · Australia · Worldwide
-            </p>
+            <ColHeading>Learn</ColHeading>
+            <ul className="space-y-1">
+              <li><FooterLink href="/faq">FAQ</FooterLink></li>
+              <li><FooterLink href="/how-it-works">How It Works</FooterLink></li>
+              <li><FooterLink href="/about">About Us</FooterLink></li>
+              <li><FooterLink href="/ir">Investor Relations (IR)</FooterLink></li>
+            </ul>
           </div>
 
+          {/* Column 4 — Company */}
           <div>
-            <h3 className="text-[#020817] font-semibold text-[16px] mb-4">Contact</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <svg className="w-4 h-4 mt-1 shrink-0 text-[#4285f4]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                </svg>
-                <span className="text-[#8e9196] text-[14px] leading-[20px] font-normal">Sheikh Zayed Road, Dubai, UAE</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <svg className="w-4 h-4 shrink-0 text-[#4285f4]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
-                </svg>
-                <span className="text-[#8e9196] text-[14px] leading-[20px] font-normal">+971 4 123 4567</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <svg className="w-4 h-4 shrink-0 text-[#4285f4]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-                </svg>
-                <span className="text-[#8e9196] text-[14px] leading-[20px] font-normal">info@sliceraiser.com</span>
-              </li>
+            <ColHeading>Company</ColHeading>
+            <ul className="space-y-1">
+              <li><FooterLink href="/contact">Contact</FooterLink></li>
+              <li><FooterLink href="/careers">Careers</FooterLink></li>
+              <li><FooterLink href="/legal">Legal &amp; Regulatory</FooterLink></li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-gray-200 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[#8e9196] text-[13px] font-normal">© 2026 SliceRaiser. All rights reserved.</p>
-          <div className="flex flex-wrap items-center justify-center sm:justify-end text-[#8e9196] text-[13px] font-normal">
-            <a href="#" className="hover:text-[#4285f4] transition-colors">Privacy Policy</a>
-            <span className="px-2">·</span>
-            <Link href="/terms" className="hover:text-[#4285f4] transition-colors">Terms of Service</Link>
-            <span className="px-2">·</span>
-            <a href="#" className="hover:text-[#4285f4] transition-colors">Risk Disclosure</a>
-            <span className="px-2">·</span>
-            <Link href="/legal" className="hover:text-[#4285f4] transition-colors">Legal &amp; Regulatory</Link>
-            <span className="px-2">·</span>
-            <a href="#" className="hover:text-[#4285f4] transition-colors">Cookie Policy</a>
+        <div style={{ borderTop: `1px solid ${DIVIDER}` }} className="pt-6">
+          <div className="flex flex-col lg:flex-row items-center lg:justify-between gap-4 text-[13px]">
+            <p style={{ color: MUTED, fontWeight: 400 }}>
+              © 2025 SliceRaiser.com. All rights reserved.
+            </p>
+
+            <div
+              className="flex flex-wrap items-center justify-center"
+              style={{ color: MUTED, fontWeight: 400 }}
+            >
+              <FooterLink href="/terms">Terms of Use</FooterLink>
+              <span className="px-2" style={{ color: DIVIDER }}>·</span>
+              <FooterLink href="/privacy">Privacy Policy</FooterLink>
+              <span className="px-2" style={{ color: DIVIDER }}>·</span>
+              <FooterLink href="/risk-disclosure">Risk Disclosure</FooterLink>
+              <span className="px-2" style={{ color: DIVIDER }}>·</span>
+              <FooterLink href="/cookie-policy">Cookie Policy</FooterLink>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <SocialIconLink href={INSTAGRAM_URL} label="Instagram">
+                <InstagramIcon className="w-4 h-4" />
+              </SocialIconLink>
+              <SocialIconLink href={LINKEDIN_URL} label="LinkedIn">
+                <LinkedInIcon className="w-4 h-4" />
+              </SocialIconLink>
+            </div>
           </div>
         </div>
 
-        <p className="mt-6 text-[#8e9196] text-[12px] leading-[18px] font-normal text-center sm:text-left">
-          {DISCLAIMER}
-        </p>
+        <div style={{ borderTop: `1px solid ${DIVIDER}` }} className="mt-6 pt-6 space-y-4">
+          <p className="text-[12px] leading-[20px]" style={{ color: DIM, fontWeight: 400 }}>
+            All investments carry risk. Past performance is not a reliable indicator of future results. Capital invested is not guaranteed.
+          </p>
+          <p className="text-[12px] leading-[20px]" style={{ color: DIM, fontWeight: 400 }}>
+            SliceRaiser operates as a regulated fractional investment platform under applicable European regulatory frameworks. By using SliceRaiser you agree to our Terms and Conditions, Privacy Policy, and Cookie Notice. All investments through SliceRaiser carry risk and are not guaranteed.
+          </p>
+          <p className="text-[12px] leading-[20px]" style={{ color: DIM, fontWeight: 400 }}>
+            SliceRaiser lists investment opportunities in UAE and Australia. Our platform is open to eligible investors worldwide.
+          </p>
+        </div>
       </div>
     </footer>
   );
