@@ -69,7 +69,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center justify-center sm:justify-end text-[#8e9196] text-[13px] font-normal">
             <a href="#" className="hover:text-[#4285f4] transition-colors">Privacy Policy</a>
             <span className="px-2">·</span>
-            <a href="#" className="hover:text-[#4285f4] transition-colors">Terms of Service</a>
+            <Link href="/terms" className="hover:text-[#4285f4] transition-colors">Terms of Service</Link>
             <span className="px-2">·</span>
             <a href="#" className="hover:text-[#4285f4] transition-colors">Risk Disclosure</a>
             <span className="px-2">·</span>
