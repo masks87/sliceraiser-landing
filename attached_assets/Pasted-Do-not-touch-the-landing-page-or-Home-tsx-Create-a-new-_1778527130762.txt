@@ -1,0 +1,187 @@
+Do not touch the landing page or Home.tsx.
+
+Create a new page /faq styled with brand colors:
+- Background: #F8F9FA
+- Headings: #1E3A8A Inter Bold
+- Text: #2C2C2C Inter Regular
+- Gold: #D4AF37 for category titles and accents
+- Accordion style: click question to expand answer
+- Smooth animation on open and close
+
+Page title: Frequently Asked Questions
+Subtitle: Everything you need to know about 
+investing with SliceRaiser
+
+Add a search bar at the top that filters 
+questions as user types.
+
+Use exactly these categories and questions:
+
+CATEGORY 1: Getting Started
+
+Q: What is SliceRaiser?
+A: SliceRaiser is a regulated fractional 
+investment platform that gives everyone access 
+to premium real estate and SME investment 
+opportunities starting from just $100. We 
+connect investors worldwide with real asset 
+opportunities located in UAE and Australia.
+
+Q: Who can invest on SliceRaiser?
+A: Anyone over 18 years old from anywhere 
+in the world can register and invest, subject 
+to identity verification and eligibility under 
+the laws of their country of residence. We 
+welcome both individual and corporate investors.
+
+Q: How do I get started?
+A: Sign up using your email or social account, 
+complete your identity verification, fund your 
+wallet, and start browsing available 
+opportunities. The whole process takes minutes.
+
+Q: What types of investments are available?
+A: Currently SliceRaiser offers fractional 
+real estate investments including residential 
+and commercial properties. SME equity and 
+fixed income opportunities are coming in 
+future phases.
+
+CATEGORY 2: Investment Process
+
+Q: What is the minimum investment?
+A: You can start investing from just USD 100 
+per opportunity.
+
+Q: How does fractional investment work?
+A: Each property is held through a Special 
+Purpose Vehicle (SPV). Investors purchase 
+fractional shares of the SPV giving them 
+proportional ownership of the property, 
+rental income, and capital appreciation 
+without the complexity of direct ownership.
+
+Q: Why does SliceRaiser use SPVs?
+A: SPVs allow multiple investors to co-own 
+a single property legally and efficiently. 
+Each property has its own SPV managed by 
+SliceRaiser ensuring clear ownership records, 
+regulatory compliance, and proper governance.
+
+Q: Can I invest in multiple opportunities?
+A: Yes. Diversifying across multiple properties 
+and opportunities is encouraged and easy to 
+do through your SliceRaiser portfolio dashboard.
+
+Q: How do I monitor my investments?
+A: Your dashboard shows real-time performance 
+of all your investments including current value, 
+returns earned, and upcoming distributions.
+
+CATEGORY 3: Returns
+
+Q: What returns can I expect?
+A: Returns vary by opportunity and are clearly 
+shown on each listing before you invest. 
+Returns may come from rental income, capital 
+appreciation, or both depending on the 
+property type.
+
+Q: How are returns paid?
+A: Returns are credited to your SliceRaiser 
+wallet. You can withdraw to your bank account 
+or reinvest into new opportunities. 
+Distribution frequency is monthly or quarterly 
+depending on the deal.
+
+Q: Are the returns shown net of fees?
+A: Yes. All returns displayed on our platform 
+are net of applicable fees. There are no 
+hidden charges.
+
+CATEGORY 4: Fees
+
+Q: What are SliceRaiser fees?
+A: SliceRaiser charges a platform management 
+fee on each investment. All fees are deducted 
+before returns are shown — what you see is 
+what you get. Full fee details are shown on 
+each opportunity page before you invest.
+
+CATEGORY 5: Security and Regulation
+
+Q: Is SliceRaiser regulated?
+A: Yes. SliceRaiser operates under applicable 
+European regulatory frameworks designed to 
+protect investors and ensure full compliance 
+with financial regulations.
+
+Q: How are my funds protected?
+A: Investor funds are held in segregated 
+accounts separate from SliceRaiser operational 
+funds. This ensures your capital is protected 
+and cannot be used for company operations.
+
+Q: What documents do I need to register?
+A: You will need a valid passport or national 
+ID, proof of address, and basic information 
+about your source of funds as part of our 
+KYC compliance process.
+
+CATEGORY 6: Account and Wallet
+
+Q: How do I fund my wallet?
+A: You can deposit via bank transfer or debit 
+and credit card including Visa, Mastercard, 
+and Apple Pay.
+
+Q: What currency does SliceRaiser use?
+A: SliceRaiser operates primarily in USD.
+
+Q: How do I withdraw my money?
+A: You can withdraw your available wallet 
+balance to your registered bank account 
+at any time. Processing times depend on 
+your bank.
+
+CATEGORY 7: Contingency
+
+Q: What happens if SliceRaiser ceases operations?
+A: In the unlikely event SliceRaiser cannot 
+continue operating, all investors are 
+immediately notified by email. Investors 
+then vote on whether to retain or liquidate 
+their property holdings. If the majority 
+votes to retain — a pre-defined Property 
+Asset Manager takes over and continues 
+income distributions. If the majority 
+votes to liquidate — the property is sold 
+and proceeds returned to investors 
+proportionally after costs.
+
+CATEGORY 8: Contact and Support
+
+Q: How do I contact SliceRaiser?
+A: Visit our Contact page at 
+sliceraiser.com/contact or email 
+contact@sliceraiser.com. Live chat is 
+also available on our website.
+
+Q: How do I submit a complaint?
+A: Use our Contact page and select 
+Complaint or Support from the inquiry 
+type dropdown. We aim to respond within 
+2 business days.
+
+At the bottom of the page add a CTA section:
+Heading: "Still have questions?"
+Text: "Our team is here to help."
+Two buttons:
+- "Contact Us" linking to /contact
+- "Live Chat" that opens the chat widget
+
+Add /faq to the footer quick links.
+Add /faq to the main navigation 
+between About Us and Investor Relations.
+
+Do not change anything else.

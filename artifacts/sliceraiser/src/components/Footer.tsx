@@ -22,13 +22,24 @@ export default function Footer() {
           <div>
             <h3 className="text-[#020817] font-semibold text-[16px] mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {["Home", "Opportunities", "Dashboard", "About Us", "Contact"].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-[#8e9196] text-[14px] leading-[24px] font-normal hover:text-[#4285f4] transition-colors">
-                    {link}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a href="#" className="text-[#8e9196] text-[14px] leading-[24px] font-normal hover:text-[#4285f4] transition-colors">Home</a>
+              </li>
+              <li>
+                <a href="#" className="text-[#8e9196] text-[14px] leading-[24px] font-normal hover:text-[#4285f4] transition-colors">Opportunities</a>
+              </li>
+              <li>
+                <a href="#" className="text-[#8e9196] text-[14px] leading-[24px] font-normal hover:text-[#4285f4] transition-colors">Dashboard</a>
+              </li>
+              <li>
+                <a href="#" className="text-[#8e9196] text-[14px] leading-[24px] font-normal hover:text-[#4285f4] transition-colors">About Us</a>
+              </li>
+              <li>
+                <Link href="/faq" className="text-[#8e9196] text-[14px] leading-[24px] font-normal hover:text-[#4285f4] transition-colors">FAQ</Link>
+              </li>
+              <li>
+                <a href="#" className="text-[#8e9196] text-[14px] leading-[24px] font-normal hover:text-[#4285f4] transition-colors">Contact</a>
+              </li>
             </ul>
           </div>
 

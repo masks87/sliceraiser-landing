@@ -18,6 +18,7 @@ const navLinks = [
   { label: "EQUITY INVESTMENTS", to: "/equity" },
   { label: "FIXED INCOME", to: "/fixed-income" },
   { label: "DASHBOARD", to: "/dashboard" },
+  { label: "FAQ", to: "/faq" },
   { label: "CONTACT", to: "/contact" },
 ];
 
@@ -27,6 +28,7 @@ const mobileLinks = [
   { label: "Equity investments", to: "/equity" },
   { label: "Fixed income", to: "/fixed-income" },
   { label: "Dashboard", to: "/dashboard" },
+  { label: "FAQ", to: "/faq" },
   { label: "Contact", to: "/contact" },
 ];
 
