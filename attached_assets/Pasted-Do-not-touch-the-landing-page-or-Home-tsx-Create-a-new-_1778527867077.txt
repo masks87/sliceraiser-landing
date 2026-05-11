@@ -1,0 +1,183 @@
+Do not touch the landing page or Home.tsx.
+
+Create a new page /investor-relations styled 
+with brand colors:
+- Background: #F8F9FA
+- Headings: #1E3A8A Inter Bold
+- Text: #2C2C2C Inter Regular
+- Accent lines and highlights: #D4AF37
+- Add to nav as "IR" and to footer
+
+Use exactly this content:
+
+HERO SECTION:
+Title: "Investor Relations"
+Subtitle: "Building the Future of Global 
+Alternative Investments"
+
+INTRO TEXT:
+"SliceRaiser is developing a next-generation 
+investment platform designed to expand access 
+to real estate, equity, and fixed-income 
+opportunities through a scalable digital 
+investment ecosystem.
+
+The platform is being structured to support 
+retail, professional, and institutional 
+participation across multiple jurisdictions 
+through a phased regulatory and operational 
+expansion strategy."
+
+PLATFORM METRICS — 4 cards with gold accent:
+Card 1: Target Users — 1 Million in 3 years
+Card 2: Min Investment — From USD 100
+Card 3: Target AUM — USD 1.5 Billion
+Card 4: Markets — UAE · Australia · Worldwide
+
+VISION SECTION:
+Heading: "Our Vision"
+"To become a globally recognized investment 
+infrastructure platform connecting investors 
+with high-quality opportunities across real 
+assets, income-generating investments, and 
+growth-focused ventures.
+
+SliceRaiser is designed to simplify access, 
+improve transparency, and support scalable 
+investment participation starting from low 
+entry points while maintaining 
+institutional-level operational standards."
+
+MARKET OPPORTUNITY SECTION:
+Heading: "Market Opportunity"
+Two columns:
+
+Left — Global demand growing in:
+- Real estate fractional ownership
+- Private market access
+- Fixed-income alternatives
+- Cross-border investment participation
+- Digitized investment infrastructure
+
+Right — Traditional access limited by:
+- High entry barriers
+- Geographic restrictions
+- Limited transparency
+- Operational complexity
+
+Text below columns:
+"SliceRaiser aims to address these gaps 
+through a unified investment platform 
+designed for scalable global participation."
+
+INVESTMENT FOCUS — 3 cards:
+Card 1: Property Investments
+- Residential opportunities
+- Commercial assets
+- Development projects
+- Income-generating real estate
+
+Card 2: Equity Investments
+- Startup opportunities
+- SME and private market exposure
+- Growth-focused businesses
+
+Card 3: Fixed Income
+- Structured income opportunities
+- Sukuk and conventional structures
+- Asset-backed income products
+
+GROWTH STRATEGY — 3 phase cards:
+Phase 1 — MVP:
+- Real estate opportunities
+- User onboarding and compliance
+- Initial market penetration
+
+Phase 2 — Expansion:
+- Multi-jurisdiction growth
+- Equity and fixed income launch
+- Strategic partnerships
+
+Phase 3 — Scale:
+- Institutional integrations
+- Secondary liquidity
+- Global expansion
+
+INVESTOR CATEGORIES SECTION:
+Heading: "Who We Work With"
+6 tags/badges:
+Venture Capital · Family Offices · 
+Strategic Partners · Institutional Investors · 
+Real Estate Groups · Technology Partners
+
+WHY SLICERAISER — 4 cards:
+Card 1: Large Addressable Market
+"The alternative investment sector continues 
+to expand globally across retail and 
+institutional segments."
+
+Card 2: Scalable Platform Model
+"Designed to support expansion across 
+multiple investment categories and 
+jurisdictions."
+
+Card 3: Low Entry Participation
+"Investment opportunities starting from 
+approximately USD 100 depending on 
+product structure."
+
+Card 4: Long-Term Expansion
+"Roadmap includes additional markets, 
+products, and institutional investment 
+infrastructure."
+
+CEO CONTACT CARD:
+Heading: "Connect With Our Team"
+Name: Mamoon Alkhatib
+Title: Founder and CEO — SliceRaiser
+LinkedIn button: https://www.linkedin.com/in/mamoon-alkhatib-77541639/
+"Request a Meeting" button → /contact
+
+SMART INQUIRY FORM SECTION:
+Heading: "Submit an Inquiry"
+Subtext: "Please select your inquiry type 
+so we can direct your message correctly."
+
+Field 1 — Inquiry Type dropdown:
+- I want to invest IN SliceRaiser 
+  (VC · Angel · Family Office)
+- I want to partner with SliceRaiser
+  (Technology · Real Estate · Regional)
+- I represent an institutional investor
+- I want to list my opportunity on the platform
+- General investor relations question
+
+Field 2 — Full name
+Field 3 — Organization or fund name
+Field 4 — Your role or title
+Field 5 — Email address
+Field 6 — Phone number with country code
+Field 7 — Estimated engagement size dropdown:
+  Under $50k · $50k-$250k · $250k-$1M · 
+  $1M-$5M · $5M+ · Not applicable
+Field 8 — Message
+
+Submit button: "Send Inquiry"
+Color: #1E3A8A hover #D4AF37
+
+On submit send email via Resend to 
+contact@sliceraiser.com with subject:
+"IR Inquiry - [Inquiry Type] - SliceRaiser"
+
+Show success message after submit.
+
+BOTTOM DISCLAIMER — small gray text:
+"This page is for informational purposes 
+only and does not constitute an offer or 
+solicitation to buy or sell securities 
+in any jurisdiction. SliceRaiser is 
+currently in development phase. 
+All projections are targets only and 
+not guaranteed."
+
+Do not change anything else.

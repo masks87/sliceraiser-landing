@@ -28,6 +28,7 @@ import Contact from "@/pages/Contact";
 import Legal from "@/pages/Legal";
 import Terms from "@/pages/Terms";
 import Faq from "@/pages/Faq";
+import InvestorRelations from "@/pages/InvestorRelations";
 import { setBaseUrl } from "@workspace/api-client-react";
 
 const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -216,6 +217,8 @@ function ClerkProviderWithRoutes() {
                 <Route path="/legal" component={Legal} />
                 <Route path="/terms" component={Terms} />
                 <Route path="/faq" component={Faq} />
+                <Route path="/investor-relations" component={InvestorRelations} />
+                <Route path="/ir" component={InvestorRelations} />
                 <Route>
                   <div className="max-w-3xl mx-auto px-6 py-20 text-center">
                     <h1 className="text-3xl font-bold text-[#020817] mb-3">Page not found</h1>

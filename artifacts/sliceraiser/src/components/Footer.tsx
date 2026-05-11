@@ -187,7 +187,7 @@ export default function Footer() {
               <li><FooterLink href="/faq">FAQ</FooterLink></li>
               <li><FooterLink href="/how-it-works">How It Works</FooterLink></li>
               <li><FooterLink href="/about">About Us</FooterLink></li>
-              <li><FooterLink href="/ir">Investor Relations (IR)</FooterLink></li>
+              <li><FooterLink href="/investor-relations">Investor Relations (IR)</FooterLink></li>
             </ul>
           </div>
 

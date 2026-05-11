@@ -18,7 +18,7 @@ const navLinks = [
   { label: "EQUITY", to: "/equity" },
   { label: "ABOUT US", to: "/about" },
   { label: "FAQ", to: "/faq" },
-  { label: "IR", to: "/ir" },
+  { label: "IR", to: "/investor-relations" },
   { label: "CONTACT", to: "/contact" },
 ];
 
@@ -28,7 +28,7 @@ const mobileLinks = [
   { label: "Equity", to: "/equity" },
   { label: "About Us", to: "/about" },
   { label: "FAQ", to: "/faq" },
-  { label: "IR", to: "/ir" },
+  { label: "IR", to: "/investor-relations" },
   { label: "Contact", to: "/contact" },
 ];
 
