@@ -35,3 +35,72 @@ body {
   width: 100%;
   min-height: 100vh;
 }
+
+/* ─────────────────────────────────────────────────────────────
+   SliceRaiser Brand Theme — applied to all non-landing pages
+   via the `.theme-brand` wrapper added in Layout.tsx.
+   The landing page (Home.tsx) does NOT use Layout and is therefore
+   unaffected by these overrides.
+
+   Palette:
+     Primary  #1E3A8A  Royal Blue
+     Accent   #D4AF37  Rich Gold (hover)
+     Bg       #F8F9FA  Soft White
+     Text     #2C2C2C  Charcoal
+   ───────────────────────────────────────────────────────────── */
+.theme-brand {
+  background-color: #F8F9FA;
+  color: #2C2C2C;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500; /* Body: Inter Medium */
+}
+
+/* Heading typography defaults — low-specificity so existing
+   Tailwind size utilities still win where layout already depends
+   on them. New headings without an explicit class get brand sizes. */
+.theme-brand h1 { font-size: 34px; font-weight: 800; line-height: 1.15; }
+.theme-brand h2 { font-size: 22px; font-weight: 700; line-height: 1.25; }
+.theme-brand h3 { font-size: 18px; font-weight: 600; line-height: 1.3; }
+
+/* All headings adopt the royal-blue brand color */
+.theme-brand h1,
+.theme-brand h2,
+.theme-brand h3,
+.theme-brand h4,
+.theme-brand h5,
+.theme-brand h6 {
+  color: #1E3A8A;
+}
+
+/* Remap legacy brand color tokens (Tailwind arbitrary-value classes)
+   to the new SliceRaiser palette. Headings/icons/links/buttons all
+   use these tokens, so a single remap covers every Layout-wrapped
+   page without per-component edits. */
+
+/* Primary blue → Royal Blue */
+.theme-brand .text-\[\#4285f4\]      { color: #1E3A8A !important; }
+.theme-brand .bg-\[\#4285f4\]        { background-color: #1E3A8A !important; }
+.theme-brand .border-\[\#4285f4\]    { border-color: #1E3A8A !important; }
+.theme-brand .fill-\[\#4285f4\]      { fill: #1E3A8A !important; }
+.theme-brand .stroke-\[\#4285f4\]    { stroke: #1E3A8A !important; }
+.theme-brand .ring-\[\#4285f4\]      { --tw-ring-color: #1E3A8A !important; }
+.theme-brand .from-\[\#4285f4\]      { --tw-gradient-from: #1E3A8A !important; }
+
+/* Navy → Royal Blue (unify primary tone) */
+.theme-brand .text-\[\#082f6f\]      { color: #1E3A8A !important; }
+.theme-brand .bg-\[\#082f6f\]        { background-color: #1E3A8A !important; }
+.theme-brand .border-\[\#082f6f\]    { border-color: #1E3A8A !important; }
+
+/* Charcoal-ish near-black text → brand Charcoal */
+.theme-brand .text-\[\#020817\]      { color: #2C2C2C !important; }
+
+/* Hover states swap to Rich Gold accent */
+.theme-brand .hover\:bg-\[\#3570d4\]:hover  { background-color: #D4AF37 !important; }
+.theme-brand .hover\:bg-\[\#061f4a\]:hover  { background-color: #D4AF37 !important; }
+.theme-brand .hover\:bg-\[\#082f6f\]:hover  { background-color: #D4AF37 !important; color: #2C2C2C !important; }
+.theme-brand .hover\:text-\[\#4285f4\]:hover { color: #D4AF37 !important; }
+.theme-brand .hover\:from-\[\#3570d4\]:hover { --tw-gradient-from: #D4AF37 !important; }
+.theme-brand .hover\:to-\[\#2a5fc0\]:hover   { --tw-gradient-to: #D4AF37 !important; }
+
+/* Soft page-section background → brand Soft White */
+.theme-brand .bg-\[\#f1f0fb4d\]      { background-color: #F8F9FA !important; }
