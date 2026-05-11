@@ -14,21 +14,21 @@ import logoImg from "@/assets/logo.png";
 
 const navLinks = [
   { label: "HOME", to: "/" },
-  { label: "PROPERTIES INVESTMENTS", to: "/opportunities" },
-  { label: "EQUITY INVESTMENTS", to: "/equity" },
-  { label: "FIXED INCOME", to: "/fixed-income" },
-  { label: "DASHBOARD", to: "/dashboard" },
+  { label: "PROPERTIES", to: "/opportunities" },
+  { label: "EQUITY", to: "/equity" },
+  { label: "ABOUT US", to: "/about" },
   { label: "FAQ", to: "/faq" },
+  { label: "IR", to: "/ir" },
   { label: "CONTACT", to: "/contact" },
 ];
 
 const mobileLinks = [
   { label: "Home", to: "/" },
-  { label: "Properties investments", to: "/opportunities" },
-  { label: "Equity investments", to: "/equity" },
-  { label: "Fixed income", to: "/fixed-income" },
-  { label: "Dashboard", to: "/dashboard" },
+  { label: "Properties", to: "/opportunities" },
+  { label: "Equity", to: "/equity" },
+  { label: "About Us", to: "/about" },
   { label: "FAQ", to: "/faq" },
+  { label: "IR", to: "/ir" },
   { label: "Contact", to: "/contact" },
 ];
 
