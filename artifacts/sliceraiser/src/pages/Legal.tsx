@@ -36,6 +36,22 @@ export default function Legal() {
               </p>
             </section>
           ))}
+
+          <section>
+            <h2 className="text-[#020817] font-semibold text-[18px] mb-3">
+              Contact
+            </h2>
+            <p className="text-[#8e9196] text-[15px] leading-[24px] font-normal">
+              For legal or regulatory inquiries, please contact us at{" "}
+              <a
+                href="mailto:legal@sliceraiser.com"
+                className="text-[#4285f4] hover:underline"
+              >
+                legal@sliceraiser.com
+              </a>
+              .
+            </p>
+          </section>
         </div>
       </div>
     </div>

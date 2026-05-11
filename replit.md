@@ -29,7 +29,7 @@ Global real estate / alternative investment marketplace MVP.
 ## Email (Resend)
 - Requires secret `RESEND_API_KEY`. Without it, both contact endpoints return `500 { error: "Email service not configured" }`.
 - FROM: `admin@sliceraiser.com` (the `sliceraiser.com` domain must be verified in the Resend dashboard for delivery).
-- TO: `mamoon@sliceraiser.com`.
+- TO addresses by route: `/api/contact` and `/api/meeting-request` → `contact@sliceraiser.com`; `/api/ir-inquiry` → `investors@sliceraiser.com`.
 - Contact subject: `SliceRaiser Inquiry — <inquiryType>`. Meeting subject: `Meeting Request - SliceRaiser`.
 
 ## Conventions

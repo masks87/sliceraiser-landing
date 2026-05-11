@@ -264,7 +264,7 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
             />
             {mutation.isError ? (
               <div className="rounded-xl bg-rose-50 border border-rose-100 p-3 text-rose-700 text-xs">
-                Sorry — we couldn't send your request. Please try again or email mamoon@sliceraiser.com directly.
+                Sorry — we couldn't send your request. Please try again or email contact@sliceraiser.com directly.
               </div>
             ) : null}
             <button
@@ -302,13 +302,13 @@ function CeoCard({ onRequestMeeting }: { onRequestMeeting: () => void }) {
 
       <div className="mt-5 space-y-2.5 text-sm">
         <a
-          href="mailto:mamoon@sliceraiser.com"
+          href="mailto:contact@sliceraiser.com"
           className="flex items-center gap-2.5 text-[#020817] hover:text-[#4285f4] transition-colors"
         >
           <svg className="w-4 h-4 text-[#4285f4] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
-          mamoon@sliceraiser.com
+          contact@sliceraiser.com
         </a>
         <a
           href="tel:+971557259299"
@@ -440,7 +440,7 @@ export default function Contact() {
 
                   {mutation.isError ? (
                     <div className="rounded-xl bg-rose-50 border border-rose-100 p-3 text-rose-700 text-xs">
-                      Sorry — we couldn't send your message. Please try again or email mamoon@sliceraiser.com directly.
+                      Sorry — we couldn't send your message. Please try again or email contact@sliceraiser.com directly.
                     </div>
                   ) : null}
 

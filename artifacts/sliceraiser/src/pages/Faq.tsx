@@ -125,7 +125,7 @@ const CATEGORIES: Category[] = [
     items: [
       {
         q: "How do I contact SliceRaiser?",
-        a: "Visit our Contact page at sliceraiser.com/contact or email contact@sliceraiser.com. Live chat is also available on our website.",
+        a: "Visit our Contact page at sliceraiser.com/contact or email support@sliceraiser.com. Live chat is also available on our website.",
       },
       {
         q: "How do I submit a complaint?",
@@ -207,7 +207,7 @@ function openChatWidget() {
   const ev = new CustomEvent("sliceraiser:open-chat", { cancelable: true });
   const handled = !window.dispatchEvent(ev);
   if (!handled) {
-    window.location.href = "mailto:contact@sliceraiser.com?subject=SliceRaiser%20Live%20Chat";
+    window.location.href = "mailto:support@sliceraiser.com?subject=SliceRaiser%20Live%20Chat";
   }
 }
 

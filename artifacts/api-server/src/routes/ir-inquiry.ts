@@ -5,7 +5,7 @@ import { z } from "zod";
 const router: IRouter = Router();
 
 const FROM = "SliceRaiser <admin@sliceraiser.com>";
-const TO = "contact@sliceraiser.com";
+const TO = "investors@sliceraiser.com";
 
 const IRInquiryBody = z.object({
   inquiryType: z.string().min(1).max(200),

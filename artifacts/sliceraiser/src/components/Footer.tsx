@@ -167,7 +167,16 @@ export default function Footer() {
             >
               Invest in real assets from $100. UAE · Australia · Worldwide.
             </p>
-            <SocialIcons />
+            <a
+              href="mailto:contact@sliceraiser.com"
+              className="text-[14px] leading-[22px] mb-6 inline-block hover:underline"
+              style={{ color: MUTED, fontWeight: 400 }}
+            >
+              contact@sliceraiser.com
+            </a>
+            <div className="mt-6">
+              <SocialIcons />
+            </div>
           </div>
 
           {/* Column 2 — Invest */}

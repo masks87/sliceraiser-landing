@@ -100,7 +100,7 @@ const sections: Section[] = [
   {
     title: "Contacting Us",
     paragraphs: [
-      "If you have any questions please contact us at: contact@sliceraiser.com",
+      "If you have any questions please contact us at: legal@sliceraiser.com",
     ],
   },
 ];

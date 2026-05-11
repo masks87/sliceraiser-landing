@@ -8,7 +8,7 @@ import {
 const router: IRouter = Router();
 
 const FROM = "SliceRaiser <admin@sliceraiser.com>";
-const TO = "mamoon@sliceraiser.com";
+const TO = "contact@sliceraiser.com";
 
 function escapeHtml(s: string): string {
   return s

@@ -483,6 +483,13 @@ export default function InvestorRelations() {
               >
                 Founder and CEO — SliceRaiser
               </div>
+              <a
+                href="mailto:investors@sliceraiser.com"
+                className="text-[13px] mt-1 inline-block hover:underline"
+                style={{ color: PRIMARY, fontWeight: 600 }}
+              >
+                investors@sliceraiser.com
+              </a>
             </div>
             <div className="flex flex-wrap gap-3">
               <a
