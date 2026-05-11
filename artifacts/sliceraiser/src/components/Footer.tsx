@@ -1,31 +1,85 @@
+import type { ComponentType, SVGProps } from "react";
 import { Link } from "wouter";
+import { Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import logoImg from "@/assets/logo.png";
 
 const INSTAGRAM_URL = "https://www.instagram.com/sliceraiser/";
-const LINKEDIN_URL = "https://www.linkedin.com/in/mamoon-alkhatib-77541639/";
 
 const BG = "#0F172A";
 const DIVIDER = "#334155";
 const TEXT = "#FFFFFF";
 const MUTED = "#94A3B8";
 const DIM = "#64748B";
+const INACTIVE = "#475569";
 const INTER = "'Inter', sans-serif";
 
-function InstagramIcon({ className = "w-5 h-5" }: { className?: string }) {
+function TikTokIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
+      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43V8.42a8.16 8.16 0 004.77 1.52V6.49a4.85 4.85 0 01-1.84-.2z" />
     </svg>
   );
 }
 
-function LinkedInIcon({ className = "w-5 h-5" }: { className?: string }) {
+type SocialItem = {
+  name: string;
+  Icon: ComponentType<SVGProps<SVGSVGElement>>;
+  href?: string;
+};
+
+const SOCIALS: SocialItem[] = [
+  { name: "Instagram", Icon: Instagram, href: INSTAGRAM_URL },
+  { name: "LinkedIn", Icon: Linkedin },
+  { name: "X", Icon: Twitter },
+  { name: "YouTube", Icon: Youtube },
+  { name: "TikTok", Icon: TikTokIcon },
+];
+
+function SocialIcons({ size = "w-9 h-9", iconSize = "w-[18px] h-[18px]" }: { size?: string; iconSize?: string }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 11.001-4.121 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
-    </svg>
+    <div className="flex items-center gap-3">
+      {SOCIALS.map(({ name, Icon, href }) => {
+        const active = Boolean(href);
+        const baseColor = active ? TEXT : INACTIVE;
+        const baseBorder = active ? TEXT : INACTIVE;
+        const className = `inline-flex items-center justify-center ${size} rounded-full transition-colors`;
+        const style = {
+          color: baseColor,
+          border: `1px solid ${baseBorder}`,
+          cursor: active ? "pointer" : "default",
+          backgroundColor: "transparent",
+        } as const;
+        if (active && href) {
+          return (
+            <a
+              key={name}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={name}
+              title={name}
+              className={className}
+              style={style}
+            >
+              <Icon className={iconSize} />
+            </a>
+          );
+        }
+        return (
+          <span
+            key={name}
+            role="img"
+            aria-label={`${name} (coming soon)`}
+            aria-disabled
+            title="Coming soon"
+            className={className}
+            style={style}
+          >
+            <Icon className={iconSize} />
+          </span>
+        );
+      })}
+    </div>
   );
 }
 
@@ -94,37 +148,6 @@ function ComingSoon({ children }: { children: React.ReactNode }) {
   );
 }
 
-function SocialIconLink({
-  href,
-  label,
-  children,
-}: {
-  href: string;
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={label}
-      className="inline-flex items-center justify-center w-9 h-9 rounded-full transition-colors"
-      style={{ color: MUTED, border: `1px solid ${DIVIDER}` }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.color = TEXT;
-        e.currentTarget.style.borderColor = TEXT;
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.color = MUTED;
-        e.currentTarget.style.borderColor = DIVIDER;
-      }}
-    >
-      {children}
-    </a>
-  );
-}
-
 export default function Footer() {
   return (
     <footer style={{ backgroundColor: BG, fontFamily: INTER }}>
@@ -144,14 +167,7 @@ export default function Footer() {
             >
               Invest in real assets from $100. UAE · Australia · Worldwide.
             </p>
-            <div className="flex items-center gap-3">
-              <SocialIconLink href={INSTAGRAM_URL} label="Instagram">
-                <InstagramIcon />
-              </SocialIconLink>
-              <SocialIconLink href={LINKEDIN_URL} label="LinkedIn">
-                <LinkedInIcon />
-              </SocialIconLink>
-            </div>
+            <SocialIcons />
           </div>
 
           {/* Column 2 — Invest */}
@@ -205,14 +221,7 @@ export default function Footer() {
               <FooterLink href="/cookie-policy">Cookie Policy</FooterLink>
             </div>
 
-            <div className="flex items-center gap-3">
-              <SocialIconLink href={INSTAGRAM_URL} label="Instagram">
-                <InstagramIcon className="w-4 h-4" />
-              </SocialIconLink>
-              <SocialIconLink href={LINKEDIN_URL} label="LinkedIn">
-                <LinkedInIcon className="w-4 h-4" />
-              </SocialIconLink>
-            </div>
+            <SocialIcons size="w-8 h-8" iconSize="w-4 h-4" />
           </div>
         </div>
 
