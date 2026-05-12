@@ -41,13 +41,13 @@ function StoreButton({
       role="button"
       aria-disabled
       title={tooltip}
-      className="inline-flex items-center gap-3 bg-black text-white rounded-xl px-5 py-3 select-none"
+      className="w-full sm:w-[180px] lg:w-[200px] inline-flex items-center gap-3 bg-black text-white rounded-xl px-4 py-3 select-none"
       style={{ cursor: "default", border: "1px solid rgba(255,255,255,0.12)" }}
     >
       <Icon className="w-7 h-7 shrink-0" />
-      <div className="text-left leading-tight">
+      <div className="text-left leading-tight min-w-0">
         <div className="text-[11px] tracking-wide opacity-80">{topLine}</div>
-        <div className="text-[15px] font-semibold">{bottomLine}</div>
+        <div className="text-[14px] font-semibold truncate">{bottomLine}</div>
       </div>
     </div>
   );
@@ -93,7 +93,7 @@ function AppWaitlistForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col sm:flex-row gap-2 max-w-md">
+    <form onSubmit={onSubmit} className="flex flex-col sm:flex-row gap-2 w-full max-w-md">
       <input
         type="email"
         required
@@ -122,16 +122,16 @@ function AppWaitlistForm() {
 
 function AppDownloadBand() {
   return (
-    <section style={{ backgroundColor: APP_BAND_BG }} className="text-white">
-      <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-        <div>
+    <section style={{ backgroundColor: APP_BAND_BG }} className="w-full text-white">
+      <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div className="text-center lg:text-left">
           <h2 className="text-[26px] md:text-[30px] font-bold leading-tight">Invest on the Go</h2>
-          <p className="mt-3 text-[15px] leading-[24px] text-white/85 max-w-xl">
+          <p className="mt-3 text-[15px] leading-[24px] text-white/85 max-w-xl mx-auto lg:mx-0">
             The SliceRaiser app is coming soon to iOS and Android. Join the waitlist and be the first to know.
           </p>
         </div>
-        <div className="flex flex-col gap-4 lg:items-end">
-          <div className="flex flex-col sm:flex-row gap-3">
+        <div className="flex flex-col items-stretch gap-4 lg:items-end">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 justify-center lg:justify-end w-full">
             <StoreButton
               Icon={AppleIcon}
               topLine="Coming Soon"

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Show, useClerk, useUser } from "@clerk/react";
+import logoImg from "@/assets/logo.png";
 
 function useAuthModal() {
   const { openSignIn, openSignUp } = useClerk();
@@ -10,18 +11,19 @@ function useAuthModal() {
     openSignUp: () => openSignUp({ afterSignInUrl }),
   };
 }
-import logoImg from "@/assets/logo.png";
 
 const navLinks = [
   { label: "HOME", to: "/" },
   { label: "PROPERTIES", to: "/opportunities" },
   { label: "EQUITY", to: "/equity" },
+  { label: "FIXED INCOME", to: "/fixed-income" },
 ];
 
 const mobileLinks = [
   { label: "Home", to: "/" },
   { label: "Properties", to: "/opportunities" },
   { label: "Equity", to: "/equity" },
+  { label: "Fixed Income", to: "/fixed-income" },
 ];
 
 function Logo() {
