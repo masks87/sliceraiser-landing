@@ -50,12 +50,14 @@ const desktopNavLinks = [
   { label: 'HOME', to: '/', active: true },
   { label: 'PROPERTIES', to: '/opportunities', active: false },
   { label: 'EQUITY', to: '/equity', active: false },
+  { label: 'FIXED INCOME', to: '/fixed-income', active: false },
 ]
 
 const mobileNavLinks = [
   { label: 'Home', to: '/' },
   { label: 'Properties', to: '/opportunities' },
   { label: 'Equity', to: '/equity' },
+  { label: 'Fixed Income', to: '/fixed-income' },
 ]
 
 function Logo() {
@@ -113,6 +115,20 @@ export default function Home() {
                   {label}
                 </button>
               ))}
+              <button
+                type="button"
+                onClick={() => openSignIn({ afterSignInUrl: `${basePath}/dashboard` } as Parameters<typeof openSignIn>[0])}
+                className="text-[11px] font-semibold tracking-wide whitespace-nowrap transition-colors bg-transparent border-0 cursor-pointer text-[#020817] hover:text-[#4285f4]"
+              >
+                Log In
+              </button>
+              <button
+                type="button"
+                onClick={() => openSignUp({ afterSignUpUrl: `${basePath}/dashboard` } as Parameters<typeof openSignUp>[0])}
+                className="text-[11px] font-semibold tracking-wide whitespace-nowrap transition-colors bg-transparent border-0 cursor-pointer text-[#020817] hover:text-[#4285f4]"
+              >
+                Sign Up
+              </button>
             </div>
 
             {/* Divider */}
@@ -183,14 +199,6 @@ export default function Home() {
                 {label}
               </button>
             ))}
-            <div className="flex gap-3 pt-2 border-t border-gray-100">
-              <button onClick={() => { setMenuOpen(false); handleSignIn() }} className="flex-1 bg-[#4285f4] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#3570d4] transition-colors">
-                Log In
-              </button>
-              <button onClick={() => { setMenuOpen(false); handleSignUp() }} className="flex-1 bg-[#082f6f] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#061f4a] transition-colors">
-                Sign Up
-              </button>
-            </div>
           </div>
         )}
       </header>
