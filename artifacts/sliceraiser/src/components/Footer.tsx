@@ -41,13 +41,13 @@ function StoreButton({
       role="button"
       aria-disabled
       title={tooltip}
-      className="w-full sm:w-[180px] lg:w-[200px] inline-flex items-center gap-3 bg-black text-white rounded-xl px-4 py-3 select-none"
+      className="w-full sm:w-[calc(50%-0.375rem)] lg:w-[220px] inline-flex items-center gap-3 bg-black text-white rounded-xl px-4 py-3 select-none"
       style={{ cursor: "default", border: "1px solid rgba(255,255,255,0.12)" }}
     >
       <Icon className="w-7 h-7 shrink-0" />
       <div className="text-left leading-tight min-w-0">
         <div className="text-[11px] tracking-wide opacity-80">{topLine}</div>
-        <div className="text-[14px] font-semibold truncate">{bottomLine}</div>
+        <div className="text-[14px] font-semibold">{bottomLine}</div>
       </div>
     </div>
   );
@@ -78,6 +78,9 @@ function AppWaitlistForm() {
       }
       setEmail("");
       setStatus("success");
+      window.setTimeout(() => {
+        setStatus("idle");
+      }, 3000);
     } catch {
       setErrorMsg("Network error. Please try again.");
       setStatus("error");
@@ -125,13 +128,13 @@ function AppDownloadBand() {
     <section style={{ backgroundColor: APP_BAND_BG }} className="w-full text-white">
       <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         <div className="text-center lg:text-left">
-          <h2 className="text-[26px] md:text-[30px] font-bold leading-tight">Invest on the Go</h2>
+          <h2 className="text-[24px] font-bold leading-tight">Invest. Let Your Money Grow.</h2>
           <p className="mt-3 text-[15px] leading-[24px] text-white/85 max-w-xl mx-auto lg:mx-0">
-            The SliceRaiser app is coming soon to iOS and Android. Join the waitlist and be the first to know.
+            The SliceRaiser app is coming soon to iOS and Android. Join the waitlist and be the first to know when we launch.
           </p>
         </div>
         <div className="flex flex-col items-stretch gap-4 lg:items-end">
-          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 justify-center lg:justify-end w-full">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-end w-full">
             <StoreButton
               Icon={AppleIcon}
               topLine="Coming Soon"
@@ -304,8 +307,8 @@ export default function Footer() {
     <footer style={{ backgroundColor: BG, fontFamily: INTER }}>
       <AppDownloadBand />
       <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          {/* Column 1 — Brand */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+          {/* Column 1 Brand */}
           <div>
             <img
               src={logoImg}
@@ -322,17 +325,17 @@ export default function Footer() {
             <SocialIcons />
           </div>
 
-          {/* Column 2 — Invest */}
+          {/* Column 2 Invest */}
           <div>
             <ColHeading>Invest</ColHeading>
             <ul className="space-y-1">
               <li><FooterLink href="/opportunities">Properties</FooterLink></li>
-              <li><ComingSoon>Equity</ComingSoon></li>
-              <li><ComingSoon>Fixed Income</ComingSoon></li>
+              <li><FooterLink href="/equity">Equity</FooterLink></li>
+              <li><FooterLink href="/fixed-income">Fixed Income</FooterLink></li>
             </ul>
           </div>
 
-          {/* Column 3 — Learn */}
+          {/* Column 3 Learn */}
           <div>
             <ColHeading>Learn</ColHeading>
             <ul className="space-y-1">
@@ -343,7 +346,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4 — Company */}
+          {/* Column 4 Company */}
           <div>
             <ColHeading>Company</ColHeading>
             <ul className="space-y-1">
