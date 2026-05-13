@@ -17,7 +17,7 @@ export const defaultLocation = "Dubai";
 export const mainSlogan = "Invest in real assets from $100. UAE · Australia · Worldwide.";
 
 // CMS: footer.description
-export const footerDescription = "Invest in real assets from $100. UAE · Australia · Worldwide.";
+export const footerDescription = "Unlocking access to properties, equity and fixed income opportunities, starting from USD 100.";
 
 // CMS: appDownload.heading
 export const appDownloadHeading = "Invest. Let Your Money Grow.";
