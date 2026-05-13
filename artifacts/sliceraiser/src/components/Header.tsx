@@ -181,18 +181,6 @@ export default function Header() {
             />
           </div>
 
-          {(location === "/properties" || location === "/equity" || location === "/fixed-income") && (
-            <button
-              type="button"
-              aria-label="Filter"
-              className="shrink-0 text-[#8e9196] hover:text-[#4285f4] transition-colors"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h18M7 12h10M11 20h2" />
-              </svg>
-            </button>
-          )}
-
           <div className="flex items-center gap-2">
             <Show when="signed-out">
               <button
@@ -217,21 +205,21 @@ export default function Header() {
         </div>
       </nav>
 
-      <nav className="lg:hidden flex items-center justify-between h-14 px-3 sm:px-6 gap-2">
+      <nav className="lg:hidden flex items-center justify-between h-14 px-2 sm:px-4 gap-1.5">
         <Logo />
-        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           <Show when="signed-out">
             <button
               type="button"
               onClick={() => openSignIn()}
-              className="bg-[#4285f4] text-white text-[11px] sm:text-[12px] font-medium px-2.5 sm:px-3 py-1.5 rounded-md hover:bg-[#3570d4] transition-colors whitespace-nowrap"
+              className="bg-[#4285f4] text-white text-[10px] sm:text-[12px] font-medium px-2 sm:px-3 py-1 sm:py-1.5 rounded-md hover:bg-[#3570d4] transition-colors whitespace-nowrap"
             >
               Log In
             </button>
             <button
               type="button"
               onClick={() => openSignUp()}
-              className="bg-[#082f6f] text-white text-[11px] sm:text-[12px] font-medium px-2.5 sm:px-3 py-1.5 rounded-md hover:bg-[#061f4a] transition-colors whitespace-nowrap"
+              className="bg-[#082f6f] text-white text-[10px] sm:text-[12px] font-medium px-2 sm:px-3 py-1 sm:py-1.5 rounded-md hover:bg-[#061f4a] transition-colors whitespace-nowrap"
             >
               Sign Up
             </button>
@@ -240,7 +228,7 @@ export default function Header() {
             <SignedInMenu />
           </Show>
           <button className="p-1 shrink-0" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
-            <svg className="w-6 h-6 text-[#020817]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#020817]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
