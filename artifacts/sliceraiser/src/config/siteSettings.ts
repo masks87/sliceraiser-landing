@@ -84,14 +84,62 @@ export const footerLegalLinks: { label: string; href: string }[] = [
   { label: "Cookie Policy",    href: "/cookie-policy" },
 ];
 
-// CMS: contact.email
-export const contactEmail = "contact@sliceraiser.com";
+// CMS: footer.copyrightText
+export const copyrightText = "© 2025 SliceRaiser.com. All rights reserved.";
 
-// CMS: contact.phone
-export const contactPhone = "+971 4 123 4567";
+// ─────────────────────────────────────────────────────────────────────────────
+// Contact page settings
+// ─────────────────────────────────────────────────────────────────────────────
+
+// CMS: contact.publicContactEmail  — shown to users; internal recipient is backend-only (CONTACT_RECIPIENT_EMAIL env var)
+export const publicContactEmail = "contact@sliceraiser.com";
+
+// CMS: contact.internalContactRecipientKeyName — name of the backend env var holding the private recipient email
+export const internalContactRecipientKeyName = "CONTACT_RECIPIENT_EMAIL";
+
+// CMS: contact.pageTitle
+export const contactPageTitle = "Contact SliceRaiser";
+
+// CMS: contact.pageSubtitle
+export const contactPageSubtitle =
+  "Investors, partners, press, and candidates — pick the inquiry type that fits and we'll route your message to the right team.";
+
+// CMS: contact.cardTitle
+export const contactCardTitle = "Get in Touch";
+
+// CMS: contact.cardDescription
+export const contactCardDescription =
+  "Reach our founder directly, or schedule a meeting at a time that works for you.";
+
+// CMS: contact.phone  — shown publicly in the contact card
+export const contactPhone = "+971 55 725 9299";
 
 // CMS: contact.address
 export const contactAddress = "Sheikh Zayed Road, Dubai, UAE";
 
-// CMS: footer.copyrightText
-export const copyrightText = "© 2025 SliceRaiser.com. All rights reserved.";
+// CMS: contact.linkedInUrl
+export const contactLinkedInUrl = "https://www.linkedin.com/in/mamoon-alkhatib-77541639/";
+
+// CMS: contact.formTitle
+export const contactFormTitle = "Send us a message";
+
+// CMS: contact.inquiryTypes — drives the inquiry type dropdown; must match InquiryType enum in openapi.yaml
+export const contactInquiryTypes = [
+  "Investor",
+  "Property Sponsor",
+  "Enterprise Raising Capital",
+  "Partner",
+  "Press",
+  "Career",
+  "General Inquiry",
+] as const;
+
+// CMS: contact.autoReplySubject
+export const contactAutoReplySubject = "We received your message — SliceRaiser";
+
+// CMS: contact.autoReplyMessage — shown on screen and sent as confirmation email body to requester
+export const contactAutoReplyMessage =
+  "Thank you for contacting SliceRaiser. We have received your request and our team will review it. If the request is suitable, we will contact you with the next steps.";
+
+// CMS: contact.meetingRequestEnabled
+export const meetingRequestEnabled = true;

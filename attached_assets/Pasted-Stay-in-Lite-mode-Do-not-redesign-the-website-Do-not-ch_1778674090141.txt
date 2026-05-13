@@ -1,0 +1,124 @@
+Stay in Lite mode.
+
+Do not redesign the website.
+Do not change layout, colors, images, animations, routing, authentication logic, dashboard logic, or opportunity data.
+
+Goal:
+Improve the Contact Us system using the existing Resend email setup, while keeping destination emails private and preparing contact content for future CMS control.
+
+Important:
+Do not display the internal recipient email address to users.
+Users must not see [mamoon@sliceraiser.com](mailto:mamoon@sliceraiser.com) or any private destination email.
+Public contact email can remain [contact@sliceraiser.com](mailto:contact@sliceraiser.com) only if already shown publicly.
+
+Current phase:
+Use Resend for email notifications.
+Do not add Google Calendar.
+Do not add Zoho Calendar.
+Do not add paid CRM.
+Do not auto create calendar events.
+Do not allow direct calendar booking.
+
+Contact form improvements:
+Add or confirm these fields:
+
+Inquiry type required
+Full name required
+Email required
+Phone with country code required
+Country of residence required
+Company name optional
+Role or title optional
+Investor type optional
+Purpose of inquiry required
+Preferred date and time only for meeting request
+Message required
+
+Inquiry type options:
+Investor
+Property sponsor
+Enterprise raising capital
+Partner
+Press
+Career
+General inquiry
+
+Form behavior:
+When the form is submitted:
+
+1. Send internal notification email using Resend.
+2. Send it to the private destination email configured in backend environment variable or server side config.
+3. Do not expose the destination email in frontend code.
+4. Send a public confirmation email to the requester if Resend supports it safely.
+5. Show a success message on the website.
+6. Do not promise that a meeting is confirmed.
+
+Internal notification email:
+Subject format:
+New SliceRaiser Contact Request - [Inquiry Type]
+
+Email body should include:
+Inquiry type
+Full name
+Email
+Phone
+Country of residence
+Company name
+Role or title
+Investor type
+Purpose of inquiry
+Preferred date and time, if provided
+Message
+Submission date and time
+
+Auto reply message to requester:
+Thank you for contacting SliceRaiser. We have received your request and our team will review it. If the request is suitable, we will contact you with the next steps.
+
+Contact request status:
+Prepare the structure for these future statuses, but do not build the full admin panel yet:
+New
+Reviewed
+Need more details
+Approved for meeting
+Rejected
+Completed
+
+CMS preparation:
+Move contact page configurable text into siteSettings.ts or a contactSettings section.
+
+Add settings for:
+publicContactEmail
+internalContactRecipientKeyName
+contactPageTitle
+contactPageSubtitle
+contactCardTitle
+contactCardDescription
+contactPhone
+contactLinkedInUrl
+contactFormTitle
+contactInquiryTypes
+contactAutoReplySubject
+contactAutoReplyMessage
+meetingRequestEnabled
+
+Important CMS note:
+Do not build the CMS admin page yet.
+Do not create /admin/website yet.
+Just centralize the editable contact content in settings for now.
+
+Security:
+Internal recipient email must be backend only.
+If needed, use an environment variable such as CONTACT_RECIPIENT_EMAIL.
+Do not hardcode private recipient email in frontend files.
+Do not print private recipient email in browser console.
+Do not include private recipient email in API responses.
+
+After changes, report:
+
+1. Which file controls contact settings.
+2. Where the internal recipient email is configured.
+3. Whether private recipient email is hidden from frontend.
+4. Whether Resend still sends the internal notification.
+5. Whether requester receives an auto reply.
+6. Whether calendar integration was avoided.
+7. Whether any admin CMS page was created or not.

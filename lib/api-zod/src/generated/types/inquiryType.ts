@@ -9,11 +9,11 @@
 export type InquiryType = (typeof InquiryType)[keyof typeof InquiryType];
 
 export const InquiryType = {
-  Platform_Investor: "Platform Investor",
-  "Capital_Investor_/_VC": "Capital Investor / VC",
-  "Enterprise_/_Partnership": "Enterprise / Partnership",
-  "SME_/_Fundraiser": "SME / Fundraiser",
-  "Press_/_Media": "Press / Media",
-  Career_Application: "Career Application",
-  Complaint_or_Support: "Complaint or Support",
+  Investor: "Investor",
+  Property_Sponsor: "Property Sponsor",
+  Enterprise_Raising_Capital: "Enterprise Raising Capital",
+  Partner: "Partner",
+  Press: "Press",
+  Career: "Career",
+  General_Inquiry: "General Inquiry",
 } as const;

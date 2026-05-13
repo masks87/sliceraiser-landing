@@ -77,13 +77,13 @@ export const GetOpportunityResponse = zod.object({
  */
 export const SubmitContactBody = zod.object({
   inquiryType: zod.enum([
-    "Platform Investor",
-    "Capital Investor / VC",
-    "Enterprise / Partnership",
-    "SME / Fundraiser",
-    "Press / Media",
-    "Career Application",
-    "Complaint or Support",
+    "Investor",
+    "Property Sponsor",
+    "Enterprise Raising Capital",
+    "Partner",
+    "Press",
+    "Career",
+    "General Inquiry",
   ]),
   fields: zod.array(
     zod.object({

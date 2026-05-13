@@ -39,3 +39,4 @@ externalPort = 3000
 
 [userenv.shared]
 VITE_CLERK_PUBLISHABLE_KEY = "pk_test_aW50ZXJuYWwtdHJlZWZyb2ctNjMuY2xlcmsuYWNjb3VudHMuZGV2JA"
+CONTACT_RECIPIENT_EMAIL = "mamoon@sliceraiser.com"
