@@ -1,8 +1,6 @@
 import { useLocation } from 'wouter'
 import { Building2, TrendingUp, Landmark, CircleDollarSign, type LucideIcon } from 'lucide-react'
 import dashboardImg from '@/assets/dashboard.png'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
 
 // Figma assets
 const imgLuxuryProperty = "https://www.figma.com/api/mcp/asset/763237e7-9544-47f2-95d3-d99e408f8ad6"
@@ -38,12 +36,10 @@ export default function Home() {
   const goContact = () => setLocation('/contact')
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>
-
-      <Header />
+    <div className="bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>
 
       {/* ── Hero ── */}
-      <section className="relative min-h-screen flex items-center justify-center pt-14 lg:pt-[60px] overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <img src={imgLuxuryProperty} alt="Luxury Property" className="absolute inset-0 w-full h-full object-cover opacity-50" />
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(26,31,44,0.8)] to-[rgba(0,0,0,0.92)]" />
         <div className="relative z-10 max-w-2xl mx-auto px-6 py-24 text-center">
@@ -181,7 +177,6 @@ export default function Home() {
         </div>
       </section>
 
-      <Footer />
     </div>
   )
 }
