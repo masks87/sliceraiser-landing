@@ -103,7 +103,7 @@ export default function OpportunityDetail() {
   const [, params] = useRoute("/opportunities/:id");
   const id = params?.id ? Number(params.id) : NaN;
   const { data, isLoading, error } = useGetOpportunity(id, {
-    query: { enabled: Number.isFinite(id) },
+    query: { enabled: Number.isFinite(id), queryKey: ["opportunities", id] },
   });
   const o = data;
 
