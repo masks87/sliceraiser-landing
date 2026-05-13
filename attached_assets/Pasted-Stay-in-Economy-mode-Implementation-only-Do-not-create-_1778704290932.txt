@@ -1,0 +1,129 @@
+Stay in Economy mode.
+
+Implementation only.
+
+Do not create content.
+Do not rewrite content.
+Do not improve wording.
+Use only the exact content provided below.
+
+Goal:
+Create the How It Works page.
+
+Route:
+ /how-it-works
+
+Allowed files:
+src/pages/HowItWorks.tsx
+src/App.tsx
+src/config/siteSettings.ts only if needed to store howItWorksPage content
+
+Do not edit:
+Home.tsx
+Header.tsx
+Footer.tsx
+Contact.tsx
+Legal pages
+API routes
+Database files
+Authentication files
+Dashboard files
+Opportunity data
+
+Brand rules:
+Use SliceRaiser brand kit styling:
+Royal Blue #1E3A8A
+Rich Gold #D4AF37
+Soft White #F8F9FA
+Charcoal Black #2C2C2C
+Primary font Inter
+Secondary font Roboto
+
+Do not change global styles.
+Do not redesign Header or Footer.
+Use shared Header and Footer through existing Layout.
+
+Page content:
+
+Page title:
+How It Works
+
+Page subtitle:
+A simple journey to explore property, equity and fixed income opportunities through SliceRaiser.
+
+Intro text:
+SliceRaiser is designed to make investment access clearer, more structured and easier to understand. From exploring opportunities to tracking your dashboard, the platform gives users one digital path to discover selected investment opportunities and become part of the SliceRaiser investment lifestyle.
+
+Step 1 title:
+Explore Opportunities
+
+Step 1 text:
+Browse selected opportunities across property, equity and fixed income. Each opportunity is presented with key information to help users understand the category, structure, market and available details before taking the next step.
+
+Step 2 title:
+Create Your Account
+
+Step 2 text:
+Create a SliceRaiser account to access a more complete platform experience, save opportunities and begin your investment journey through one secure digital platform.
+
+Step 3 title:
+Complete Onboarding
+
+Step 3 text:
+Users may be asked to complete onboarding steps such as identity details, contact information and required declarations before participating in available opportunities.
+
+Step 4 title:
+Review the Opportunity
+
+Step 4 text:
+Before making any decision, users can review the opportunity details, documents, risks, timeline and investment structure. SliceRaiser is built to make this information easier to access and understand.
+
+Step 5 title:
+Start from USD 100
+
+Step 5 text:
+SliceRaiser is designed to make investment participation more accessible, with opportunities starting from USD 100 where available.
+
+Step 6 title:
+Track Your Dashboard
+
+Step 6 text:
+After participation, users can track activity through their dashboard, including investment status, updates, documents, portfolio overview and distributions where applicable.
+
+Step 7 title:
+Receive Updates
+
+Step 7 text:
+SliceRaiser aims to keep users informed with updates on opportunity progress, project milestones, reporting and relevant platform notifications.
+
+Step 8 title:
+Continue or Exit
+
+Step 8 text:
+Depending on the structure of each opportunity, users may continue holding, receive distributions where applicable or follow the exit process described in the opportunity documents.
+
+Final section title:
+Built for the SliceRaiser Investment Lifestyle
+
+Final section text:
+SliceRaiser is more than a platform to browse opportunities. It is a modern investment lifestyle built around access, participation, ownership mindset and long term value creation.
+
+Primary button:
+Explore Investments
+
+Primary button link:
+ /properties
+
+Secondary button:
+Contact Our Team
+
+Secondary button link:
+ /contact
+
+After implementation, report only:
+1. HowItWorks.tsx created: yes or no
+2. /how-it-works route added: yes or no
+3. Page uses shared Header and Footer: yes or no
+4. Brand kit colors used: yes or no
+5. Content used exactly as provided: yes or no
+6. Any TypeScript or runtime errors: yes or no
