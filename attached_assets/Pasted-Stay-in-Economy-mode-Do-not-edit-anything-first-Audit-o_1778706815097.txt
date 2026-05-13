@@ -1,0 +1,84 @@
+Stay in Economy mode.
+
+Do not edit anything first.
+
+Audit only.
+
+Goal:
+Confirm the SliceRaiser app is mobile friendly and ready for deployment.
+
+Check the whole app, including these routes:
+
+/
+/properties
+/properties/:id using one real property ID
+/equity
+/fixed-income
+/contact
+/about
+/how-it-works
+/careers
+/legal
+/terms
+/privacy
+/risk-disclosure
+/cookie-policy
+/investor-relations
+/ir
+/dashboard
+/sign-in
+/sign-up
+
+Mobile friendly audit:
+
+1. Test or inspect responsive behavior for:
+   375px mobile
+   768px tablet
+   1440px desktop
+
+2. Check that Header is usable on mobile.
+3. Check that nav does not overflow.
+4. Check that buttons are tappable.
+5. Check that forms fit mobile width.
+6. Check that cards stack correctly on mobile.
+7. Check that no page has horizontal scroll.
+8. Check that Footer and app download band are responsive.
+9. Check that app store buttons and waitlist form fit mobile.
+10. Check that page content is not hidden behind the fixed Header.
+11. Check that spacing before Footer is consistent.
+
+Deployment readiness audit:
+
+1. Run TypeScript check.
+2. Run build command if available.
+3. Check runtime logs for errors.
+4. Check for broken imports.
+5. Check for missing routes.
+6. Check for broken internal links.
+7. Check for broken images.
+8. Check for Figma MCP image URLs.
+9. Check for console errors.
+10. Check required environment variables for production.
+11. Check whether Resend email integration needs production secrets.
+12. Check whether Clerk auth has required production keys.
+13. Check whether any route still points to /opportunities.
+14. Check whether all public links use /properties.
+15. Check whether any placeholder or lorem ipsum content remains.
+
+Do not fix anything yet.
+Do not change files.
+Only report findings.
+
+Report in this format:
+
+1. Mobile readiness: pass or fail
+2. Deployment readiness: pass or fail
+3. TypeScript: pass or fail
+4. Build: pass or fail
+5. Runtime logs: pass or fail
+6. Broken images found: yes or no
+7. Broken links found: yes or no
+8. Placeholder content found: yes or no
+9. Environment variables missing or uncertain: list only
+10. Pages that need fixing before deployment: list only
+11. Highest priority fixes: list only
