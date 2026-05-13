@@ -431,6 +431,19 @@ export const contactAutoReplySubject = "We received your message — SliceRaiser
 export const contactAutoReplyMessage = "Thank you for contacting SliceRaiser. We have received your request and our team will review it. If the request is suitable, we will contact you with the next steps.";
 export const meetingRequestEnabled = true;
 
+export const jurisdictionSettings = {
+  defaultJurisdiction: "europe",
+  cookieName: "sr_jurisdiction",
+  options: [
+    { value: "europe", label: "Europe" },
+    { value: "uae", label: "UAE" }
+  ],
+  disclaimers: {
+    europe: "SliceRaiser is being developed as an investment platform under applicable European regulatory frameworks. Investment opportunities involve risk. Capital is not guaranteed. Past performance is not indicative of future results. This website is for information purposes only and does not constitute an offer or solicitation in any jurisdiction.",
+    uae: "SliceRaiser is being developed as an investment platform with planned operations in the UAE. Investment opportunities involve risk. Capital is not guaranteed. Past performance is not indicative of future results. This website is for information purposes only and does not constitute an offer or solicitation in any jurisdiction."
+  }
+};
+
 export const aboutPage = {
   hero: {
     title: "About SliceRaiser",

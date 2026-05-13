@@ -1,4 +1,4 @@
-import { useState, type ComponentType, type SVGProps } from "react";
+import { useEffect, useState, type ComponentType, type SVGProps } from "react";
 import { Link } from "wouter";
 import { Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import logoImg from "@/assets/logo.png";
@@ -15,7 +15,53 @@ import {
   footerLinkGroups,
   footerLegalLinks,
   copyrightText,
+  jurisdictionSettings,
 } from "@/config/siteSettings";
+
+const JURISDICTION_CHANGE_EVENT = "sr-jurisdiction-change";
+
+function readJurisdictionCookie(): string {
+  if (typeof document === "undefined") return jurisdictionSettings.defaultJurisdiction;
+  const match = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith(`${jurisdictionSettings.cookieName}=`));
+  if (!match) return jurisdictionSettings.defaultJurisdiction;
+  const value = decodeURIComponent(match.split("=")[1] ?? "");
+  const isValid = jurisdictionSettings.options.some((o) => o.value === value);
+  return isValid ? value : jurisdictionSettings.defaultJurisdiction;
+}
+
+function useJurisdictionDisclaimer(): string {
+  const [jurisdiction, setJurisdiction] = useState<string>(
+    jurisdictionSettings.defaultJurisdiction,
+  );
+
+  useEffect(() => {
+    setJurisdiction(readJurisdictionCookie());
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<string>).detail;
+      if (typeof detail === "string") {
+        setJurisdiction(detail);
+      } else {
+        setJurisdiction(readJurisdictionCookie());
+      }
+    };
+    window.addEventListener(JURISDICTION_CHANGE_EVENT, handler);
+    return () => window.removeEventListener(JURISDICTION_CHANGE_EVENT, handler);
+  }, []);
+
+  const disclaimers = jurisdictionSettings.disclaimers as Record<string, string>;
+  return disclaimers[jurisdiction] ?? disclaimers[jurisdictionSettings.defaultJurisdiction];
+}
+
+function JurisdictionDisclaimer() {
+  const text = useJurisdictionDisclaimer();
+  return (
+    <p className="text-[12px] leading-[20px]" style={{ color: "#6b7280", fontWeight: 400 }}>
+      {text}
+    </p>
+  );
+}
 
 const APP_BAND_BG = "#1E3A8A";
 const GOLD = "#D4AF37";
@@ -371,8 +417,9 @@ export default function Footer() {
           <p className="text-[12px] leading-[20px]" style={{ color: DIM, fontWeight: 400 }}>
             All investments carry risk. Past performance is not a reliable indicator of future results. Capital invested is not guaranteed.
           </p>
+          <JurisdictionDisclaimer />
           <p className="text-[12px] leading-[20px]" style={{ color: DIM, fontWeight: 400 }}>
-            SliceRaiser operates as a regulated fractional investment platform under applicable European regulatory frameworks. By using SliceRaiser you agree to our Terms and Conditions, Privacy Policy, and Cookie Notice. All investments through SliceRaiser carry risk and are not guaranteed.
+            By using SliceRaiser you agree to our Terms and Conditions, Privacy Policy, and Cookie Notice. All investments through SliceRaiser carry risk and are not guaranteed.
           </p>
           <p className="text-[12px] leading-[20px]" style={{ color: DIM, fontWeight: 400 }}>
             SliceRaiser lists investment opportunities in UAE and Australia. Our platform is open to eligible investors worldwide.

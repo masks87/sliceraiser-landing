@@ -1,9 +1,82 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Show, useClerk, useUser } from "@clerk/react";
 import logoImg from "@/assets/logo.png";
-// CMS: defaultLocation is read from siteSettings — replace with CMS/API value when ready
-import { defaultLocation } from "@/config/siteSettings";
+import { jurisdictionSettings } from "@/config/siteSettings";
+
+const JURISDICTION_CHANGE_EVENT = "sr-jurisdiction-change";
+
+function readJurisdictionCookie(): string {
+  if (typeof document === "undefined") return jurisdictionSettings.defaultJurisdiction;
+  const match = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith(`${jurisdictionSettings.cookieName}=`));
+  if (!match) return jurisdictionSettings.defaultJurisdiction;
+  const value = decodeURIComponent(match.split("=")[1] ?? "");
+  const isValid = jurisdictionSettings.options.some((o) => o.value === value);
+  return isValid ? value : jurisdictionSettings.defaultJurisdiction;
+}
+
+function writeJurisdictionCookie(value: string) {
+  if (typeof document === "undefined") return;
+  const maxAge = 60 * 60 * 24 * 365;
+  document.cookie = `${jurisdictionSettings.cookieName}=${encodeURIComponent(value)}; path=/; max-age=${maxAge}; SameSite=Lax`;
+}
+
+function JurisdictionSelector() {
+  const [value, setValue] = useState<string>(jurisdictionSettings.defaultJurisdiction);
+
+  useEffect(() => {
+    setValue(readJurisdictionCookie());
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const next = e.target.value;
+    setValue(next);
+    writeJurisdictionCookie(next);
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent(JURISDICTION_CHANGE_EVENT, { detail: next }));
+    }
+  };
+
+  return (
+    <div className="flex flex-col shrink-0">
+      <span style={{ fontSize: "11px", color: "#94A3B8", lineHeight: 1.2 }}>
+        Regulatory Environment
+      </span>
+      <div className="relative mt-0.5">
+        <select
+          value={value}
+          onChange={handleChange}
+          aria-label="Regulatory Environment"
+          className="appearance-none cursor-pointer transition-colors hover:bg-[#1E3A8A]"
+          style={{
+            backgroundColor: "transparent",
+            border: "1px solid #334155",
+            color: "#020817",
+            fontSize: "13px",
+            padding: "4px 26px 4px 10px",
+            borderRadius: "6px",
+          }}
+        >
+          {jurisdictionSettings.options.map((opt) => (
+            <option key={opt.value} value={opt.value} style={{ color: "#020817" }}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+        <svg
+          className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-[#020817]"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+    </div>
+  );
+}
 
 function useAuthModal() {
   const { openSignIn, openSignUp } = useClerk();
@@ -90,16 +163,7 @@ export default function Header() {
 
           <div className="w-px h-8 bg-gray-200 mx-3 shrink-0" />
 
-          {/* CMS: defaultLocation — reads from siteSettings.defaultLocation */}
-          <div className="flex flex-col shrink-0">
-            <span className="text-[10px] text-[#8e9196] leading-tight">Location</span>
-            <div className="flex items-center gap-1">
-              <svg className="w-3 h-3 text-[#4285f4] shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-              </svg>
-              <span className="text-[13px] font-semibold text-[#020817]">{defaultLocation}</span>
-            </div>
-          </div>
+          <JurisdictionSelector />
 
           <div className="flex items-center gap-2 border border-gray-200 rounded-lg px-3 py-1.5 w-40 shrink-0">
             <svg className="w-4 h-4 text-[#8e9196] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">

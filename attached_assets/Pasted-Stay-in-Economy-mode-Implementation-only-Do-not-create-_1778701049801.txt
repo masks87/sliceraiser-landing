@@ -1,0 +1,99 @@
+Stay in Economy mode.
+Implementation only.
+Do not create content.
+Do not change any page content.
+Do not change Footer structure or links.
+Do not change routing.
+Do not change authentication.
+Do not change any other file.
+
+Goal:
+Replace the hardcoded Dubai location badge 
+in the header with a Regulatory Environment 
+selector. Save choice in cookie. Show correct 
+disclaimer in footer based on selection.
+
+Files to change:
+src/components/Header.tsx
+src/components/Footer.tsx
+src/config/siteSettings.ts
+
+CHANGE 1 — siteSettings.ts
+Add this exact content:
+
+export const jurisdictionSettings = {
+  defaultJurisdiction: "europe",
+  cookieName: "sr_jurisdiction",
+  options: [
+    { value: "europe", label: "Europe" },
+    { value: "uae", label: "UAE" }
+  ],
+  disclaimers: {
+    europe: "SliceRaiser is being developed as an investment platform under applicable European regulatory frameworks. Investment opportunities involve risk. Capital is not guaranteed. Past performance is not indicative of future results. This website is for information purposes only and does not constitute an offer or solicitation in any jurisdiction.",
+    uae: "SliceRaiser is being developed as an investment platform with planned operations in the UAE. Investment opportunities involve risk. Capital is not guaranteed. Past performance is not indicative of future results. This website is for information purposes only and does not constitute an offer or solicitation in any jurisdiction."
+  }
+}
+
+CHANGE 2 — Header.tsx
+Remove the existing Dubai location badge 
+and pin icon completely.
+
+Replace with a Regulatory Environment 
+selector component:
+
+Label above or beside dropdown:
+"Regulatory Environment"
+Font size 11px color #94A3B8
+
+Dropdown shows current selection.
+Default value: "Europe"
+Two options: Europe and UAE
+
+On change:
+Save selected value to cookie named 
+sr_jurisdiction with expiry 365 days.
+
+Style:
+Background transparent
+Border 1px solid #334155
+Text white font size 13px
+Padding 4px 10px
+Border radius 6px
+Chevron down icon on right
+Hover background #1E3A8A
+
+On page load:
+Read sr_jurisdiction cookie.
+If cookie exists set dropdown to that value.
+If no cookie default to Europe.
+
+CHANGE 3 — Footer.tsx
+In the disclaimer section at the bottom 
+of the footer:
+
+On component mount read sr_jurisdiction 
+cookie.
+If value is uae show jurisdictionSettings
+.disclaimers.uae
+If value is europe or no cookie show 
+jurisdictionSettings.disclaimers.europe
+
+When user changes jurisdiction in header 
+the footer disclaimer updates automatically 
+without page reload.
+Use a custom event or localStorage listener 
+to detect the change.
+
+Do not remove any existing footer content.
+Only replace the disclaimer paragraph text.
+
+After implementation confirm:
+1. Dubai badge removed from header: yes or no
+2. Regulatory Environment selector added: yes or no
+3. Cookie saves selection for 365 days: yes or no
+4. Footer disclaimer changes per selection: yes or no
+5. Default selection is Europe: yes or no
+6. Any other files changed: yes or no
+   Must be no
+7. Any TypeScript or runtime errors: yes or no
+   Must be no
