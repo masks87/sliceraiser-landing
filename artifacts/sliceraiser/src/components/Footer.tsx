@@ -2,6 +2,20 @@ import { useState, type ComponentType, type SVGProps } from "react";
 import { Link } from "wouter";
 import { Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import logoImg from "@/assets/logo.png";
+// CMS: all text/link values read from siteSettings — replace with CMS/API values when ready
+import {
+  footerDescription,
+  appDownloadHeading,
+  appDownloadSubtext,
+  iosAppText,
+  iosAppUrl,
+  googlePlayText,
+  googlePlayUrl,
+  socialLinks,
+  footerLinkGroups,
+  footerLegalLinks,
+  copyrightText,
+} from "@/config/siteSettings";
 
 const APP_BAND_BG = "#1E3A8A";
 const GOLD = "#D4AF37";
@@ -25,24 +39,21 @@ function GooglePlayIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+// CMS: appDownload.storeButton — topLine, bottomLine, url come from siteSettings
 function StoreButton({
   Icon,
   topLine,
   bottomLine,
-  tooltip,
+  url,
 }: {
   Icon: ComponentType<SVGProps<SVGSVGElement>>;
   topLine: string;
   bottomLine: string;
-  tooltip: string;
+  url: string;
 }) {
-  return (
-    <div
-      role="button"
-      aria-disabled
-      title={tooltip}
-      className="w-full sm:w-[calc(50%-0.375rem)] lg:w-[220px] inline-flex items-center gap-3 bg-black text-white rounded-xl px-4 py-3 select-none"
-      style={{ cursor: "default", border: "1px solid rgba(255,255,255,0.12)" }}
+  const inner = (
+    <div className="w-full sm:w-[calc(50%-0.375rem)] lg:w-[220px] inline-flex items-center gap-3 bg-black text-white rounded-xl px-4 py-3 select-none"
+      style={{ border: "1px solid rgba(255,255,255,0.12)" }}
     >
       <Icon className="w-7 h-7 shrink-0" />
       <div className="text-left leading-tight min-w-0">
@@ -50,6 +61,21 @@ function StoreButton({
         <div className="text-[14px] font-semibold">{bottomLine}</div>
       </div>
     </div>
+  );
+
+  // If URL is empty, render non-navigating button
+  if (!url) {
+    return (
+      <div role="button" aria-disabled title="Coming soon" style={{ cursor: "default" }}>
+        {inner}
+      </div>
+    );
+  }
+
+  return (
+    <a href={url} target="_blank" rel="noopener noreferrer">
+      {inner}
+    </a>
   );
 }
 
@@ -128,24 +154,28 @@ function AppDownloadBand() {
     <section style={{ backgroundColor: APP_BAND_BG }} className="w-full text-white">
       <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         <div className="text-center lg:text-left">
-          <h2 className="text-[24px] font-bold leading-tight">Invest. Let Your Money Grow.</h2>
+          {/* CMS: appDownloadHeading */}
+          <h2 className="text-[24px] font-bold leading-tight">{appDownloadHeading}</h2>
+          {/* CMS: appDownloadSubtext */}
           <p className="mt-3 text-[15px] leading-[24px] text-white/85 max-w-xl mx-auto lg:mx-0">
-            The SliceRaiser app is coming soon to iOS and Android. Join the waitlist and be the first to know when we launch.
+            {appDownloadSubtext}
           </p>
         </div>
         <div className="flex flex-col items-stretch gap-4 lg:items-end">
           <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-end w-full">
+            {/* CMS: iosAppText, iosAppUrl */}
             <StoreButton
               Icon={AppleIcon}
               topLine="Coming Soon"
-              bottomLine="Download on the App Store"
-              tooltip="iOS app coming soon"
+              bottomLine={iosAppText}
+              url={iosAppUrl}
             />
+            {/* CMS: googlePlayText, googlePlayUrl */}
             <StoreButton
               Icon={GooglePlayIcon}
               topLine="Coming Soon"
-              bottomLine="Get it on Google Play"
-              tooltip="Android app coming soon"
+              bottomLine={googlePlayText}
+              url={googlePlayUrl}
             />
           </div>
           <div className="w-full lg:max-w-md">
@@ -156,8 +186,6 @@ function AppDownloadBand() {
     </section>
   );
 }
-
-const INSTAGRAM_URL = "https://www.instagram.com/sliceraiser/";
 
 const BG = "#0F172A";
 const DIVIDER = "#334155";
@@ -175,24 +203,22 @@ function TikTokIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-type SocialItem = {
-  name: string;
-  Icon: ComponentType<SVGProps<SVGSVGElement>>;
-  href?: string;
+// Icon registry — maps siteSettings social names to lucide/custom icons
+const ICON_MAP: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
+  Instagram,
+  LinkedIn: Linkedin,
+  X: Twitter,
+  YouTube: Youtube,
+  TikTok: TikTokIcon,
 };
 
-const SOCIALS: SocialItem[] = [
-  { name: "Instagram", Icon: Instagram, href: INSTAGRAM_URL },
-  { name: "LinkedIn", Icon: Linkedin },
-  { name: "X", Icon: Twitter },
-  { name: "YouTube", Icon: Youtube },
-  { name: "TikTok", Icon: TikTokIcon },
-];
-
+// CMS: socialLinks — reads from siteSettings; empty href = icon shown but no navigation
 function SocialIcons({ size = "w-9 h-9", iconSize = "w-[18px] h-[18px]" }: { size?: string; iconSize?: string }) {
   return (
     <div className="flex items-center gap-3">
-      {SOCIALS.map(({ name, Icon, href }) => {
+      {socialLinks.map(({ name, href }) => {
+        const Icon = ICON_MAP[name];
+        if (!Icon) return null;
         const active = Boolean(href);
         const baseColor = active ? TEXT : INACTIVE;
         const baseBorder = active ? TEXT : INACTIVE;
@@ -203,7 +229,7 @@ function SocialIcons({ size = "w-9 h-9", iconSize = "w-[18px] h-[18px]" }: { siz
           cursor: active ? "pointer" : "default",
           backgroundColor: "transparent",
         } as const;
-        if (active && href) {
+        if (active) {
           return (
             <a
               key={name}
@@ -283,97 +309,60 @@ function FooterLink({
   );
 }
 
-function ComingSoon({ children }: { children: React.ReactNode }) {
-  return (
-    <span
-      className="text-[15px] leading-[28px] inline-flex items-center gap-2"
-      style={{ color: DIM, fontFamily: INTER, fontWeight: 600, cursor: "not-allowed" }}
-      aria-disabled
-      title="Coming soon"
-    >
-      {children}
-      <span
-        className="text-[10px] uppercase tracking-[0.12em] px-1.5 py-[2px] rounded"
-        style={{ border: `1px solid ${DIVIDER}`, color: DIM }}
-      >
-        Soon
-      </span>
-    </span>
-  );
-}
-
 export default function Footer() {
   return (
     <footer style={{ backgroundColor: BG, fontFamily: INTER }}>
       <AppDownloadBand />
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
           {/* Column 1 Brand */}
           <div>
+            {/* CMS: brand.logoUrl — replace logoImg with CMS logoUrl when ready */}
             <img
               src={logoImg}
               alt="SliceRaiser"
               className="h-[24px] w-auto object-contain mb-5"
               style={{ filter: "brightness(0) invert(1)" }}
             />
-            <p
-              className="text-[14px] leading-[22px] mb-6"
-              style={{ color: MUTED, fontWeight: 400 }}
-            >
-              Invest in real assets from $100. UAE · Australia · Worldwide.
+            {/* CMS: footerDescription */}
+            <p className="text-[14px] leading-[22px] mb-6" style={{ color: MUTED, fontWeight: 400 }}>
+              {footerDescription}
             </p>
+            {/* CMS: socialLinks */}
             <SocialIcons />
           </div>
 
-          {/* Column 2 Invest */}
-          <div>
-            <ColHeading>Invest</ColHeading>
-            <ul className="space-y-1">
-              <li><FooterLink href="/opportunities">Properties</FooterLink></li>
-              <li><FooterLink href="/equity">Equity</FooterLink></li>
-              <li><FooterLink href="/fixed-income">Fixed Income</FooterLink></li>
-            </ul>
-          </div>
-
-          {/* Column 3 Learn */}
-          <div>
-            <ColHeading>Learn</ColHeading>
-            <ul className="space-y-1">
-              <li><FooterLink href="/faq">FAQ</FooterLink></li>
-              <li><FooterLink href="/how-it-works">How It Works</FooterLink></li>
-              <li><FooterLink href="/about">About Us</FooterLink></li>
-              <li><FooterLink href="/investor-relations">Investor Relations (IR)</FooterLink></li>
-            </ul>
-          </div>
-
-          {/* Column 4 Company */}
-          <div>
-            <ColHeading>Company</ColHeading>
-            <ul className="space-y-1">
-              <li><FooterLink href="/contact">Contact</FooterLink></li>
-              <li><FooterLink href="/careers">Careers</FooterLink></li>
-              <li><FooterLink href="/legal">Legal &amp; Regulatory</FooterLink></li>
-            </ul>
-          </div>
+          {/* Columns 2-4: CMS: footerLinkGroups */}
+          {footerLinkGroups.map((group) => (
+            <div key={group.heading}>
+              <ColHeading>{group.heading}</ColHeading>
+              <ul className="space-y-1">
+                {group.links.map((link) => (
+                  <li key={link.href}>
+                    <FooterLink href={link.href}>{link.label}</FooterLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
         <div style={{ borderTop: `1px solid ${DIVIDER}` }} className="pt-6">
           <div className="flex flex-col lg:flex-row items-center lg:justify-between gap-4 text-[13px]">
-            <p style={{ color: MUTED, fontWeight: 400 }}>
-              © 2025 SliceRaiser.com. All rights reserved.
-            </p>
+            {/* CMS: copyrightText */}
+            <p style={{ color: MUTED, fontWeight: 400 }}>{copyrightText}</p>
 
-            <div
-              className="flex flex-wrap items-center justify-center"
-              style={{ color: MUTED, fontWeight: 400 }}
-            >
-              <FooterLink href="/terms">Terms of Use</FooterLink>
-              <span className="px-2" style={{ color: DIVIDER }}>·</span>
-              <FooterLink href="/privacy">Privacy Policy</FooterLink>
-              <span className="px-2" style={{ color: DIVIDER }}>·</span>
-              <FooterLink href="/risk-disclosure">Risk Disclosure</FooterLink>
-              <span className="px-2" style={{ color: DIVIDER }}>·</span>
-              <FooterLink href="/cookie-policy">Cookie Policy</FooterLink>
+            {/* CMS: footerLegalLinks */}
+            <div className="flex flex-wrap items-center justify-center" style={{ color: MUTED, fontWeight: 400 }}>
+              {footerLegalLinks.map((link, i) => (
+                <span key={link.href} className="flex items-center">
+                  <FooterLink href={link.href}>{link.label}</FooterLink>
+                  {i < footerLegalLinks.length - 1 && (
+                    <span className="px-2" style={{ color: DIVIDER }}>·</span>
+                  )}
+                </span>
+              ))}
             </div>
           </div>
         </div>

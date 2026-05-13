@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Show, useClerk, useUser } from "@clerk/react";
 import logoImg from "@/assets/logo.png";
+// CMS: defaultLocation is read from siteSettings — replace with CMS/API value when ready
+import { defaultLocation } from "@/config/siteSettings";
 
 function useAuthModal() {
   const { openSignIn, openSignUp } = useClerk();
@@ -29,6 +31,7 @@ const mobileLinks = [
 function Logo() {
   return (
     <Link href="/" className="flex items-center">
+      {/* CMS: logo image — replace logoImg src with CMS logoUrl when ready */}
       <img src={logoImg} alt="Slice Raiser" className="h-[22px] w-auto object-contain" />
     </Link>
   );
@@ -87,13 +90,14 @@ export default function Header() {
 
           <div className="w-px h-8 bg-gray-200 mx-3 shrink-0" />
 
+          {/* CMS: defaultLocation — reads from siteSettings.defaultLocation */}
           <div className="flex flex-col shrink-0">
             <span className="text-[10px] text-[#8e9196] leading-tight">Location</span>
             <div className="flex items-center gap-1">
               <svg className="w-3 h-3 text-[#4285f4] shrink-0" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
               </svg>
-              <span className="text-[13px] font-semibold text-[#020817]">Dubai</span>
+              <span className="text-[13px] font-semibold text-[#020817]">{defaultLocation}</span>
             </div>
           </div>
 
