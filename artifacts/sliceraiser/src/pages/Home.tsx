@@ -12,9 +12,7 @@ const imgGroup289193 = "https://www.figma.com/api/mcp/asset/1c26a17f-cfda-43f2-a
 const imgGroup289197 = "https://www.figma.com/api/mcp/asset/0b0f748f-1694-44cd-afce-0810215f25d0"
 const imgDubaiUae = "https://www.figma.com/api/mcp/asset/042e7b36-e60b-4f1a-9670-8c7d2d095147"
 const imgAbuDhabi = "https://www.figma.com/api/mcp/asset/1628a40a-ce8c-4aa2-9a2c-46334f6ffbc1"
-const imgSpain = "https://www.figma.com/api/mcp/asset/90d1357c-0405-49b2-9b5f-8238ff3c56d0"
-const imgFrance = "https://www.figma.com/api/mcp/asset/daa66c34-a192-456c-a7eb-8f403b001a57"
-const imgItaly = "https://www.figma.com/api/mcp/asset/739b36ea-6929-4086-abae-bcb4346e0e71"
+const imgBrisbane = "https://images.unsplash.com/photo-1566734904496-9309bb1798ae?auto=format&fit=crop&w=1600&q=80"
 const imgGroup289194 = "https://www.figma.com/api/mcp/asset/abf2831e-ac22-426c-870d-b0d3417deb18"
 const imgGroup289195 = "https://www.figma.com/api/mcp/asset/11c45383-8665-4c12-b134-d66c3dbf3c78"
 const imgGroup289196 = "https://www.figma.com/api/mcp/asset/4ecc83fa-5659-4999-ae99-1e23767b07b0"
@@ -23,25 +21,25 @@ const imgIconSecure = "https://www.figma.com/api/mcp/asset/1f0da27d-da37-4abb-94
 const imgIconManagement = "https://www.figma.com/api/mcp/asset/72d0a2d9-0aa4-4c05-b667-1412dfed994a"
 const imgIconGlobal = "https://www.figma.com/api/mcp/asset/80b41464-6e0b-4952-a743-2dd559f7f93e"
 
-const locations = [
-  { name: 'Dubai, UAE', count: '120 Properties', img: imgDubaiUae },
-  { name: 'Abu Dhabi, UAE', count: '95 Properties', img: imgAbuDhabi },
-  { name: 'Spain', count: '78 Properties', img: imgSpain },
-  { name: 'France', count: '62 Properties', img: imgFrance },
-  { name: 'Italy', count: '56 Properties', img: imgItaly },
+const markets = [
+  { name: 'Dubai, UAE', text: 'A leading investment market known for premium real estate, global connectivity and strong investor demand.', img: imgDubaiUae },
+  { name: 'Abu Dhabi, UAE', text: 'A strategic capital market supported by long term planning, institutional growth and economic stability.', img: imgAbuDhabi },
+  { name: 'Brisbane, Australia', text: 'A growing Australian market with strong lifestyle demand, infrastructure growth and long term investment potential.', img: imgBrisbane },
 ]
 
 const features = [
-  { icon: imgIconHighROI, title: 'High ROI', desc: 'Enjoy exceptional returns on your real estate investments in booming markets.' },
-  { icon: imgIconSecure, title: 'Secure Investment', desc: 'Our properties are carefully vetted to ensure security and long-term value appreciation.' },
-  { icon: imgIconManagement, title: 'Professional Management', desc: 'Full-service property management solutions to maximize your rental income.' },
-  { icon: imgIconGlobal, title: 'Global Portfolio', desc: 'Diverse investment opportunities across premium locations in UAE and Europe.' },
+  { icon: imgIconHighROI, title: 'Property Opportunities', desc: 'Explore selected real estate opportunities across focus markets.' },
+  { icon: imgIconSecure, title: 'Equity Access', desc: 'Discover opportunities connected to businesses and growth focused ventures.' },
+  { icon: imgIconManagement, title: 'Fixed Income Options', desc: 'Access income focused opportunities designed for structured investment participation.' },
+  { icon: imgIconGlobal, title: 'Start from USD 100', desc: 'Begin exploring investment participation from USD 100 where available.' },
 ]
 
 export default function Home() {
   const [, setLocation] = useLocation()
 
-  const goOpportunities = () => setLocation('/properties')
+  const goProperties = () => setLocation('/properties')
+  const goHowItWorks = () => setLocation('/how-it-works')
+  const goContact = () => setLocation('/contact')
 
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>
@@ -54,42 +52,38 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(26,31,44,0.8)] to-[rgba(0,0,0,0.92)]" />
         <div className="relative z-10 max-w-2xl mx-auto px-6 py-24 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-            Discover Your Perfect<br />
-            <span className="text-[#4285f4]">Property Investment</span>
+            Invest for Income, Growth and Long Term Value
           </h1>
           <p className="text-white/80 text-base md:text-lg mb-10 max-w-md mx-auto leading-relaxed font-normal">
-            Explore premium real estate opportunities in UAE and Europe with our curated selection of luxury properties.
+            SliceRaiser brings selected property, equity and fixed income opportunities into one digital platform, helping investors explore income potential, capital growth and diversification from USD 100.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button onClick={goOpportunities} className="bg-[#4285f4] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors">
-              Browse Properties
+            <button onClick={goProperties} className="bg-[#4285f4] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors">
+              Explore Investments
             </button>
-            <button onClick={goOpportunities} className="bg-[#082f6f] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#061f4a] transition-colors">
-              Investment Opportunities
+            <button onClick={goHowItWorks} className="bg-[#082f6f] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#061f4a] transition-colors">
+              How It Works
             </button>
           </div>
         </div>
       </section>
 
-      {/* ── Discipline Section ── */}
+      {/* ── Build Your SliceRaiser Investment Lifestyle ── */}
       <section className="bg-white py-20 px-6">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12">
           <div className="flex-1 max-w-lg">
             <h2 className="text-2xl md:text-[28px] font-bold text-[#4285f4] mb-6 leading-snug">
-              Discipline will take you places motivation can't
+              Build Your SliceRaiser Investment Lifestyle
             </h2>
             <p className="text-[#8e9196] text-base leading-relaxed mb-10 font-normal">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis
-              enim velit mollit. Exercitation veniam consequat sunt nostrud amet. Amet minim mollit non deserunt ullamco
-              est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam
-              consequat sunt nostrud amet.
+              SliceRaiser is built for people who want more than traditional saving. Explore selected property, equity and fixed income opportunities through a platform designed around income potential, capital growth, diversification and ownership mindset.
             </p>
             <div className="flex flex-wrap gap-3">
-              <button className="bg-[#4285f4] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors">
-                Schedule a Demo
+              <button onClick={goProperties} className="bg-[#4285f4] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors">
+                Explore Investments
               </button>
-              <button className="border border-[#082f6f] text-[#082f6f] text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#082f6f] hover:text-white transition-colors">
-                Contact Sales
+              <button onClick={goContact} className="border border-[#082f6f] text-[#082f6f] text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#082f6f] hover:text-white transition-colors">
+                Contact Our Team
               </button>
             </div>
           </div>
@@ -127,43 +121,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Featured Locations ── */}
+      {/* ── Featured Markets ── */}
       <section className="bg-[#f1f0fb4d] py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-[30px] font-bold text-[#4285f4] mb-4 leading-[36px]">Featured Locations</h2>
-            <p className="text-[#8e9196] text-base max-w-sm mx-auto leading-[24px] font-normal">
-              Explore our exquisite properties in these premium locations across UAE and Europe.
+            <h2 className="text-[30px] font-bold text-[#4285f4] mb-4 leading-[36px]">Featured Markets</h2>
+            <p className="text-[#8e9196] text-base max-w-md mx-auto leading-[24px] font-normal">
+              Explore selected opportunities across our focus markets, starting with the UAE and Australia.
             </p>
           </div>
-          {/* Row 1: 2 large cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-            {locations.slice(0, 2).map(loc => (
-              <LocationCard key={loc.name} loc={loc} height="h-[260px]" />
-            ))}
-          </div>
-          {/* Row 2: 3 smaller cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {locations.slice(2).map(loc => (
-              <LocationCard key={loc.name} loc={loc} height="h-[200px]" />
+            {markets.map(loc => (
+              <MarketCard key={loc.name} loc={loc} height="h-[260px]" />
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Invest in Premium Real Estate ── */}
+      {/* ── Why SliceRaiser ── */}
       <section className="bg-white py-20 px-6">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-14 items-start">
 
           {/* Left: text + 2x2 cards + button */}
           <div className="flex-1">
             <h2 className="text-[30px] font-bold text-[#4285f4] mb-4 leading-[36px]">
-              Invest in Premium Real Estate
+              Why SliceRaiser
             </h2>
             <p className="text-[#8e9196] text-base leading-[24px] mb-8 font-normal">
-              Our curated real estate investment opportunities offer exceptional returns in high-growth markets.
-              With strategic locations across UAE and Europe, our properties combine luxury living with strong
-              investment potential.
+              SliceRaiser connects selected investment opportunities with a modern platform built around income potential, capital growth, diversification and long term value creation.
             </p>
             {/* 2x2 feature cards */}
             <div className="grid grid-cols-2 gap-4 mb-8">
@@ -175,8 +160,8 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <button onClick={goOpportunities} className="bg-[#4285f4] text-white text-[14px] font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors">
-              Explore Investment Opportunities
+            <button onClick={goProperties} className="bg-[#4285f4] text-white text-[14px] font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors">
+              Explore Investments
             </button>
           </div>
 
@@ -200,15 +185,15 @@ export default function Home() {
   )
 }
 
-function LocationCard({ loc, height }: { loc: { name: string; count: string; img: string }; height: string }) {
+function MarketCard({ loc, height }: { loc: { name: string; text: string; img: string }; height: string }) {
   return (
-    <a href="#" className={`group relative ${height} rounded-2xl overflow-hidden shadow-xl block`}>
+    <div className={`group relative ${height} rounded-2xl overflow-hidden shadow-xl block`}>
       <img src={loc.img} alt={loc.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-      <div className="absolute inset-0 bg-black/35" />
+      <div className="absolute inset-0 bg-black/45" />
       <div className="absolute bottom-0 left-0 right-0 p-5">
         <p className="text-white font-bold text-[18px] leading-[26px]">{loc.name}</p>
-        <p className="text-white/75 text-[13px] mt-0.5 font-normal">{loc.count}</p>
+        <p className="text-white/85 text-[13px] mt-1 font-normal leading-[18px]">{loc.text}</p>
       </div>
-    </a>
+    </div>
   )
 }

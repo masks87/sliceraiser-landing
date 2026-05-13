@@ -1,0 +1,178 @@
+Stay in Economy mode.
+
+Implementation only.
+
+Do not create content.
+Do not rewrite content.
+Do not improve wording.
+Use only the exact content provided below.
+
+Goal:
+Update the Home page wording and market content only.
+
+Allowed file:
+src/pages/Home.tsx
+
+Do not edit:
+src/App.tsx
+src/components/Header.tsx
+src/components/Footer.tsx
+src/config/siteSettings.ts
+src/pages/Properties or Opportunities files
+src/pages/Equity.tsx
+src/pages/FixedIncome.tsx
+src/pages/Contact.tsx
+Legal pages
+API routes
+Database files
+Authentication files
+Dashboard files
+Opportunity data
+
+Do not change:
+Page logic
+Database connection
+API calls
+Opportunity data
+Routes
+Authentication
+Header
+Footer
+Overall design system
+Colors
+Animations
+
+Task:
+Update Home.tsx content only using the exact copy below.
+
+1. Hero section
+
+Replace the current hero headline with:
+Invest for Income, Growth and Long Term Value
+
+Replace the current hero subtext with:
+SliceRaiser brings selected property, equity and fixed income opportunities into one digital platform, helping investors explore income potential, capital growth and diversification from USD 100.
+
+Hero buttons:
+Primary button text:
+Explore Investments
+
+Primary button link:
+/properties
+
+Secondary button text:
+How It Works
+
+Secondary button link:
+/how-it-works
+
+2. Featured Markets section
+
+Replace section title with:
+Featured Markets
+
+Replace section subtext with:
+Explore selected opportunities across our focus markets, starting with the UAE and Australia.
+
+Use only these 3 market cards:
+
+Card 1 title:
+Dubai, UAE
+
+Card 1 text:
+A leading investment market known for premium real estate, global connectivity and strong investor demand.
+
+Card 2 title:
+Abu Dhabi, UAE
+
+Card 2 text:
+A strategic capital market supported by long term planning, institutional growth and economic stability.
+
+Card 3 title:
+Brisbane, Australia
+
+Card 3 text:
+A growing Australian market with strong lifestyle demand, infrastructure growth and long term investment potential.
+
+If the current Home.tsx has more than 3 market cards, remove the extra market cards from the Home page only.
+
+Photo direction:
+If existing photos are clearly wrong for the new cards, replace only the image URLs or image references with suitable existing available assets or stable remote images for:
+Dubai skyline or premium waterfront real estate
+Abu Dhabi skyline or premium capital city real estate
+Brisbane skyline or riverfront city view
+
+Do not add image generation.
+Do not change image layout.
+Do not change card design.
+
+3. Why SliceRaiser section
+
+Replace section title with:
+Why SliceRaiser
+
+Replace section subtext with:
+SliceRaiser connects selected investment opportunities with a modern platform built around income potential, capital growth, diversification and long term value creation.
+
+Use these 4 cards:
+
+Card 1 title:
+Property Opportunities
+
+Card 1 text:
+Explore selected real estate opportunities across focus markets.
+
+Card 2 title:
+Equity Access
+
+Card 2 text:
+Discover opportunities connected to businesses and growth focused ventures.
+
+Card 3 title:
+Fixed Income Options
+
+Card 3 text:
+Access income focused opportunities designed for structured investment participation.
+
+Card 4 title:
+Start from USD 100
+
+Card 4 text:
+Begin exploring investment participation from USD 100 where available.
+
+4. Placeholder or motivational section
+
+Find the section that currently contains placeholder or motivational text such as:
+Discipline will take you places motivation can’t
+
+Replace that section content with:
+
+Title:
+Build Your SliceRaiser Investment Lifestyle
+
+Text:
+SliceRaiser is built for people who want more than traditional saving. Explore selected property, equity and fixed income opportunities through a platform designed around income potential, capital growth, diversification and ownership mindset.
+
+Primary button text:
+Explore Investments
+
+Primary button link:
+/properties
+
+Secondary button text:
+Contact Our Team
+
+Secondary button link:
+/contact
+
+5. Keep everything else unchanged.
+
+After implementation, report only:
+1. Home.tsx edited: yes or no
+2. Hero headline updated: yes or no
+3. Hero buttons updated: yes or no
+4. Featured Markets updated to Dubai, Abu Dhabi and Brisbane: yes or no
+5. Why SliceRaiser section updated: yes or no
+6. Placeholder section replaced: yes or no
+7. Page logic and database connections left unchanged: yes or no
+8. Any TypeScript or runtime errors: yes or no
