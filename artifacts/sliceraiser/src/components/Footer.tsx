@@ -201,9 +201,17 @@ function AppDownloadBand() {
       <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         <div className="text-center lg:text-left">
           {/* CMS: appDownloadHeading */}
-          <h2 className="text-[24px] font-bold leading-tight">{appDownloadHeading}</h2>
+          <h2
+            className="text-[24px] font-bold leading-tight"
+            style={{ color: "#FFFFFF" }}
+          >
+            {appDownloadHeading}
+          </h2>
           {/* CMS: appDownloadSubtext */}
-          <p className="mt-3 text-[15px] leading-[24px] text-white/85 max-w-xl mx-auto lg:mx-0">
+          <p
+            className="mt-3 text-[15px] leading-[24px] max-w-xl mx-auto lg:mx-0"
+            style={{ color: "rgba(255,255,255,0.9)" }}
+          >
             {appDownloadSubtext}
           </p>
         </div>
