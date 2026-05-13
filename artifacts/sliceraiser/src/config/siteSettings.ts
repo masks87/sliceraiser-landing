@@ -1,95 +1,56 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// siteSettings.ts
-// Central location for all hardcoded brand/content values.
-// Future CMS: replace these exports with API calls or a CMS SDK fetch.
+// Brand / site settings
 // ─────────────────────────────────────────────────────────────────────────────
 
-// CMS: brand.name
 export const brandName = "SliceRaiser";
-
-// CMS: brand.logoUrl  (component still imports the asset; this is for reference)
 export const logoPath = "/logo.png";
-
-// CMS: brand.defaultLocation  (future: replace with geolocation or user profile)
 export const defaultLocation = "Dubai";
-
-// CMS: brand.mainSlogan
-export const mainSlogan = "Invest in real assets from $100. UAE · Australia · Worldwide.";
-
-// CMS: footer.description
+export const mainSlogan = "Unlocking access to properties, equity and fixed income opportunities, starting from USD 100.";
 export const footerDescription = "Unlocking access to properties, equity and fixed income opportunities, starting from USD 100.";
-
-// CMS: appDownload.heading
 export const appDownloadHeading = "Invest. Let Your Money Grow.";
-
-// CMS: appDownload.subtext
-export const appDownloadSubtext =
-  "The SliceRaiser app is coming soon to iOS and Android. Join the waitlist and be the first to know when we launch.";
-
-// CMS: appDownload.iosText
+export const appDownloadSubtext = "The SliceRaiser app is coming soon to iOS and Android. Join the waitlist and be the first to know when we launch.";
 export const iosAppText = "Download on the App Store";
-
-// CMS: appDownload.iosUrl  (empty = button visible but no navigation)
 export const iosAppUrl = "";
-
-// CMS: appDownload.googlePlayText
 export const googlePlayText = "Get it on Google Play";
-
-// CMS: appDownload.googlePlayUrl  (empty = button visible but no navigation)
 export const googlePlayUrl = "";
-
-// CMS: social.links  (empty href = icon visible but no navigation)
 export const socialLinks: { name: string; href: string }[] = [
   { name: "Instagram", href: "https://www.instagram.com/sliceraiser/" },
-  { name: "LinkedIn",  href: "" },
-  { name: "X",         href: "" },
-  { name: "YouTube",   href: "" },
-  { name: "TikTok",    href: "" },
+  { name: "LinkedIn", href: "" },
+  { name: "X", href: "" },
+  { name: "YouTube", href: "" },
+  { name: "TikTok", href: "" },
 ];
-
-// CMS: footer.linkGroups
 export const footerLinkGroups: { heading: string; links: { label: string; href: string }[] }[] = [
   {
     heading: "Invest",
     links: [
-      { label: "Properties",   href: "/opportunities" },
-      { label: "Equity",       href: "/equity" },
+      { label: "Properties", href: "/opportunities" },
+      { label: "Equity", href: "/equity" },
       { label: "Fixed Income", href: "/fixed-income" },
     ],
   },
   {
     heading: "Learn",
     links: [
-      { label: "FAQ",                      href: "/faq" },
-      { label: "How It Works",             href: "/how-it-works" },
-      { label: "About Us",                 href: "/about" },
-      { label: "Investor Relations (IR)",  href: "/investor-relations" },
+      { label: "FAQ", href: "/faq" },
+      { label: "How It Works", href: "/how-it-works" },
+      { label: "About Us", href: "/about" },
+      { label: "Investor Relations (IR)", href: "/investor-relations" },
     ],
   },
   {
     heading: "Company",
     links: [
-      { label: "Contact",            href: "/contact" },
-      { label: "Careers",            href: "/careers" },
+      { label: "Contact", href: "/contact" },
+      { label: "Careers", href: "/careers" },
       { label: "Legal & Regulatory", href: "/legal" },
     ],
   },
 ];
-
-// CMS: footer.legalLinks
-export const footerLegalLinks: { label: string; href: string }[] = [
-  { label: "Terms of Use",     href: "/terms" },
-  { label: "Privacy Policy",   href: "/privacy" },
-  { label: "Risk Disclosure",  href: "/risk-disclosure" },
-  { label: "Cookie Policy",    href: "/cookie-policy" },
-];
-
-// CMS: footer.copyrightText
+export const contactEmail = "contact@sliceraiser.com";
+export const contactPhone = "+971 55 725 9299";
+export const contactAddress = "Sheikh Zayed Road, Dubai, UAE";
 export const copyrightText = "© 2025 SliceRaiser.com. All rights reserved.";
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Legal pages
-// ─────────────────────────────────────────────────────────────────────────────
 
 export type LegalSection = {
   heading: string;
@@ -211,26 +172,229 @@ export const legalPages: Record<"terms" | "privacy" | "riskDisclosure" | "cookie
       },
     ],
   },
-
   privacy: {
     title: "Privacy Policy",
-    effectiveDate: "",
-    lastUpdated: "",
-    sections: [],
+    effectiveDate: "May 2025",
+    lastUpdated: "May 2025",
+    intro: "This Privacy Policy explains how SliceRaiser collects, uses and shares personal information from users of our Platform. By using our services, you consent to the collection and use of your personal data as described below.",
+    sections: [
+      {
+        heading: "1. Information We Collect",
+        paragraphs: ["We may collect the following types of information:"],
+        bullets: [
+          "Registration Information: Your name, email address, phone number, date of birth, nationality, government issued identification and other details necessary to verify your identity and eligibility.",
+          "Financial Information: Bank account details and investment data needed to facilitate transactions and comply with anti money laundering and know your customer requirements.",
+          "Usage Data: Information about how you use the Platform, such as device identifiers, IP address, browser type, referring and exit pages and timestamps.",
+          "Communications: Records of your correspondence with us, including support requests, surveys and feedback.",
+          "Cookies and Similar Technologies: We use cookies and similar technologies to enable core functionality, analyse performance and personalise your experience. For more details, see our Cookie Policy.",
+        ],
+      },
+      {
+        heading: "2. How We Use Your Information",
+        paragraphs: ["We use personal information to:"],
+        bullets: [
+          "Provide Services: Register and manage your account, process transactions, perform KYC and AML checks and communicate with you.",
+          "Improve the Platform: Analyse usage patterns to improve features, measure performance and address technical issues.",
+          "Marketing and Communications: Send service updates, newsletters and promotional messages. You may opt out at any time.",
+          "Compliance and Risk Management: Comply with legal obligations, respond to lawful requests from regulators, prevent fraud and enforce our Terms.",
+          "Corporate Transactions: In the event of a merger, acquisition or sale of assets, user information may be transferred to another entity subject to this Privacy Policy.",
+        ],
+      },
+      {
+        heading: "3. Legal Basis for Processing",
+        paragraphs: ["For users in the European Economic Area, our processing bases include:"],
+        bullets: [
+          "Performance of a contract: To provide the services you request.",
+          "Compliance with legal obligations: Such as AML, KYC, tax and regulatory reporting.",
+          "Legitimate interests: For example, to improve the Platform and communicate with users.",
+          "Consent: For optional processing activities like marketing communications, which you can withdraw at any time.",
+        ],
+      },
+      {
+        heading: "4. Data Sharing",
+        paragraphs: ["We may share your information with:"],
+        bullets: [
+          "Service Providers: Third party vendors who perform services for us, including payment processors, identity verification providers, cloud hosting and analytics services.",
+          "Business Partners: Companies that co market or offer integrated services through the Platform.",
+          "Regulators and Law Enforcement: To comply with legal obligations or respond to lawful requests.",
+          "Corporate Transactions: As part of a merger, acquisition or transfer of assets.",
+        ],
+      },
+      {
+        heading: "5. Third Party Protection",
+        paragraphs: ["We require third parties to protect your information and use it only for the purposes we specify."],
+      },
+      {
+        heading: "6. Data Transfers",
+        paragraphs: ["Your information may be transferred to and processed in countries outside your country of residence, including countries that may not offer the same level of data protection. Where legally required, we will implement appropriate safeguards, such as standard contractual clauses, to protect your data."],
+      },
+      {
+        heading: "7. Data Security and Retention",
+        paragraphs: [
+          "We employ administrative, technical and physical measures to safeguard personal information. However, no system is completely secure.",
+          "We retain personal data for as long as necessary to fulfil the purposes described in this Policy or as required by law, after which we securely delete or anonymise it.",
+        ],
+      },
+      {
+        heading: "8. Your Rights",
+        paragraphs: ["Depending on your jurisdiction, you may have the right to:"],
+        bullets: [
+          "Access, rectify or delete your personal data.",
+          "Object to or restrict the processing of your data.",
+          "Receive a copy of your data in a portable format.",
+          "Withdraw consent for marketing communications.",
+        ],
+      },
+      {
+        heading: "9. Exercising Your Rights",
+        paragraphs: ["To exercise your rights, please contact [privacy@sliceraiser.com](mailto:privacy@sliceraiser.com)."],
+      },
+      {
+        heading: "10. Children",
+        paragraphs: ["The Platform is not intended for individuals under 18. We do not knowingly collect personal data from children."],
+      },
+      {
+        heading: "11. Changes to This Policy",
+        paragraphs: ["We may update this Privacy Policy from time to time. We will post the updated policy and indicate the Last Updated date. Your continued use of the Platform constitutes acceptance of the revised Policy."],
+      },
+    ],
   },
-
   riskDisclosure: {
     title: "Risk Disclosure",
-    effectiveDate: "",
-    lastUpdated: "",
-    sections: [],
+    effectiveDate: "May 2025",
+    lastUpdated: "May 2025",
+    intro: "Investing involves significant risk. The value of any investment may fall as well as rise, and you may lose some or all of your invested capital. Past performance is not indicative of future results. You should carefully consider whether an investment is suitable in light of your financial circumstances and objectives and only invest money you can afford to lose. Diversification and independent advice can help manage risk.",
+    sections: [
+      {
+        heading: "1. General Risk Warning",
+        paragraphs: [
+          "Investing involves significant risk. The value of any investment may fall as well as rise, and you may lose some or all of your invested capital.",
+          "Past performance is not indicative of future results. You should carefully consider whether an investment is suitable in light of your financial circumstances and objectives and only invest money you can afford to lose.",
+          "Diversification and independent advice can help manage risk.",
+        ],
+      },
+      {
+        heading: "2. Market Risk",
+        paragraphs: [
+          "Changes in economic conditions, interest rates, property values and market sentiment can cause asset values to fluctuate.",
+          "Real estate prices can rise or fall, equity investments can be volatile and fixed income instruments may experience price changes or defaults.",
+        ],
+      },
+      {
+        heading: "3. Liquidity Risk",
+        paragraphs: [
+          "Investments offered through the Platform may be illiquid.",
+          "There may be no secondary market, and you may not be able to exit or transfer your investment before the end of the term.",
+          "You should be prepared to hold investments to maturity.",
+        ],
+      },
+      {
+        heading: "4. Credit and Default Risk",
+        paragraphs: [
+          "For debt and fixed income investments, borrowers or issuers may fail to make interest or principal payments.",
+          "Even with collateral or asset backed structures, losses may occur.",
+        ],
+      },
+      {
+        heading: "5. Project and Operational Risk",
+        paragraphs: [
+          "Property developments and business projects may face delays, cost overruns, management issues or regulatory changes that affect returns.",
+          "Our Platform itself is in development, and there is a risk that our services or the underlying projects may not perform as expected.",
+        ],
+      },
+      {
+        heading: "6. Regulatory Risk",
+        paragraphs: [
+          "Laws and regulations governing investment platforms differ by jurisdiction and may change over time.",
+          "Changes in regulation could restrict or prohibit certain activities or require modifications to the Platform.",
+        ],
+      },
+      {
+        heading: "7. Currency and Exchange Rate Risk",
+        paragraphs: [
+          "Investments denominated in a currency other than your home currency may expose you to exchange rate fluctuations.",
+          "Movements in currency rates can affect your returns.",
+        ],
+      },
+      {
+        heading: "8. Platform Risk",
+        paragraphs: [
+          "Although we seek to maintain robust systems and controls, the Platform may experience interruptions, cybersecurity incidents or operational failures.",
+          "In extreme circumstances, platform failure could result in delayed payments or loss of data.",
+        ],
+      },
+      {
+        heading: "9. No Guarantee and No Insurance",
+        paragraphs: [
+          "Neither SliceRaiser nor the issuers of opportunities guarantee the performance of any investment.",
+          "Investments offered through the Platform are not deposits, are not insured and do not carry any government protection such as deposit guarantees or investment compensation schemes.",
+        ],
+      },
+      {
+        heading: "10. Regulatory Status",
+        paragraphs: [
+          "SliceRaiser is not currently regulated. We intend to obtain licences from relevant authorities but cannot guarantee the timing or outcome.",
+          "Until then, you should treat all information as indicative and non binding.",
+        ],
+      },
+      {
+        heading: "11. Professional Advice",
+        paragraphs: [
+          "We do not provide financial, legal or tax advice.",
+          "You should consult a qualified professional before making any investment decisions.",
+          "By investing, you acknowledge that you understand the risks involved and accept sole responsibility for the outcomes.",
+        ],
+      },
+    ],
   },
-
   cookiePolicy: {
     title: "Cookie Policy",
-    effectiveDate: "",
-    lastUpdated: "",
-    sections: [],
+    effectiveDate: "May 2025",
+    lastUpdated: "May 2025",
+    intro: "This Cookie Policy explains how SliceRaiser may use cookies and similar technologies on the Platform.",
+    sections: [
+      {
+        heading: "1. What Are Cookies?",
+        paragraphs: [
+          "Cookies are small text files that websites place on your device to store information.",
+          "They can make websites work more efficiently and provide useful information to the site owners.",
+        ],
+      },
+      {
+        heading: "2. Types of Cookies We Use",
+        paragraphs: ["We may use the following types of cookies:"],
+        bullets: [
+          "Strictly Necessary Cookies: Required for the basic operation of the Platform and to enable core functionality such as secure login and navigation.",
+          "Performance and Analytics Cookies: These collect information about how visitors use our Platform, such as pages visited and error messages, to help us improve performance.",
+          "Functional Cookies: These remember choices you make, such as language or region, and provide enhanced, more personalised features.",
+          "Marketing Cookies: These are used to deliver advertisements relevant to you and measure the effectiveness of our marketing campaigns.",
+        ],
+      },
+      {
+        heading: "3. Third Party Cookies",
+        paragraphs: ["We may also use third party cookies, such as Google Analytics, to provide analytics and improve our services."],
+      },
+      {
+        heading: "4. Managing Cookies",
+        paragraphs: [
+          "You can control and delete cookies through your browser settings.",
+          "Most browsers allow you to refuse or accept cookies and to delete existing cookies.",
+          "However, disabling cookies may affect the functionality of the Platform.",
+          "You can also adjust cookie preferences through any cookie consent tools we provide.",
+        ],
+      },
+      {
+        heading: "5. Changes to This Policy",
+        paragraphs: [
+          "We may update this Cookie Policy from time to time.",
+          "When we do, we will post the updated policy and indicate the Last Updated date.",
+        ],
+      },
+      {
+        heading: "6. Contact Us",
+        paragraphs: ["If you have any questions about this Cookie Policy, please contact us at contact@sliceraiser.com."],
+      },
+    ],
   },
 };
 
@@ -238,39 +402,12 @@ export const legalPages: Record<"terms" | "privacy" | "riskDisclosure" | "cookie
 // Contact page settings
 // ─────────────────────────────────────────────────────────────────────────────
 
-// CMS: contact.publicContactEmail  — shown to users; internal recipient is backend-only (CONTACT_RECIPIENT_EMAIL env var)
-export const publicContactEmail = "contact@sliceraiser.com";
-
-// CMS: contact.internalContactRecipientKeyName — name of the backend env var holding the private recipient email
 export const internalContactRecipientKeyName = "CONTACT_RECIPIENT_EMAIL";
-
-// CMS: contact.pageTitle
 export const contactPageTitle = "Contact SliceRaiser";
-
-// CMS: contact.pageSubtitle
-export const contactPageSubtitle =
-  "Investors, partners, press, and candidates — pick the inquiry type that fits and we'll route your message to the right team.";
-
-// CMS: contact.cardTitle
+export const contactPageSubtitle = "Investors, partners, press, and candidates — pick the inquiry type that fits and we'll route your message to the right team.";
 export const contactCardTitle = "Get in Touch";
-
-// CMS: contact.cardDescription
-export const contactCardDescription =
-  "Reach our founder directly, or schedule a meeting at a time that works for you.";
-
-// CMS: contact.phone  — shown publicly in the contact card
-export const contactPhone = "+971 55 725 9299";
-
-// CMS: contact.address
-export const contactAddress = "Sheikh Zayed Road, Dubai, UAE";
-
-// CMS: contact.linkedInUrl
-export const contactLinkedInUrl = "https://www.linkedin.com/in/mamoon-alkhatib-77541639/";
-
-// CMS: contact.formTitle
+export const contactCardDescription = "Reach our founder directly, or schedule a meeting at a time that works for you.";
 export const contactFormTitle = "Send us a message";
-
-// CMS: contact.inquiryTypes — drives the inquiry type dropdown; must match InquiryType enum in openapi.yaml
 export const contactInquiryTypes = [
   "Investor",
   "Property Sponsor",
@@ -280,13 +417,6 @@ export const contactInquiryTypes = [
   "Career",
   "General Inquiry",
 ] as const;
-
-// CMS: contact.autoReplySubject
 export const contactAutoReplySubject = "We received your message — SliceRaiser";
-
-// CMS: contact.autoReplyMessage — shown on screen and sent as confirmation email body to requester
-export const contactAutoReplyMessage =
-  "Thank you for contacting SliceRaiser. We have received your request and our team will review it. If the request is suitable, we will contact you with the next steps.";
-
-// CMS: contact.meetingRequestEnabled
+export const contactAutoReplyMessage = "Thank you for contacting SliceRaiser. We have received your request and our team will review it. If the request is suitable, we will contact you with the next steps.";
 export const meetingRequestEnabled = true;
