@@ -1,7 +1,8 @@
-const ROYAL = "#1E3A8A";
+const BG = "#F8F9FA";
+const PRIMARY = "#1E3A8A";
+const TEXT = "#2C2C2C";
 const GOLD = "#D4AF37";
-const SOFT = "#F8F9FA";
-const CHARCOAL = "#2C2C2C";
+const INTER = "'Inter', sans-serif";
 
 const sections = [
   {
@@ -22,92 +23,88 @@ const sections = [
   },
 ];
 
-export default function Legal() {
+function H2({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mb-6">
+      <h2
+        className="text-[26px] leading-[32px]"
+        style={{ color: PRIMARY, fontFamily: INTER, fontWeight: 700 }}
+      >
+        {children}
+      </h2>
+      <div className="mt-3 h-[2px] w-12" style={{ backgroundColor: GOLD }} />
+    </div>
+  );
+}
+
+function Card({ children }: { children: React.ReactNode }) {
   return (
     <div
-      style={{ backgroundColor: SOFT, fontFamily: "'Inter', sans-serif" }}
-      className="min-h-screen"
+      className="rounded-2xl p-6 bg-white h-full"
+      style={{ border: `1px solid #E5E7EB`, borderTop: `3px solid ${GOLD}` }}
     >
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-20">
-        {/* Gold accent label */}
-        <div className="flex items-center gap-3 mb-4">
-          <span
-            className="inline-block rounded-full"
-            style={{ width: 36, height: 3, backgroundColor: GOLD }}
-            aria-hidden
-          />
-          <span
-            className="uppercase tracking-[0.18em] text-[12px] font-semibold"
-            style={{ color: GOLD }}
+      {children}
+    </div>
+  );
+}
+
+export default function Legal() {
+  return (
+    <div style={{ backgroundColor: BG, fontFamily: INTER }}>
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        {/* Hero */}
+        <section className="mb-14">
+          <h1
+            className="text-[40px] leading-[48px] mb-3"
+            style={{ color: PRIMARY, fontFamily: INTER, fontWeight: 700 }}
           >
-            Legal &amp; Regulatory
-          </span>
-        </div>
+            Legal &amp; Regulatory Information
+          </h1>
+          <div className="h-[3px] w-20" style={{ backgroundColor: GOLD }} />
+        </section>
 
-        {/* Page title */}
-        <h1
-          className="font-bold mb-8 sm:mb-10"
-          style={{
-            color: ROYAL,
-            fontSize: "clamp(28px, 4vw, 40px)",
-            lineHeight: 1.2,
-            letterSpacing: "-0.01em",
-          }}
-        >
-          Legal &amp; Regulatory Information
-        </h1>
-
-        {/* White content card */}
-        <div
-          className="bg-white rounded-2xl border shadow-sm p-6 sm:p-8 lg:p-10"
-          style={{ borderColor: "#E5E7EB" }}
-        >
-          <div className="space-y-8 sm:space-y-10">
+        {/* Sections grid */}
+        <section className="mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {sections.map((s) => (
-              <section key={s.title}>
-                <h2
-                  className="font-semibold mb-3"
-                  style={{ color: ROYAL, fontSize: 18, lineHeight: 1.3 }}
+              <Card key={s.title}>
+                <div
+                  className="text-[16px] mb-3"
+                  style={{ color: PRIMARY, fontWeight: 700 }}
                 >
                   {s.title}
-                </h2>
+                </div>
                 <p
-                  className="font-normal"
-                  style={{
-                    color: CHARCOAL,
-                    fontSize: 15,
-                    lineHeight: 1.65,
-                  }}
+                  className="text-[15px] leading-[24px]"
+                  style={{ color: TEXT, fontWeight: 400 }}
                 >
                   {s.body}
                 </p>
-              </section>
+              </Card>
             ))}
-
-            <section>
-              <h2
-                className="font-semibold mb-3"
-                style={{ color: ROYAL, fontSize: 18, lineHeight: 1.3 }}
-              >
-                Contact
-              </h2>
-              <p
-                className="font-normal"
-                style={{ color: CHARCOAL, fontSize: 15, lineHeight: 1.65 }}
-              >
-                For legal or regulatory inquiries, please contact us at{" "}
-                <a
-                  href="mailto:legal@sliceraiser.com"
-                  className="font-medium underline underline-offset-2 hover:no-underline break-words"
-                  style={{ color: ROYAL }}
-                >
-                  legal@sliceraiser.com
-                </a>
-                .
-              </p>
-            </section>
           </div>
-        </div>
+        </section>
+
+        {/* Contact */}
+        <section className="mb-4">
+          <H2>Contact</H2>
+          <Card>
+            <p
+              className="text-[15px] leading-[24px]"
+              style={{ color: TEXT, fontWeight: 400 }}
+            >
+              For legal or regulatory inquiries, please contact us at{" "}
+              <a
+                href="mailto:legal@sliceraiser.com"
+                className="font-semibold hover:underline break-words"
+                style={{ color: PRIMARY }}
+              >
+                legal@sliceraiser.com
+              </a>
+              .
+            </p>
+          </Card>
+        </section>
       </div>
     </div>
   );

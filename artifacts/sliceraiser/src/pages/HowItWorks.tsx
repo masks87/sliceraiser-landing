@@ -1,9 +1,10 @@
 import { Link } from "wouter";
 
-const ROYAL_BLUE = "#1E3A8A";
+const BG = "#F8F9FA";
+const PRIMARY = "#1E3A8A";
+const TEXT = "#2C2C2C";
 const GOLD = "#D4AF37";
-const SOFT_WHITE = "#F8F9FA";
-const CHARCOAL = "#2C2C2C";
+const INTER = "'Inter', sans-serif";
 
 const steps = [
   {
@@ -40,130 +41,118 @@ const steps = [
   },
 ];
 
+function H2({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mb-6">
+      <h2
+        className="text-[26px] leading-[32px]"
+        style={{ color: PRIMARY, fontFamily: INTER, fontWeight: 700 }}
+      >
+        {children}
+      </h2>
+      <div className="mt-3 h-[2px] w-12" style={{ backgroundColor: GOLD }} />
+    </div>
+  );
+}
+
 export default function HowItWorks() {
   return (
-    <div style={{ backgroundColor: SOFT_WHITE, fontFamily: "'Inter', sans-serif" }}>
-
-      {/* Hero */}
-      <section
-        style={{ backgroundColor: ROYAL_BLUE, paddingTop: "80px", paddingBottom: "80px" }}
-        className="px-6 text-center"
-      >
-        <div className="max-w-3xl mx-auto">
+    <div style={{ backgroundColor: BG, fontFamily: INTER }}>
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        {/* Hero */}
+        <section className="mb-14">
           <h1
-            className="text-white text-center mb-4"
-            style={{ fontSize: "44px", fontWeight: 700, lineHeight: 1.15 }}
+            className="text-[40px] leading-[48px] mb-3"
+            style={{ color: PRIMARY, fontFamily: INTER, fontWeight: 700 }}
           >
             How It Works
           </h1>
           <p
-            className="text-white text-center"
-            style={{ fontSize: "18px", fontWeight: 400, lineHeight: 1.6, opacity: 0.95 }}
+            className="text-[18px] leading-[26px] mb-6"
+            style={{ color: TEXT, fontWeight: 500 }}
           >
             A simple journey to explore property, equity and fixed income opportunities through SliceRaiser.
           </p>
-        </div>
-      </section>
-
-      {/* Intro */}
-      <section className="bg-white px-6" style={{ paddingTop: "48px", paddingBottom: "48px" }}>
-        <div className="max-w-3xl mx-auto">
-          <p
-            className="text-base leading-relaxed text-center"
-            style={{ color: CHARCOAL, fontFamily: "'Roboto', 'Inter', sans-serif" }}
-          >
-            SliceRaiser is designed to make investment access clearer, more structured and easier to understand. From exploring opportunities to tracking your dashboard, the platform gives users one digital path to discover selected investment opportunities and become part of the SliceRaiser investment lifestyle.
-          </p>
-        </div>
-      </section>
-
-      {/* Steps */}
-      <section
-        className="px-6"
-        style={{ backgroundColor: SOFT_WHITE, paddingTop: "48px", paddingBottom: "48px" }}
-      >
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          {steps.map((step, i) => (
-            <div
-              key={step.title}
-              className="bg-white rounded-2xl p-7 shadow-sm flex gap-5"
-              style={{ borderLeft: `4px solid ${GOLD}` }}
+          <div className="h-[3px] w-20 mb-8" style={{ backgroundColor: GOLD }} />
+          <div className="max-w-3xl">
+            <p
+              style={{ color: TEXT, fontWeight: 400 }}
+              className="text-[15px] leading-[24px]"
             >
-              <div
-                className="shrink-0 w-11 h-11 rounded-full flex items-center justify-center text-white font-bold"
-                style={{ backgroundColor: ROYAL_BLUE, fontSize: "16px" }}
-              >
-                {i + 1}
-              </div>
-              <div className="flex-1">
-                <h3
-                  className="font-bold mb-2"
-                  style={{ color: ROYAL_BLUE, fontSize: "18px" }}
-                >
-                  {step.title}
-                </h3>
-                <p
-                  className="leading-relaxed"
-                  style={{
-                    color: CHARCOAL,
-                    fontSize: "14px",
-                    fontFamily: "'Roboto', 'Inter', sans-serif",
-                  }}
-                >
-                  {step.text}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section
-        style={{ paddingTop: "48px", paddingBottom: "48px" }}
-        className="px-6 text-center bg-gradient-to-r from-[#D4AF37] to-[#1E3A8A]"
-      >
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Built for the SliceRaiser Investment Lifestyle
-          </h2>
-          <p className="text-base text-white/95 leading-relaxed mb-8">
-            SliceRaiser is more than a platform to browse opportunities. It is a modern investment lifestyle built around access, participation, ownership mindset and long term value creation.
-          </p>
-          <div
-            className="flex flex-col sm:flex-row justify-center items-center"
-            style={{ gap: "16px" }}
-          >
-            <Link
-              href="/properties"
-              className="inline-block text-sm font-semibold transition-colors hover:opacity-90"
-              style={{
-                backgroundColor: "#ffffff",
-                color: ROYAL_BLUE,
-                border: "none",
-                padding: "12px 32px",
-                borderRadius: "8px",
-              }}
-            >
-              Explore Investments
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-block text-sm font-semibold transition-colors hover:bg-white/10"
-              style={{
-                backgroundColor: "transparent",
-                border: "2px solid #ffffff",
-                color: "#ffffff",
-                padding: "12px 32px",
-                borderRadius: "8px",
-              }}
-            >
-              Contact Our Team
-            </Link>
+              SliceRaiser is designed to make investment access clearer, more structured and easier to understand. From exploring opportunities to tracking your dashboard, the platform gives users one digital path to discover selected investment opportunities and become part of the SliceRaiser investment lifestyle.
+            </p>
           </div>
-        </div>
-      </section>
+        </section>
 
+        {/* Steps */}
+        <section className="mb-16">
+          <H2>Your Journey</H2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {steps.map((step, i) => (
+              <div
+                key={step.title}
+                className="rounded-2xl p-6 bg-white h-full flex gap-4"
+                style={{ border: `1px solid #E5E7EB`, borderTop: `3px solid ${GOLD}` }}
+              >
+                <div
+                  className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-white"
+                  style={{ backgroundColor: PRIMARY, fontWeight: 700, fontSize: 14 }}
+                >
+                  {i + 1}
+                </div>
+                <div className="flex-1">
+                  <div
+                    className="text-[16px] mb-2"
+                    style={{ color: PRIMARY, fontWeight: 700 }}
+                  >
+                    {step.title}
+                  </div>
+                  <p
+                    className="text-[14px] leading-[22px]"
+                    style={{ color: TEXT, fontWeight: 400 }}
+                  >
+                    {step.text}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section>
+          <H2>Built for the SliceRaiser Investment Lifestyle</H2>
+          <div
+            className="rounded-2xl bg-white p-8 flex flex-col sm:flex-row sm:items-center gap-6"
+            style={{ border: `1px solid #E5E7EB`, borderTop: `3px solid ${GOLD}` }}
+          >
+            <div className="flex-1">
+              <p
+                className="text-[15px] leading-[24px]"
+                style={{ color: TEXT, fontWeight: 400 }}
+              >
+                SliceRaiser is more than a platform to browse opportunities. It is a modern investment lifestyle built around access, participation, ownership mindset and long term value creation.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+              <Link
+                href="/properties"
+                className="inline-flex items-center justify-center text-white text-[14px] px-6 py-3 rounded-xl transition-colors"
+                style={{ backgroundColor: PRIMARY, fontWeight: 600 }}
+              >
+                Explore Investments
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center text-[14px] px-6 py-3 rounded-xl transition-colors"
+                style={{ border: `1.5px solid ${PRIMARY}`, color: PRIMARY, fontWeight: 600 }}
+              >
+                Contact Our Team
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
