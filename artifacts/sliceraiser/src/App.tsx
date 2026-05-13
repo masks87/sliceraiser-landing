@@ -121,7 +121,7 @@ function SignInPage() {
         routing="path"
         path={`${basePath}/sign-in`}
         signUpUrl={`${basePath}/sign-up`}
-        afterSignInUrl={`${basePath}/dashboard`}
+        fallbackRedirectUrl={`${basePath}/dashboard`}
       />
     </div>
   );
@@ -134,7 +134,7 @@ function SignUpPage() {
         routing="path"
         path={`${basePath}/sign-up`}
         signInUrl={`${basePath}/sign-in`}
-        afterSignUpUrl={`${basePath}/dashboard`}
+        fallbackRedirectUrl={`${basePath}/dashboard`}
       />
     </div>
   );
@@ -143,7 +143,7 @@ function SignUpPage() {
 function SignedOutDashboardGate() {
   const { openSignIn } = useClerk();
   useEffect(() => {
-    openSignIn({ afterSignInUrl: `${basePath}/dashboard` });
+    openSignIn({ fallbackRedirectUrl: `${basePath}/dashboard` });
   }, [openSignIn]);
   return <Redirect to="/" />;
 }

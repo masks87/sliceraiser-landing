@@ -7,10 +7,10 @@ import { defaultLocation } from "@/config/siteSettings";
 
 function useAuthModal() {
   const { openSignIn, openSignUp } = useClerk();
-  const afterSignInUrl = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/dashboard`;
+  const fallbackRedirectUrl = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/dashboard`;
   return {
-    openSignIn: () => openSignIn({ afterSignInUrl }),
-    openSignUp: () => openSignUp({ afterSignInUrl }),
+    openSignIn: () => openSignIn({ fallbackRedirectUrl }),
+    openSignUp: () => openSignUp({ fallbackRedirectUrl }),
   };
 }
 
