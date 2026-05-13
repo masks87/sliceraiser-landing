@@ -52,6 +52,16 @@ export const contactPhone = "+971 55 725 9299";
 export const contactAddress = "Sheikh Zayed Road, Dubai, UAE";
 export const copyrightText = "© 2025 SliceRaiser.com. All rights reserved.";
 
+export const footerLegalLinks: { label: string; href: string }[] = [
+  { label: "Terms of Use", href: "/terms" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Risk Disclosure", href: "/risk-disclosure" },
+  { label: "Cookie Policy", href: "/cookie-policy" },
+];
+
+export const publicContactEmail = "contact@sliceraiser.com";
+export const contactLinkedInUrl = "https://www.linkedin.com/in/mamoon-alkhatib-77541639/";
+
 export type LegalSection = {
   heading: string;
   paragraphs?: string[];
