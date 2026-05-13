@@ -1,4 +1,5 @@
 import { useLocation } from 'wouter'
+import { Building2, TrendingUp, Landmark, CircleDollarSign, type LucideIcon } from 'lucide-react'
 import dashboardImg from '@/assets/dashboard.png'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -16,22 +17,17 @@ const imgBrisbane = "https://images.unsplash.com/photo-1566734904496-9309bb1798a
 const imgGroup289194 = "https://www.figma.com/api/mcp/asset/abf2831e-ac22-426c-870d-b0d3417deb18"
 const imgGroup289195 = "https://www.figma.com/api/mcp/asset/11c45383-8665-4c12-b134-d66c3dbf3c78"
 const imgGroup289196 = "https://www.figma.com/api/mcp/asset/4ecc83fa-5659-4999-ae99-1e23767b07b0"
-const imgIconHighROI = "https://www.figma.com/api/mcp/asset/cb2ee8a2-5aa2-4f4e-be1f-a7d3f709f684"
-const imgIconSecure = "https://www.figma.com/api/mcp/asset/1f0da27d-da37-4abb-94c5-8ca1f7fc1901"
-const imgIconManagement = "https://www.figma.com/api/mcp/asset/72d0a2d9-0aa4-4c05-b667-1412dfed994a"
-const imgIconGlobal = "https://www.figma.com/api/mcp/asset/80b41464-6e0b-4952-a743-2dd559f7f93e"
-
 const markets = [
   { name: 'Dubai, UAE', text: 'A leading investment market known for premium real estate, global connectivity and strong investor demand.', img: imgDubaiUae },
   { name: 'Abu Dhabi, UAE', text: 'A strategic capital market supported by long term planning, institutional growth and economic stability.', img: imgAbuDhabi },
   { name: 'Brisbane, Australia', text: 'A growing Australian market with strong lifestyle demand, infrastructure growth and long term investment potential.', img: imgBrisbane },
 ]
 
-const features = [
-  { icon: imgIconHighROI, title: 'Property Opportunities', desc: 'Explore selected real estate opportunities across focus markets.' },
-  { icon: imgIconSecure, title: 'Equity Access', desc: 'Discover opportunities connected to businesses and growth focused ventures.' },
-  { icon: imgIconManagement, title: 'Fixed Income Options', desc: 'Access income focused opportunities designed for structured investment participation.' },
-  { icon: imgIconGlobal, title: 'Start from USD 100', desc: 'Begin exploring investment participation from USD 100 where available.' },
+const features: { Icon: LucideIcon; title: string; desc: string }[] = [
+  { Icon: Building2, title: 'Property Opportunities', desc: 'Explore selected real estate opportunities across focus markets.' },
+  { Icon: TrendingUp, title: 'Equity Access', desc: 'Discover opportunities connected to businesses and growth focused ventures.' },
+  { Icon: Landmark, title: 'Fixed Income Options', desc: 'Access income focused opportunities designed for structured investment participation.' },
+  { Icon: CircleDollarSign, title: 'Start from USD 100', desc: 'Begin exploring investment participation from USD 100 where available.' },
 ]
 
 export default function Home() {
@@ -154,7 +150,12 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-4 mb-8">
               {features.map(f => (
                 <div key={f.title} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
-                  <img src={f.icon} alt="" className="w-6 h-6 mb-3" />
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center mb-3"
+                    style={{ backgroundColor: '#F8F9FA' }}
+                  >
+                    <f.Icon className="w-5 h-5" style={{ color: '#1E3A8A' }} />
+                  </div>
                   <h3 className="text-[#020817] font-semibold text-[15px] mb-2">{f.title}</h3>
                   <p className="text-[#8e9196] text-[13px] leading-[20px] font-normal">{f.desc}</p>
                 </div>
