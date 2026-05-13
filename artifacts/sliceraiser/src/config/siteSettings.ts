@@ -257,7 +257,7 @@ export const legalPages: Record<"terms" | "privacy" | "riskDisclosure" | "cookie
       },
       {
         heading: "9. Exercising Your Rights",
-        paragraphs: ["To exercise your rights, please contact [privacy@sliceraiser.com](mailto:privacy@sliceraiser.com)."],
+        paragraphs: ["To exercise your rights, please contact privacy@sliceraiser.com."],
       },
       {
         heading: "10. Children",

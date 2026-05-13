@@ -1,0 +1,101 @@
+Stay in Economy mode.
+Implementation only.
+Do not create content.
+Do not change any page except the specific 
+fixes listed below.
+Do not change Header.tsx.
+Do not change Footer.tsx structure or links.
+Do not change any other page.
+
+Fix 1 — Privacy page broken email link
+File: src/pages/Privacy.tsx or 
+src/config/siteSettings.ts privacy section.
+Find section 9 which shows raw markdown text:
+[privacy@sliceraiser.com](mailto:privacy@sliceraiser.com)
+Replace with plain text only:
+privacy@sliceraiser.com
+No markdown. No brackets. No parentheses.
+Plain email text only.
+
+Fix 2 — About Us hero title missing
+File: src/pages/About.tsx
+The hero section must show both:
+Title: "About SliceRaiser"
+in white bold large text centered
+Subtitle: "A global investment lifestyle 
+platform for property, equity and fixed 
+income opportunities"
+in white regular text centered below title
+Both must be visible on the #1E3A8A 
+blue background.
+Title font size minimum 40px bold.
+Subtitle font size 18px regular.
+Padding top and bottom 80px minimum.
+
+Fix 3 — About Us CTA buttons styling
+File: src/pages/About.tsx
+Find the CTA section at the bottom.
+Primary button "Become a SliceRaiser":
+Background white
+Text color #1E3A8A
+Border none
+Padding 12px 32px
+Border radius 8px
+Secondary button "Explore Opportunities":
+Background transparent
+Border 2px solid white
+Text color white
+Padding 12px 32px
+Border radius 8px
+Both buttons same height.
+Both centered side by side.
+Gap between buttons 16px.
+
+Fix 4 — About Us section spacing
+File: src/pages/About.tsx
+Reduce excessive empty space between 
+all sections.
+Each section should have padding top 
+and bottom of 48px maximum.
+Do not add extra margins between sections.
+
+Fix 5 — About Us team card missing button
+File: src/pages/About.tsx
+Find the team member card for Mamoon Alkhatib.
+Below the LinkedIn button add a second button:
+Text: "Request a Meeting"
+Link: /contact
+Style: white background, #1E3A8A border 2px, 
+#1E3A8A text, padding 10px 24px, 
+border radius 8px.
+Both buttons side by side centered 
+below the bio text.
+
+Fix 6 — App download buttons remove 
+Coming Soon label
+File: src/components/Footer.tsx
+Find the two app download buttons.
+Remove the "Coming Soon" text label 
+from inside both buttons completely.
+Each button shows only:
+Button 1: Apple icon and text 
+"Download on the App Store"
+Button 2: Google Play icon and text 
+"Get it on Google Play"
+Keep buttons non-clickable when URLs 
+are empty.
+Keep the same black background 
+and white text style.
+
+After implementation confirm:
+1. Privacy page broken link fixed: yes or no
+2. About hero title now visible: yes or no
+3. CTA buttons correctly styled: yes or no
+4. Section spacing reduced: yes or no
+5. Team card has Request a Meeting button: yes or no
+6. Coming Soon removed from app buttons: yes or no
+7. Any TypeScript or runtime errors: yes or no
+   Must be no
+8. Any other files changed beyond 
+   the 6 fixes above: yes or no
+   Must be no

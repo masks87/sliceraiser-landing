@@ -166,14 +166,14 @@ function AppDownloadBand() {
             {/* CMS: iosAppText, iosAppUrl */}
             <StoreButton
               Icon={AppleIcon}
-              topLine="Coming Soon"
+              topLine=""
               bottomLine={iosAppText}
               url={iosAppUrl}
             />
             {/* CMS: googlePlayText, googlePlayUrl */}
             <StoreButton
               Icon={GooglePlayIcon}
-              topLine="Coming Soon"
+              topLine=""
               bottomLine={googlePlayText}
               url={googlePlayUrl}
             />
