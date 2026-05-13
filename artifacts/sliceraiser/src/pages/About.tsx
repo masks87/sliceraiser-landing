@@ -186,8 +186,8 @@ export default function About() {
 
       {/* Section 7: CTA */}
       <section
-        style={{ backgroundColor: "#1E3A8A", paddingTop: "48px", paddingBottom: "48px" }}
-        className="px-6 text-center"
+        style={{ paddingTop: "48px", paddingBottom: "48px" }}
+        className="px-6 text-center bg-gradient-to-r from-[#D4AF37] to-[#1E3A8A]"
       >
         <div className="max-w-2xl mx-auto">
           <h2 className="text-3xl font-bold text-white mb-4">{cta.heading}</h2>
