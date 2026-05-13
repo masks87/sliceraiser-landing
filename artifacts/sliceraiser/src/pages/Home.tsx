@@ -42,11 +42,17 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <img src={imgLuxuryProperty} alt="Luxury Property" className="absolute inset-0 w-full h-full object-cover opacity-50" />
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(26,31,44,0.8)] to-[rgba(0,0,0,0.92)]" />
-        <div className="relative z-10 max-w-2xl mx-auto px-6 py-24 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-            Invest for Income, Growth and Long Term Value
+        <div className="relative z-10 max-w-3xl mx-auto px-6 py-24 text-center">
+          <h1
+            className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.2] md:leading-[1.18] mb-6"
+            style={{ color: "#FFFFFF" }}
+          >
+            Invest for <span style={{ color: "#D4AF37" }}>Income, Growth</span> and Long Term Value
           </h1>
-          <p className="text-white/80 text-base md:text-lg mb-10 max-w-md mx-auto leading-relaxed font-normal">
+          <p
+            className="text-base md:text-lg mb-10 max-w-xl mx-auto leading-relaxed font-normal"
+            style={{ color: "rgba(255,255,255,0.9)" }}
+          >
             SliceRaiser brings selected property, equity and fixed income opportunities into one digital platform, helping investors explore income potential, capital growth and diversification from USD 100.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
