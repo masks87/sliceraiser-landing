@@ -432,7 +432,7 @@ export const contactAutoReplyMessage = "Thank you for contacting SliceRaiser. We
 export const meetingRequestEnabled = true;
 
 export const jurisdictionSettings = {
-  defaultJurisdiction: "europe",
+  defaultJurisdiction: "uae",
   cookieName: "sr_jurisdiction",
   options: [
     { value: "europe", label: "Europe" },

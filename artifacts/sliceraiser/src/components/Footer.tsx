@@ -98,13 +98,13 @@ function StoreButton({
   url: string;
 }) {
   const inner = (
-    <div className="w-full sm:w-[calc(50%-0.375rem)] lg:w-[220px] inline-flex items-center gap-3 bg-black text-white rounded-xl px-4 py-3 select-none"
+    <div className="w-full sm:w-auto sm:min-w-[180px] lg:w-[200px] h-[56px] inline-flex items-center justify-center sm:justify-start gap-3 bg-black text-white rounded-xl px-4 py-2 select-none"
       style={{ border: "1px solid rgba(255,255,255,0.12)" }}
     >
       <Icon className="w-7 h-7 shrink-0" />
       <div className="text-left leading-tight min-w-0">
         <div className="text-[11px] tracking-wide opacity-80">{topLine}</div>
-        <div className="text-[14px] font-semibold">{bottomLine}</div>
+        <div className="text-[15px] font-semibold leading-tight">{bottomLine}</div>
       </div>
     </div>
   );
@@ -212,15 +212,15 @@ function AppDownloadBand() {
             {/* CMS: iosAppText, iosAppUrl */}
             <StoreButton
               Icon={AppleIcon}
-              topLine=""
-              bottomLine={iosAppText}
+              topLine="Download on the"
+              bottomLine="App Store"
               url={iosAppUrl}
             />
             {/* CMS: googlePlayText, googlePlayUrl */}
             <StoreButton
               Icon={GooglePlayIcon}
-              topLine=""
-              bottomLine={googlePlayText}
+              topLine="Get it on"
+              bottomLine="Google Play"
               url={googlePlayUrl}
             />
           </div>

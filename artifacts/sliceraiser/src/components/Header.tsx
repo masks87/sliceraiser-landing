@@ -40,11 +40,11 @@ function JurisdictionSelector() {
   };
 
   return (
-    <div className="flex flex-col shrink-0">
+    <div className="flex items-center gap-2 shrink-0">
       <span style={{ fontSize: "11px", color: "#94A3B8", lineHeight: 1.2 }}>
         Regulatory
       </span>
-      <div className="relative mt-0.5">
+      <div className="relative">
         <select
           value={value}
           onChange={handleChange}
