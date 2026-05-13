@@ -1,0 +1,147 @@
+Stay in Economy mode.
+
+Architecture audit only.
+
+Do not edit code.
+Do not move files.
+Do not create folders.
+Do not refactor.
+Do not change routes.
+Do not change database schema.
+Do not change API routes.
+Do not build CMS.
+Do not create admin pages.
+Do not generate business or legal content.
+
+Goal:
+Create a clean modular service architecture plan for SliceRaiser before any CMS or admin development continues.
+
+Context:
+SliceRaiser should not become a messy single app where public website, CMS, investment opportunities, contact forms, KYC, wallet, portfolio, and admin logic are mixed together.
+
+We are not physically splitting into separate microservices yet.
+We are defining service boundaries first.
+The current stage should be treated as a modular monolith with clear service domains.
+
+Inspect the current source code and report how the existing files should be grouped into these service domains:
+
+1. Public Website Service
+Purpose:
+Public pages, marketing pages, shared layout, header, footer, legal pages, about pages, how it works, careers, investor relations.
+
+2. Website CMS Service
+Purpose:
+Editable website content such as footer text, default location, app links, social links, contact public details, legal page content later.
+
+3. Investment Opportunities Service
+Purpose:
+Properties, equity, fixed income listings, opportunity detail pages, investment opportunity data, category filtering.
+
+4. User Account and Dashboard Service
+Purpose:
+Dashboard, portfolio display, user account area, authenticated user experience.
+
+5. Contact and Lead Service
+Purpose:
+Contact form, inquiry types, Resend email notifications, auto reply, private recipient email, future CRM style lead storage.
+
+6. Waitlist Service
+Purpose:
+App waitlist form, app_waitlist table, future app launch notifications.
+
+7. Admin and Access Control Service
+Purpose:
+Admin authentication, admin role checking, future /admin/website, future platform admin.
+
+8. Compliance and Onboarding Service
+Purpose:
+Future KYC, AML, source of funds, investor suitability, accreditation, approval workflow.
+
+9. Wallet and Transactions Service
+Purpose:
+Future wallet ledger, funding, withdrawals, returns, distributions, transaction records.
+
+10. Legal and Regulatory Content Service
+Purpose:
+Terms, Privacy, Risk Disclosure, Cookie Policy, legal disclaimers, account creation agreement.
+
+Audit and report:
+
+A. Current files by service domain
+List current files under each service domain.
+
+B. Current database tables by service domain
+List existing tables and which service they belong to.
+Current known tables include:
+investment_opportunities
+user_portfolios
+app_waitlist
+
+C. Missing tables by service domain
+Recommend future tables but do not create them.
+Include only names and purpose.
+
+D. Current API routes by service domain
+List current API routes and which service they belong to.
+
+E. Missing API routes by service domain
+Recommend future API routes but do not create them.
+
+F. Frontend routes by service domain
+List current frontend routes and which service they belong to.
+
+G. Recommended folder structure
+Propose a future folder structure using domain modules, for example:
+src/services/publicWebsite
+src/services/cms
+src/services/opportunities
+src/services/contact
+src/services/admin
+src/services/compliance
+src/services/wallet
+
+Do not move files yet.
+Only propose.
+
+H. What should remain shared
+Identify shared components or utilities that should stay global, such as:
+Header
+Footer
+Layout
+UI components
+siteSettings fallback config
+API client
+auth helpers
+
+I. What should not be mixed
+Clearly identify risky mixing, such as:
+CMS content mixed with legal content
+Admin access mixed with public website
+Wallet logic mixed with marketing pages
+Contact form logic mixed with investor onboarding
+Opportunity listings mixed with user portfolio logic
+
+J. Recommended next development sequence
+Give the safest order of work after this audit.
+
+Use this order as the default unless source code findings suggest otherwise:
+
+1. Create site_settings database table
+2. Create admin role middleware
+3. Create CMS settings API
+4. Build /admin/website for Phase 1 website settings only
+5. Finish public pages /about, /how-it-works, /careers
+6. Add contact lead storage
+7. Build opportunity admin
+8. Build compliance onboarding
+9. Build wallet ledger
+
+K. Risk level
+For each proposed future service, mark risk as:
+Low
+Medium
+High
+
+Do not implement anything.
+Do not change anything.
+Only report the architecture plan.
