@@ -68,7 +68,7 @@ export default function Dashboard() {
               Browse our curated marketplace and acquire your first slice. Your portfolio analytics will appear here as soon as you invest.
             </p>
             <a
-              href="/opportunities"
+              href="/properties"
               className="inline-block bg-[#4285f4] text-white text-[14px] font-medium px-6 py-2.5 rounded-lg hover:bg-[#3570d4] transition-colors"
             >
               Browse Opportunities
