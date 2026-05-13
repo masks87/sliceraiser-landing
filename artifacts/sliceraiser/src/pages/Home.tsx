@@ -1,11 +1,7 @@
-import { useState } from 'react'
-import { Link, useLocation } from 'wouter'
-import { useClerk, useUser } from '@clerk/react'
-import logoImg from '@/assets/logo.png'
+import { useLocation } from 'wouter'
 import dashboardImg from '@/assets/dashboard.png'
+import Header from '../components/Header'
 import Footer from '../components/Footer'
-
-const basePath = import.meta.env.BASE_URL.replace(/\/$/, '')
 
 // Figma assets
 const imgLuxuryProperty = "https://www.figma.com/api/mcp/asset/763237e7-9544-47f2-95d3-d99e408f8ad6"
@@ -26,10 +22,6 @@ const imgIconHighROI = "https://www.figma.com/api/mcp/asset/cb2ee8a2-5aa2-4f4e-b
 const imgIconSecure = "https://www.figma.com/api/mcp/asset/1f0da27d-da37-4abb-94c5-8ca1f7fc1901"
 const imgIconManagement = "https://www.figma.com/api/mcp/asset/72d0a2d9-0aa4-4c05-b667-1412dfed994a"
 const imgIconGlobal = "https://www.figma.com/api/mcp/asset/80b41464-6e0b-4952-a743-2dd559f7f93e"
-const imgSocialTwitter = "https://www.figma.com/api/mcp/asset/cdbeb314-2cce-4b17-98f4-a17aa79aa1eb"
-const imgSocialFacebook = "https://www.figma.com/api/mcp/asset/f437d7e8-0ada-421e-9f68-13c6a8b89536"
-const imgSocialInstagram = "https://www.figma.com/api/mcp/asset/9bc11b59-4ea6-42d3-978c-8076bc4ebe80"
-const imgSocialLinkedin = "https://www.figma.com/api/mcp/asset/dbf8da65-88e6-45a1-9f8e-54b197c90ec4"
 
 const locations = [
   { name: 'Dubai, UAE', count: '120 Properties', img: imgDubaiUae },
@@ -46,148 +38,15 @@ const features = [
   { icon: imgIconGlobal, title: 'Global Portfolio', desc: 'Diverse investment opportunities across premium locations in UAE and Europe.' },
 ]
 
-const desktopNavLinks = [
-  { label: 'HOME', to: '/', active: true },
-  { label: 'PROPERTIES', to: '/opportunities', active: false },
-  { label: 'EQUITY', to: '/equity', active: false },
-  { label: 'FIXED INCOME', to: '/fixed-income', active: false },
-]
-
-const mobileNavLinks = [
-  { label: 'Home', to: '/' },
-  { label: 'Properties', to: '/opportunities' },
-  { label: 'Equity', to: '/equity' },
-  { label: 'Fixed Income', to: '/fixed-income' },
-]
-
-function Logo() {
-  return (
-    <img src={logoImg} alt="Slice Raiser" className="h-[22px] w-auto object-contain" />
-  )
-}
-
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const [, setLocation] = useLocation()
-  const { openSignIn, openSignUp } = useClerk()
-  const { isSignedIn } = useUser()
 
   const goOpportunities = () => setLocation('/opportunities')
-  const handleSignIn = () => {
-    if (isSignedIn) {
-      setLocation('/dashboard')
-      return
-    }
-    openSignIn({ afterSignInUrl: `${basePath}/dashboard` } as Parameters<typeof openSignIn>[0])
-  }
-  const handleSignUp = () => {
-    if (isSignedIn) {
-      setLocation('/dashboard')
-      return
-    }
-    openSignUp({ afterSignUpUrl: `${basePath}/dashboard` } as Parameters<typeof openSignUp>[0])
-  }
 
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>
 
-      {/* ── Header ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.07)]">
-
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center justify-center h-[60px] px-6">
-          <div className="flex items-center gap-3">
-
-            {/* Logo */}
-            <Logo />
-
-            {/* Nav links */}
-            <div className="flex items-center gap-5 ml-6">
-              {desktopNavLinks.map(({ label, to, active }) => (
-                <button
-                  key={label}
-                  type="button"
-                  onClick={() => setLocation(to)}
-                  className={`text-[11px] font-semibold tracking-wide whitespace-nowrap transition-colors bg-transparent border-0 cursor-pointer ${
-                    active ? 'text-[#4285f4]' : 'text-[#020817] hover:text-[#4285f4]'
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-
-            {/* Divider */}
-            <div className="w-px h-8 bg-gray-200 mx-3 shrink-0" />
-
-            {/* Location */}
-            <div className="flex flex-col shrink-0">
-              <span className="text-[10px] text-[#8e9196] leading-tight">Location</span>
-              <div className="flex items-center gap-1">
-                <svg className="w-3 h-3 text-[#4285f4] shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                </svg>
-                <span className="text-[13px] font-semibold text-[#020817]">Dubai</span>
-              </div>
-            </div>
-
-            {/* Search */}
-            <div className="flex items-center gap-2 border border-gray-200 rounded-lg px-3 py-1.5 w-40 shrink-0">
-              <svg className="w-4 h-4 text-[#8e9196] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-              <input
-                type="text"
-                placeholder="Search here"
-                className="text-[12px] text-[#8e9196] bg-transparent outline-none w-full placeholder-[#8e9196]"
-              />
-            </div>
-
-            {/* Filter icon */}
-            <button className="shrink-0 text-[#8e9196] hover:text-[#4285f4] transition-colors">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h18M7 12h10M11 20h2" />
-              </svg>
-            </button>
-
-            {/* Auth buttons */}
-            <div className="flex items-center gap-2">
-              <button onClick={handleSignIn} className="bg-[#4285f4] text-white text-[13px] font-medium px-5 py-2 rounded-lg hover:bg-[#3570d4] transition-colors whitespace-nowrap">
-                Log In
-              </button>
-              <button onClick={handleSignUp} className="bg-[#082f6f] text-white text-[13px] font-medium px-5 py-2 rounded-lg hover:bg-[#061f4a] transition-colors whitespace-nowrap">
-                Sign Up
-              </button>
-            </div>
-
-          </div>
-        </nav>
-
-        {/* Mobile nav */}
-        <nav className="lg:hidden flex items-center justify-between h-14 px-6">
-          <Logo />
-          <button className="p-1" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
-            <svg className="w-6 h-6 text-[#020817]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </nav>
-
-        {menuOpen && (
-          <div className="lg:hidden bg-white border-t border-gray-100 px-6 py-4 flex flex-col gap-4">
-            {mobileNavLinks.map(({ label, to }) => (
-              <button
-                key={label}
-                type="button"
-                onClick={() => { setMenuOpen(false); setLocation(to) }}
-                className="text-sm text-left text-[#8e9196] hover:text-[#4285f4] transition-colors bg-transparent border-0 cursor-pointer p-0"
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-        )}
-      </header>
+      <Header />
 
       {/* ── Hero ── */}
       <section className="relative min-h-screen flex items-center justify-center pt-14 lg:pt-[60px] overflow-hidden">
