@@ -1,0 +1,265 @@
+Stay in Economy mode.
+
+Implementation only.
+
+Do not create content.
+Do not rewrite content.
+Do not improve wording.
+Use only the exact content provided below.
+
+Goal:
+Create the Careers page for SliceRaiser.
+
+Route:
+/careers
+
+Allowed files:
+src/pages/Careers.tsx
+src/App.tsx
+src/config/siteSettings.ts only if storing careersPage content there
+
+Do not edit:
+Home.tsx
+Header.tsx
+Footer.tsx
+Contact.tsx
+Legal pages
+API routes
+Database files
+Authentication files
+Dashboard files
+Opportunity data
+
+Use shared Header and Footer through the existing Layout system.
+
+Brand rules:
+Use SliceRaiser brand kit styling:
+Royal Blue #1E3A8A
+Rich Gold #D4AF37
+Soft White #F8F9FA
+Charcoal Black #2C2C2C
+Primary font Inter
+Secondary font Roboto
+
+Do not change global styles.
+Do not redesign Header or Footer.
+
+Page content:
+
+Page title:
+Careers at SliceRaiser
+
+Page subtitle:
+Join the team building a new investment platform for property, equity and fixed income opportunities.
+
+Hero paragraph:
+SliceRaiser is building a global investment platform designed to connect users with selected opportunities across property, equity and fixed income. We are looking for people who want to help build a serious financial technology company with strong execution, clear thinking and long term ambition.
+
+Hero paragraph 2:
+We are not looking for people who only want a job title. We are looking for builders, operators and specialists who can help turn SliceRaiser from a platform vision into a trusted investment ecosystem.
+
+Section title:
+Build Something Meaningful
+
+Section text:
+SliceRaiser is being developed around a clear mission: make access to selected investment opportunities more structured, transparent and digital. Our team will work across technology, investments, compliance, operations, marketing, partnerships and customer experience.
+
+Section text 2:
+This is an early stage environment. The work is demanding, the standards are high and every person must take ownership.
+
+Section title:
+Who We Are Looking For
+
+Section text:
+We are looking for professionals who are practical, disciplined and comfortable working in a fast moving environment.
+
+Use these points:
+Take ownership without waiting for constant instructions
+Communicate clearly and professionally
+Work with accuracy and attention to detail
+Understand the responsibility of working around investment products
+Respect compliance, documentation and process
+Build systems that can scale across markets
+
+Section title:
+Current and Future Departments
+
+Department 1 title:
+Investment and Portfolio Management
+
+Department 1 text:
+Portfolio managers, investment analysts and asset managers who can review opportunities, monitor performance, support portfolio reporting and help structure investor focused updates.
+
+Department 2 title:
+Finance and Financial Control
+
+Department 2 text:
+Financial controllers, accountants and reporting specialists who can manage financial models, budgets, fee logic, SPV cost tracking, investor reporting and internal financial controls.
+
+Department 3 title:
+Sales and Account Management
+
+Department 3 text:
+Sales managers and account managers who can build relationships with investors, sponsors, partners and enterprise clients while maintaining a professional and compliant communication process.
+
+Department 4 title:
+Technology and Product
+
+Department 4 text:
+Developers, product managers, UI and UX designers, QA testers and technical leads who can build a secure, scalable and user friendly investment platform.
+
+Department 5 title:
+Legal and Compliance
+
+Department 5 text:
+Compliance officers, legal coordinators, onboarding reviewers and regulatory support specialists who can help manage documentation, controls, investor onboarding and internal review processes.
+
+Department 6 title:
+Marketing and Growth
+
+Department 6 text:
+Marketing managers, content creators, social media specialists and growth professionals who can help build the SliceRaiser brand, investor education and market awareness.
+
+Department 7 title:
+Operations and Administration
+
+Department 7 text:
+Operations managers, HR coordinators, administration executives and customer support officers who can support daily execution, communication, documentation and internal coordination.
+
+Section title:
+Priority Roles
+
+Add these role cards:
+
+Role 1 title:
+Financial Controller
+
+Role 1 text:
+Responsible for financial planning, budgets, reporting, fee analysis, SPV cost tracking and internal financial controls.
+
+Role 2 title:
+Portfolio Manager
+
+Role 2 text:
+Responsible for monitoring investment opportunities, portfolio performance, investor updates and asset level reporting.
+
+Role 3 title:
+Sales Manager
+
+Role 3 text:
+Responsible for investor acquisition, sponsor relationships, sales pipeline development and partnership follow up.
+
+Role 4 title:
+Account Manager
+
+Role 4 text:
+Responsible for managing investor and partner relationships, supporting inquiries and ensuring a professional client experience.
+
+Role 5 title:
+Business Development Manager
+
+Role 5 text:
+Responsible for identifying strategic partners, sponsors, market opportunities and enterprise relationships.
+
+Role 6 title:
+Compliance Officer
+
+Role 6 text:
+Responsible for supporting onboarding checks, compliance documentation, internal policies and risk review processes.
+
+Role 7 title:
+Frontend Developer
+
+Role 7 text:
+Responsible for building and improving the user interface, investor journey and platform experience.
+
+Role 8 title:
+Backend Developer
+
+Role 8 text:
+Responsible for APIs, database logic, security, integrations and platform infrastructure.
+
+Section title:
+Why Work With SliceRaiser
+
+Card 1 title:
+Build Early
+
+Card 1 text:
+Join at an early stage and help shape the platform, culture and operating structure.
+
+Card 2 title:
+Think Global
+
+Card 2 text:
+Work on a platform designed for selected international market expansion.
+
+Card 3 title:
+Own Your Work
+
+Card 3 text:
+Take responsibility for execution, quality and results.
+
+Card 4 title:
+Grow With Us
+
+Card 4 text:
+Join a business built around technology, investment and long term value creation.
+
+Section title:
+Our Culture
+
+Section text:
+SliceRaiser culture is built around discipline, trust and execution. We value people who are direct, honest and able to solve problems without creating unnecessary complexity.
+
+Section text 2:
+We expect every team member to care about quality. In a financial technology business, small errors can create large problems. That is why we value accuracy, documentation and professional communication.
+
+Section title:
+How to Apply
+
+Section text:
+If you are interested in joining SliceRaiser, send your profile and a short message explaining how you can contribute.
+
+Email:
+careers@sliceraiser.com
+
+CTA title:
+Ready to Build With Us?
+
+CTA text:
+If you want to be part of a platform built around investment access, technology and long term growth, we would like to hear from you.
+
+Primary button text:
+Contact Our Team
+
+Primary button link:
+/contact
+
+Secondary button text:
+Explore SliceRaiser
+
+Secondary button link:
+/about
+
+Design requirements:
+Use a clean professional careers page layout.
+Use brand colors only.
+Use cards for departments and priority roles.
+Use responsive layout.
+Desktop should show multi column cards.
+Tablet should show two column cards.
+Mobile should stack cards in one column.
+No horizontal scroll.
+No broken images.
+Do not use stock photos unless already available in the project.
+Use icons from lucide-react if icons are needed.
+
+After implementation, report only:
+1. Careers.tsx created: yes or no
+2. /careers route added: yes or no
+3. Page uses shared Header and Footer: yes or no
+4. Brand kit colors used: yes or no
+5. Priority roles added: yes or no
+6. Content used exactly as provided: yes or no
+7. Any TypeScript or runtime errors: yes or no
