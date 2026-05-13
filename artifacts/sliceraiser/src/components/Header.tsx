@@ -16,14 +16,14 @@ function useAuthModal() {
 
 const navLinks = [
   { label: "HOME", to: "/" },
-  { label: "PROPERTIES", to: "/opportunities" },
+  { label: "PROPERTIES", to: "/properties" },
   { label: "EQUITY", to: "/equity" },
   { label: "FIXED INCOME", to: "/fixed-income" },
 ];
 
 const mobileLinks = [
   { label: "Home", to: "/" },
-  { label: "Properties", to: "/opportunities" },
+  { label: "Properties", to: "/properties" },
   { label: "Equity", to: "/equity" },
   { label: "Fixed Income", to: "/fixed-income" },
 ];

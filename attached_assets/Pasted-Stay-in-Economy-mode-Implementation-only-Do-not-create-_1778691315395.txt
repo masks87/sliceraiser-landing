@@ -1,0 +1,97 @@
+Stay in Economy mode.
+
+Implementation only.
+
+Do not create content.
+Do not rewrite content.
+Do not change business wording.
+Do not change design.
+Do not change colors.
+Do not change images.
+Do not change authentication.
+Do not change dashboard logic.
+Do not change API routes.
+Do not change Resend setup.
+Do not change database schema.
+Do not build CMS.
+Do not create admin pages.
+
+Goal:
+Fully standardize the public Properties page naming.
+
+The public website should use:
+Properties
+/properties
+/properties/:id
+
+The old public route /opportunities should be removed from navigation and public links.
+
+Allowed files:
+src/App.tsx
+src/components/Header.tsx
+src/config/siteSettings.ts
+src/pages/Opportunities.tsx only if needed for route export or naming
+Any listing card/link component only if required to update public links
+
+Do not edit:
+Footer.tsx unless absolutely required
+Home.tsx unless it contains hardcoded /opportunities links
+Contact.tsx
+Legal pages
+API routes
+Database files
+Authentication files
+Dashboard files
+Opportunity data
+Page styling files
+
+Tasks:
+
+1. Add or confirm route:
+/properties
+
+It must render the property listing page currently rendered by:
+/opportunities
+
+2. Add or confirm route:
+/properties/:id
+
+It must render the property detail page currently rendered by:
+/opportunities/:id
+
+3. Update Header.tsx so the Properties nav link points to:
+/properties
+
+4. Update siteSettings.ts footerLinkGroups so the Properties footer link points to:
+/properties
+
+5. Search frontend code for hardcoded public links to:
+/opportunities
+/opportunities/:id
+
+Replace only public user facing links with:
+/properties
+/properties/:id
+
+6. Remove /opportunities and /opportunities/:id routes from App.tsx only if they are not required by internal code.
+
+7. Do not rename database tables.
+8. Do not rename API endpoints.
+9. Do not rename investment_opportunities data.
+10. Do not rename internal variables unless needed to avoid broken imports.
+
+Important:
+Public route naming should be standardized.
+Internal data naming can remain opportunity/opportunities for now.
+
+After implementation, report only:
+
+1. Was /properties route added or confirmed: yes or no
+2. Was /properties/:id route added or confirmed: yes or no
+3. Were /opportunities public routes removed from App.tsx: yes or no
+4. Was Header Properties link updated to /properties: yes or no
+5. Was footer Properties link updated to /properties: yes or no
+6. Were all frontend public /opportunities links replaced: yes or no
+7. Were database/API/internal opportunity names left unchanged: yes or no
+8. Were design and content left unchanged: yes or no
+9. Any TypeScript or runtime errors: yes or no

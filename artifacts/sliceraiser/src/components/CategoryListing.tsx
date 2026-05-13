@@ -23,7 +23,7 @@ function fundedPct(o: InvestmentOpportunity): number {
 function OpportunityCard({ o }: { o: InvestmentOpportunity }) {
   return (
     <Link
-      href={`/opportunities/${o.id}`}
+      href={`/properties/${o.id}`}
       className="group bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow flex flex-col"
     >
       <div className="relative h-48 overflow-hidden">

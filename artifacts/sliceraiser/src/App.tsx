@@ -211,8 +211,8 @@ function ClerkProviderWithRoutes() {
           <Route>
             <Layout>
               <Switch>
-                <Route path="/opportunities" component={Opportunities} />
-                <Route path="/opportunities/:id" component={OpportunityDetail} />
+                <Route path="/properties" component={Opportunities} />
+                <Route path="/properties/:id" component={OpportunityDetail} />
                 <Route path="/equity" component={Equity} />
                 <Route path="/fixed-income" component={FixedIncome} />
                 <Route path="/dashboard" component={ProtectedDashboard} />

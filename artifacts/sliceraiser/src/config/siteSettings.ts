@@ -24,7 +24,7 @@ export const footerLinkGroups: { heading: string; links: { label: string; href: 
   {
     heading: "Invest",
     links: [
-      { label: "Properties", href: "/opportunities" },
+      { label: "Properties", href: "/properties" },
       { label: "Equity", href: "/equity" },
       { label: "Fixed Income", href: "/fixed-income" },
     ],

@@ -41,7 +41,7 @@ const features = [
 export default function Home() {
   const [, setLocation] = useLocation()
 
-  const goOpportunities = () => setLocation('/opportunities')
+  const goOpportunities = () => setLocation('/properties')
 
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>

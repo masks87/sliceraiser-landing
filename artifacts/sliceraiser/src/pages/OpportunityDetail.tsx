@@ -100,7 +100,7 @@ function ExpressInterestDialog({
 
 export default function OpportunityDetail() {
   const [interestOpen, setInterestOpen] = useState(false);
-  const [, params] = useRoute("/opportunities/:id");
+  const [, params] = useRoute("/properties/:id");
   const id = params?.id ? Number(params.id) : NaN;
   const { data, isLoading, error } = useGetOpportunity(id, {
     query: { enabled: Number.isFinite(id), queryKey: ["opportunities", id] },
@@ -121,7 +121,7 @@ export default function OpportunityDetail() {
         <h1 className="text-2xl font-bold text-[#020817] mb-3">Opportunity not found</h1>
         <p className="text-[#8e9196] mb-6">The opportunity you're looking for doesn't exist or is no longer available.</p>
         <Link
-          href="/opportunities"
+          href="/properties"
           className="inline-block bg-[#4285f4] text-white text-sm font-medium px-6 py-3 rounded-[14px] hover:bg-[#3570d4] transition-colors"
         >
           Back to opportunities
@@ -136,7 +136,7 @@ export default function OpportunityDetail() {
     <div className="bg-white py-10 px-6">
       <div className="max-w-5xl mx-auto">
         <Link
-          href="/opportunities"
+          href="/properties"
           className="inline-flex items-center gap-1.5 text-[13px] text-[#8e9196] hover:text-[#4285f4] transition-colors mb-6"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
