@@ -42,7 +42,7 @@ function JurisdictionSelector() {
   return (
     <div className="flex flex-col shrink-0">
       <span style={{ fontSize: "11px", color: "#94A3B8", lineHeight: 1.2 }}>
-        Regulatory Environment
+        Regulatory
       </span>
       <div className="relative mt-0.5">
         <select
@@ -181,15 +181,17 @@ export default function Header() {
             />
           </div>
 
-          <button
-            type="button"
-            aria-label="Filter"
-            className="shrink-0 text-[#8e9196] hover:text-[#4285f4] transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h18M7 12h10M11 20h2" />
-            </svg>
-          </button>
+          {(location === "/properties" || location === "/equity" || location === "/fixed-income") && (
+            <button
+              type="button"
+              aria-label="Filter"
+              className="shrink-0 text-[#8e9196] hover:text-[#4285f4] transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h18M7 12h10M11 20h2" />
+              </svg>
+            </button>
+          )}
 
           <div className="flex items-center gap-2">
             <Show when="signed-out">
@@ -215,13 +217,29 @@ export default function Header() {
         </div>
       </nav>
 
-      <nav className="lg:hidden flex items-center justify-between h-14 px-6">
+      <nav className="lg:hidden flex items-center justify-between h-14 px-3 sm:px-6 gap-2">
         <Logo />
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <Show when="signed-out">
+            <button
+              type="button"
+              onClick={() => openSignIn()}
+              className="bg-[#4285f4] text-white text-[11px] sm:text-[12px] font-medium px-2.5 sm:px-3 py-1.5 rounded-md hover:bg-[#3570d4] transition-colors whitespace-nowrap"
+            >
+              Log In
+            </button>
+            <button
+              type="button"
+              onClick={() => openSignUp()}
+              className="bg-[#082f6f] text-white text-[11px] sm:text-[12px] font-medium px-2.5 sm:px-3 py-1.5 rounded-md hover:bg-[#061f4a] transition-colors whitespace-nowrap"
+            >
+              Sign Up
+            </button>
+          </Show>
           <Show when="signed-in">
             <SignedInMenu />
           </Show>
-          <button className="p-1" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+          <button className="p-1 shrink-0" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
             <svg className="w-6 h-6 text-[#020817]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -236,7 +254,7 @@ export default function Header() {
               key={link.label}
               href={link.to}
               onClick={() => setMenuOpen(false)}
-              className="text-sm text-[#020817] hover:text-[#4285f4] transition-colors"
+              className="text-[13px] text-[#020817] hover:text-[#4285f4] transition-colors"
             >
               {link.label}
             </Link>
