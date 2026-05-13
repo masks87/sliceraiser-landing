@@ -27,6 +27,9 @@ import Dashboard from "@/pages/Dashboard";
 import Contact from "@/pages/Contact";
 import Legal from "@/pages/Legal";
 import Terms from "@/pages/Terms";
+import Privacy from "@/pages/Privacy";
+import RiskDisclosure from "@/pages/RiskDisclosure";
+import CookiePolicy from "@/pages/CookiePolicy";
 import Faq from "@/pages/Faq";
 import InvestorRelations from "@/pages/InvestorRelations";
 import { setBaseUrl } from "@workspace/api-client-react";
@@ -216,6 +219,9 @@ function ClerkProviderWithRoutes() {
                 <Route path="/contact" component={Contact} />
                 <Route path="/legal" component={Legal} />
                 <Route path="/terms" component={Terms} />
+                <Route path="/privacy" component={Privacy} />
+                <Route path="/risk-disclosure" component={RiskDisclosure} />
+                <Route path="/cookie-policy" component={CookiePolicy} />
                 <Route path="/faq" component={Faq} />
                 <Route path="/investor-relations" component={InvestorRelations} />
                 <Route path="/ir" component={InvestorRelations} />

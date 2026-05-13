@@ -1,0 +1,115 @@
+Proceed with implementation now.
+
+Stay in Lite mode.
+
+Important:
+You are acting only as the developer.
+Do not create content.
+Do not rewrite content.
+Do not improve wording.
+Do not summarize content.
+Do not add legal disclaimers.
+Do not remove any provided content.
+Do not make business decisions.
+Only implement the exact structure and content provided by the project owner.
+
+Goal:
+Create legal content pages that render from the centralized settings file.
+
+Current confirmed status:
+
+1. /terms exists but content is hardcoded in src/pages/Terms.tsx
+2. /privacy does not exist
+3. /risk-disclosure does not exist
+4. /cookie-policy does not exist
+5. siteSettings.ts already exists
+6. Shared Header and Footer already work through Layout
+
+Files allowed to edit:
+src/config/siteSettings.ts
+src/pages/Terms.tsx
+src/pages/Privacy.tsx
+src/pages/RiskDisclosure.tsx
+src/pages/CookiePolicy.tsx
+src/App.tsx only if routes are missing
+
+Do not edit:
+Header.tsx
+Footer.tsx
+Layout.tsx
+Home.tsx
+Contact.tsx
+API routes
+Resend setup
+Authentication
+Dashboard
+Opportunity data
+Design system
+Colors
+Images
+Animations
+
+Task 1:
+Add a legalPages section to src/config/siteSettings.ts.
+
+The legalPages section must include:
+terms
+privacy
+riskDisclosure
+cookiePolicy
+
+Use this structure:
+title
+effectiveDate
+lastUpdated
+intro
+sections
+
+Each section must support:
+heading
+paragraphs
+bullets optional
+
+Task 2:
+Move the existing Terms page content out of Terms.tsx and into siteSettings.ts under legalPages.terms.
+
+Task 3:
+Create these new page files if they do not exist:
+src/pages/Privacy.tsx
+src/pages/RiskDisclosure.tsx
+src/pages/CookiePolicy.tsx
+
+Task 4:
+Each legal page must render from siteSettings.legalPages only.
+
+Do not hardcode legal content inside page components.
+
+Task 5:
+If useful, create one reusable LegalPage renderer component, but only if it reduces duplication and does not change design.
+
+Task 6:
+Add routes if missing:
+/privacy
+/risk-disclosure
+/cookie-policy
+
+Keep /terms working.
+
+Task 7:
+All four pages must use the existing shared Layout through App.tsx. Do not add local Header or Footer inside legal page files.
+
+Task 8:
+Use only the content already provided in the uploaded legal documentation and project instructions. Do not generate additional legal text.
+
+After implementation, report only:
+
+1. Was legalPages added to siteSettings.ts: yes or no
+2. Which files were created
+3. Which files were updated
+4. Does /terms render from siteSettings.ts: yes or no
+5. Does /privacy render from siteSettings.ts: yes or no
+6. Does /risk-disclosure render from siteSettings.ts: yes or no
+7. Does /cookie-policy render from siteSettings.ts: yes or no
+8. Were Header and Footer left unchanged: yes or no
+9. Was any new content invented by Replit: yes or no
+10. Any TypeScript or runtime errors: yes or no
