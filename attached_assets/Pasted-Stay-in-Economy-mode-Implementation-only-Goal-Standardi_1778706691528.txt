@@ -1,0 +1,119 @@
+Stay in Economy mode.
+
+Implementation only.
+
+Goal:
+Standardize the visual design of the About page so it matches the InvestorRelations.tsx page style and the same standard already applied to Legal, Careers and How It Works.
+
+Allowed file:
+src/pages/About.tsx
+
+Do not edit any other file.
+
+Do not rewrite content.
+Do not add content.
+Do not remove content.
+Do not improve wording.
+Do not change page meaning.
+Do not change routes.
+Do not change buttons or links unless required to preserve existing page behavior.
+Do not edit InvestorRelations.tsx.
+Do not edit Header.tsx.
+Do not edit Footer.tsx.
+Do not edit Layout.tsx.
+Do not edit siteSettings.ts.
+Do not edit App.tsx.
+Do not edit API routes.
+Do not edit database files.
+Do not edit Home.tsx.
+Do not edit Contact.tsx.
+Do not edit legal pages.
+Do not edit opportunity data.
+
+Use InvestorRelations.tsx as the visual reference only.
+
+Apply this same style pattern:
+
+1. Page background:
+#F8F9FA
+
+2. Main container:
+max-w-6xl
+mx-auto
+px-6
+py-16
+
+3. Hero section:
+left aligned
+mb-14
+royal blue title
+subtitle in charcoal or muted grey
+gold accent bar under title or subtitle
+
+4. Section headings:
+royal blue
+bold
+about 26px to 30px
+gold underline under headings
+
+5. Body text:
+charcoal black #2C2C2C
+readable grey only where needed
+around 15px
+comfortable line height
+
+6. Cards:
+white background
+rounded-2xl
+border #E5E7EB
+gold top border #D4AF37
+padding p-6 or p-8
+consistent spacing
+full height in grids
+
+7. Grids:
+mobile 1 column
+tablet 2 columns where suitable
+desktop 3 columns where suitable
+gap-5 or gap-6
+
+8. Market badges or chips:
+white background
+royal blue text
+gold border
+rounded-full
+consistent with InvestorRelations category pills
+
+9. CTA section:
+Keep the current CTA content and buttons.
+Style it consistently with the InvestorRelations page pattern.
+Use royal blue and gold accents only.
+Do not change button labels or links.
+
+10. Buttons:
+primary button royal blue background with white text
+secondary button outlined royal blue
+rounded-xl
+do not change button labels
+
+11. Responsive:
+no horizontal scroll
+mobile readable
+tablet readable
+desktop clean layout
+
+12. Do not use Figma MCP image URLs.
+13. Do not add stock photos.
+14. Do not change Header or Footer.
+15. Keep About page content exactly as currently applied.
+
+After implementation, report only:
+
+1. About.tsx edited: yes or no
+2. Content wording left unchanged: yes or no
+3. InvestorRelations.tsx left unchanged: yes or no
+4. Header and Footer left unchanged: yes or no
+5. Brand colors applied: yes or no
+6. Cards and sections aligned with InvestorRelations style: yes or no
+7. Responsive layout applied: yes or no
+8. Any TypeScript or runtime errors: yes or no
