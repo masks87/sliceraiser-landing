@@ -430,3 +430,71 @@ export const contactInquiryTypes = [
 export const contactAutoReplySubject = "We received your message — SliceRaiser";
 export const contactAutoReplyMessage = "Thank you for contacting SliceRaiser. We have received your request and our team will review it. If the request is suitable, we will contact you with the next steps.";
 export const meetingRequestEnabled = true;
+
+export const aboutPage = {
+  hero: {
+    title: "About SliceRaiser",
+    subtitle: "A global investment lifestyle platform for property, equity and fixed income opportunities"
+  },
+  whoWeAre: {
+    heading: "Who We Are",
+    paragraphs: [
+      "SliceRaiser is a global investment platform and lifestyle ecosystem built for a new generation of investors. We provide access to selected property, equity and fixed income opportunities through one digital platform, helping users explore ownership, income and long term value creation with lower entry barriers.",
+      "SliceRaiser is not only about transactions. It is about building an investment lifestyle where people become SliceRaisers, individuals who think beyond saving, look for ownership opportunities and want to participate in assets, businesses and income focused opportunities that were traditionally harder to access.",
+      "The platform brings together investment access, digital onboarding, marketplace functionality, investor education and community identity. Users are not only browsing opportunities, they are becoming part of a brand built around access, ownership, financial confidence and long term value creation."
+    ]
+  },
+  vision: {
+    heading: "Our Vision",
+    text: "Our vision is to build a global investment lifestyle ecosystem where everyday people can become SliceRaisers by accessing selected opportunities, building financial confidence and participating in long term value creation."
+  },
+  mission: {
+    heading: "Our Mission",
+    text: "Our mission is to turn everyday users into informed co investors by connecting them with selected property, equity and fixed income opportunities through a clear, digital and community driven investment experience."
+  },
+  whyUs: {
+    heading: "Why SliceRaiser",
+    cards: [
+      {
+        title: "Lower Entry Barriers",
+        text: "Access selected property, equity and fixed income opportunities with lower minimum entry points compared to traditional investment routes."
+      },
+      {
+        title: "Multi Asset Platform",
+        text: "One digital platform connecting users to property, equity and fixed income opportunities across selected markets."
+      },
+      {
+        title: "Investment Lifestyle",
+        text: "SliceRaiser is built around ownership, access and long term value creation, not just transactions."
+      },
+      {
+        title: "Community Identity",
+        text: "Join a new generation of co investors building financial confidence and participating in a smarter ownership culture."
+      }
+    ]
+  },
+  team: {
+    heading: "Our Team",
+    members: [
+      {
+        name: "Mamoon Alkhatib",
+        title: "Founder and CEO",
+        bio: "Mamoon Alkhatib is the Founder and CEO of SliceRaiser. He brings practical experience across property investment, IT infrastructure, business development and digital platform planning, with a focus on building scalable ecosystems that connect investors, sponsors and businesses through structured investment opportunities.",
+        linkedin: "https://www.linkedin.com/in/mamoon-alkhatib-77541639/"
+      }
+    ]
+  },
+  markets: {
+    heading: "Our Markets",
+    text: "Our initial focus markets are the UAE and Australia. As SliceRaiser grows, we aim to expand into selected international markets through the right legal, operational and regulatory pathways.",
+    list: ["UAE", "Australia", "Selected international markets planned"]
+  },
+  cta: {
+    heading: "Ready to become a SliceRaiser?",
+    text: "Explore selected property, equity and fixed income opportunities and join a new investment lifestyle built around access, ownership and long term value creation.",
+    primaryButton: "Become a SliceRaiser",
+    primaryLink: "/sign-up",
+    secondaryButton: "Explore Opportunities",
+    secondaryLink: "/properties"
+  }
+};

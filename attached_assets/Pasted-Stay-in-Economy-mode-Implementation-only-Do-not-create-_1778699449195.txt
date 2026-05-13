@@ -1,0 +1,116 @@
+Stay in Economy mode.
+Implementation only.
+Do not create content.
+Do not rewrite content.
+Do not improve wording.
+Use only the exact content provided below.
+Do not change Header.tsx.
+Do not change Footer.tsx.
+Do not change Home.tsx.
+Do not change siteSettings.ts unless 
+adding aboutPage section only.
+Do not change authentication.
+Do not change dashboard.
+Do not change opportunity data.
+Do not build CMS.
+
+Goal:
+Create the About Us page at /about.
+Use shared Layout so Header and Footer 
+are included automatically.
+Create src/pages/About.tsx.
+Add /about route in App.tsx.
+
+Add this section to siteSettings.ts:
+
+export const aboutPage = {
+  hero: {
+    title: "About SliceRaiser",
+    subtitle: "A global investment lifestyle platform for property, equity and fixed income opportunities"
+  },
+  whoWeAre: {
+    heading: "Who We Are",
+    paragraphs: [
+      "SliceRaiser is a global investment platform and lifestyle ecosystem built for a new generation of investors. We provide access to selected property, equity and fixed income opportunities through one digital platform, helping users explore ownership, income and long term value creation with lower entry barriers.",
+      "SliceRaiser is not only about transactions. It is about building an investment lifestyle where people become SliceRaisers, individuals who think beyond saving, look for ownership opportunities and want to participate in assets, businesses and income focused opportunities that were traditionally harder to access.",
+      "The platform brings together investment access, digital onboarding, marketplace functionality, investor education and community identity. Users are not only browsing opportunities, they are becoming part of a brand built around access, ownership, financial confidence and long term value creation."
+    ]
+  },
+  vision: {
+    heading: "Our Vision",
+    text: "Our vision is to build a global investment lifestyle ecosystem where everyday people can become SliceRaisers by accessing selected opportunities, building financial confidence and participating in long term value creation."
+  },
+  mission: {
+    heading: "Our Mission",
+    text: "Our mission is to turn everyday users into informed co investors by connecting them with selected property, equity and fixed income opportunities through a clear, digital and community driven investment experience."
+  },
+  whyUs: {
+    heading: "Why SliceRaiser",
+    cards: [
+      {
+        title: "Lower Entry Barriers",
+        text: "Access selected property, equity and fixed income opportunities with lower minimum entry points compared to traditional investment routes."
+      },
+      {
+        title: "Multi Asset Platform",
+        text: "One digital platform connecting users to property, equity and fixed income opportunities across selected markets."
+      },
+      {
+        title: "Investment Lifestyle",
+        text: "SliceRaiser is built around ownership, access and long term value creation, not just transactions."
+      },
+      {
+        title: "Community Identity",
+        text: "Join a new generation of co investors building financial confidence and participating in a smarter ownership culture."
+      }
+    ]
+  },
+  team: {
+    heading: "Our Team",
+    members: [
+      {
+        name: "Mamoon Alkhatib",
+        title: "Founder and CEO",
+        bio: "Mamoon Alkhatib is the Founder and CEO of SliceRaiser. He brings practical experience across property investment, IT infrastructure, business development and digital platform planning, with a focus on building scalable ecosystems that connect investors, sponsors and businesses through structured investment opportunities.",
+        linkedin: "https://www.linkedin.com/in/mamoon-alkhatib-77541639/"
+      }
+    ]
+  },
+  markets: {
+    heading: "Our Markets",
+    text: "Our initial focus markets are the UAE and Australia. As SliceRaiser grows, we aim to expand into selected international markets through the right legal, operational and regulatory pathways.",
+    list: ["UAE", "Australia", "Selected international markets planned"]
+  },
+  cta: {
+    heading: "Ready to become a SliceRaiser?",
+    text: "Explore selected property, equity and fixed income opportunities and join a new investment lifestyle built around access, ownership and long term value creation.",
+    primaryButton: "Become a SliceRaiser",
+    primaryLink: "/sign-up",
+    secondaryButton: "Explore Opportunities",
+    secondaryLink: "/opportunities"
+  }
+}
+
+Page structure in About.tsx:
+Section 1: Hero — full width #1E3A8A background, white text, title and subtitle centered
+Section 2: Who We Are — white background, render all 3 paragraphs
+Section 3: Vision and Mission — two cards side by side, gold left border #D4AF37
+Section 4: Why SliceRaiser — 4 cards in 2x2 grid, white background, gold icon accent
+Section 5: Team — centered card, avatar initials MA in #1E3A8A circle, name, title, bio, LinkedIn button
+Section 6: Markets — heading, text, 3 location badges
+Section 7: CTA — full width #1E3A8A background, heading, text, two buttons
+
+Brand colors:
+Background: #F8F9FA
+Headings: #1E3A8A
+Text: #2C2C2C
+Accent: #D4AF37
+No dashes or special symbols anywhere in the page.
+
+After implementation confirm:
+1. Was /about route added: yes or no
+2. Was About.tsx created: yes or no
+3. Does /about use shared Header and Footer: yes or no
+4. Was aboutPage added to siteSettings.ts: yes or no
+5. Was any content invented by agent: yes or no — must be no
+6. Any TypeScript or runtime errors: yes or no — must be no
