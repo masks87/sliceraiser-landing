@@ -1,0 +1,56 @@
+Stay in Economy mode.
+
+Implementation only.
+
+Goal:
+Standardize the spacing before the footer across all public pages so the footer always appears like the attached reference.
+
+Allowed files:
+src/components/Layout.tsx
+src/pages/Home.tsx only if Home still needs spacing adjustment
+Any page file only if it has footer spacing hardcoded and cannot be controlled from Layout
+
+Do not edit:
+Footer.tsx design
+Header.tsx
+siteSettings.ts
+API routes
+Database files
+Authentication
+Dashboard
+Opportunity data
+
+Do not change:
+Footer content
+Footer colors
+Footer layout
+Header design
+Page wording
+Page routes
+Page logic
+
+Problem:
+The shared Footer component is the same, but pages visually connect to the footer differently. Some pages end too close to the blue app download band. I want every page to have consistent breathing space before the footer, similar to the reference screenshot.
+
+Task:
+1. Add consistent bottom spacing before the shared Footer across all public pages.
+2. The spacing should be controlled globally through Layout if possible.
+3. Target spacing:
+   Desktop: around 64px to 80px before the footer
+   Tablet: around 48px to 64px
+   Mobile: around 32px to 48px
+4. Do not create large empty gaps. Use clean responsive spacing.
+5. Keep the Footer itself unchanged.
+6. Keep the app download band unchanged.
+7. Ensure Home, Properties, Equity, Fixed Income, Contact, About, How It Works, Legal, Terms, Privacy, Risk Disclosure, Cookie Policy, Careers and Investor Relations all show consistent spacing before the footer.
+8. If Home has custom wrapper spacing that prevents this, adjust only the wrapper or final section spacing without changing content.
+
+After implementation, report only:
+1. Layout.tsx edited: yes or no
+2. Home.tsx edited: yes or no
+3. Any other page files edited: list only
+4. Footer.tsx left unchanged: yes or no
+5. Consistent pre-footer spacing added: yes or no
+6. Desktop/tablet/mobile spacing handled: yes or no
+7. Page content and wording left unchanged: yes or no
+8. Any TypeScript or runtime errors: yes or no
