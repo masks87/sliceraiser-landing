@@ -162,17 +162,25 @@ export default function About() {
                     {member.name}
                   </div>
                   <div
-                    className="text-[14px] mb-2"
+                    className="text-[14px] mb-3"
                     style={{ color: GOLD, fontWeight: 600 }}
                   >
-                    {member.title}
+                    Founder &amp; CEO | Entrepreneurship, Cross-Border Business &amp; Investment Platforms
                   </div>
-                  <p
-                    className="text-[14px] leading-[22px]"
-                    style={{ color: TEXT, fontWeight: 400 }}
-                  >
-                    {member.bio}
-                  </p>
+                  <div className="space-y-3">
+                    <p className="text-[14px] leading-[22px]" style={{ color: TEXT, fontWeight: 400 }}>
+                      Mamoon Alkhatib is the Founder and CEO of SliceRaiser, bringing over 15 years of hands-on experience across entrepreneurship, business development, consulting, infrastructure, technology, and cross-border commercial execution.
+                    </p>
+                    <p className="text-[14px] leading-[22px]" style={{ color: TEXT, fontWeight: 400 }}>
+                      His career has covered multiple industries, including contracting, construction, finance, healthcare, public services, enterprises, startups, e-commerce, and professional services. Through this exposure, he has developed a practical understanding of how businesses are built, how opportunities are created, how partnerships are formed, and how execution challenges are solved across different markets.
+                    </p>
+                    <p className="text-[14px] leading-[22px]" style={{ color: TEXT, fontWeight: 400 }}>
+                      With business and network exposure across the MENA region, Africa, Europe, the United States, and Australia, Mamoon founded SliceRaiser to create a more structured and accessible investment ecosystem.
+                    </p>
+                    <p className="text-[14px] leading-[22px]" style={{ color: TEXT, fontWeight: 400 }}>
+                      As Founder and CEO, he leads the company's vision, commercial strategy, partnerships, investor relationships, market expansion, and platform development, with a focus on connecting investors to curated opportunities across property, equity, and fixed income.
+                    </p>
+                  </div>
                 </div>
                 <div className="flex flex-wrap gap-3 shrink-0">
                   <a

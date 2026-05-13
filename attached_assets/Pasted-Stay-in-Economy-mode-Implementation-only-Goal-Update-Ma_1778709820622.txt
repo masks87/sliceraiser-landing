@@ -1,0 +1,73 @@
+Stay in Economy mode.
+
+Implementation only.
+
+Goal:
+Update Mamoon Alkhatib’s founder bio on the About page only.
+
+Allowed file:
+src/pages/About.tsx
+
+Do not edit any other file.
+
+Do not edit:
+src/pages/Contact.tsx
+src/pages/InvestorRelations.tsx
+src/config/siteSettings.ts
+Header.tsx
+Footer.tsx
+Layout.tsx
+App.tsx
+API routes
+Database files
+Authentication
+Dashboard
+Opportunity data
+
+Do not rewrite content.
+Do not improve wording.
+Do not summarize.
+Use only the exact content provided below.
+
+Do not change:
+Page design
+Page structure
+Buttons
+Links
+Routes
+Footer
+Header
+
+Task:
+Find the Mamoon Alkhatib founder/team bio section in About.tsx and replace only that bio content with the exact content below.
+
+Name:
+Mamoon Alkhatib
+
+Title:
+Founder & CEO | Entrepreneurship, Cross-Border Business & Investment Platforms
+
+Bio paragraph 1:
+Mamoon Alkhatib is the Founder and CEO of SliceRaiser, bringing over 15 years of hands-on experience across entrepreneurship, business development, consulting, infrastructure, technology, and cross-border commercial execution.
+
+Bio paragraph 2:
+His career has covered multiple industries, including contracting, construction, finance, healthcare, public services, enterprises, startups, e-commerce, and professional services. Through this exposure, he has developed a practical understanding of how businesses are built, how opportunities are created, how partnerships are formed, and how execution challenges are solved across different markets.
+
+Bio paragraph 3:
+With business and network exposure across the MENA region, Africa, Europe, the United States, and Australia, Mamoon founded SliceRaiser to create a more structured and accessible investment ecosystem.
+
+Bio paragraph 4:
+As Founder and CEO, he leads the company’s vision, commercial strategy, partnerships, investor relationships, market expansion, and platform development, with a focus on connecting investors to curated opportunities across property, equity, and fixed income.
+
+Important:
+If the current About page layout does not support multiple bio paragraphs, update only the About page bio section layout so it can display these four paragraphs cleanly.
+Do not change any other About page content.
+
+After implementation, report only:
+1. About.tsx edited: yes or no
+2. Only About.tsx edited: yes or no
+3. Mamoon name updated or confirmed: yes or no
+4. Mamoon title updated: yes or no
+5. Full four paragraph bio added: yes or no
+6. Other pages left unchanged: yes or no
+7. Any TypeScript or runtime errors: yes or no
