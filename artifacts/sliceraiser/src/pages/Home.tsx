@@ -115,20 +115,6 @@ export default function Home() {
                   {label}
                 </button>
               ))}
-              <button
-                type="button"
-                onClick={() => openSignIn({ afterSignInUrl: `${basePath}/dashboard` } as Parameters<typeof openSignIn>[0])}
-                className="text-[11px] font-semibold tracking-wide whitespace-nowrap transition-colors bg-transparent border-0 cursor-pointer text-[#020817] hover:text-[#4285f4]"
-              >
-                Log In
-              </button>
-              <button
-                type="button"
-                onClick={() => openSignUp({ afterSignUpUrl: `${basePath}/dashboard` } as Parameters<typeof openSignUp>[0])}
-                className="text-[11px] font-semibold tracking-wide whitespace-nowrap transition-colors bg-transparent border-0 cursor-pointer text-[#020817] hover:text-[#4285f4]"
-              >
-                Sign Up
-              </button>
             </div>
 
             {/* Divider */}
