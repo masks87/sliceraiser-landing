@@ -10,11 +10,11 @@ import imgPhone289192 from '@/assets/phone-289192.png'
 import imgPhoneFrame from '@/assets/phone-frame-1000002023.png'
 import imgLineGraph from '@/assets/phone-line-graph.png'
 import imgPhoneBg from '@/assets/phone-background.png'
-const imgDubaiUae = "https://www.figma.com/api/mcp/asset/042e7b36-e60b-4f1a-9670-8c7d2d095147"
-const imgAbuDhabi = "https://www.figma.com/api/mcp/asset/1628a40a-ce8c-4aa2-9a2c-46334f6ffbc1"
-const imgBrisbane = "https://images.unsplash.com/photo-1566734904496-9309bb1798ae?auto=format&fit=crop&w=1600&q=80"
-const imgSpain = "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=800&q=80"
-const imgFrance = "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80"
+const imgDubaiUae = "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80"
+const imgAbuDhabi = "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80"
+const imgSpain = "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=900&q=80"
+const imgFrance = "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=80"
+const imgItaly = "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=900&q=80"
 const imgGroup289194 = "https://www.figma.com/api/mcp/asset/abf2831e-ac22-426c-870d-b0d3417deb18"
 const imgGroup289195 = "https://www.figma.com/api/mcp/asset/11c45383-8665-4c12-b134-d66c3dbf3c78"
 const imgGroup289196 = "https://www.figma.com/api/mcp/asset/4ecc83fa-5659-4999-ae99-1e23767b07b0"
@@ -448,12 +448,16 @@ export default function Home() {
 
       {/* ── Section 4: Featured Locations ── */}
       <section
-        className="snap-section py-20 px-6"
-        style={{ background: "rgba(241,240,251,0.3)" }}
+        className="snap-section"
+        style={{ background: "rgba(241,240,251,0.3)", padding: "80px 24px" }}
       >
-        <div className="mx-auto" style={{ maxWidth: "1400px" }}>
-          {/* Header */}
-          <div className="flex flex-col items-center mb-12" style={{ gap: "16px" }}>
+        {/* Container — flex col, align-start, padding 0 32px, gap 48px */}
+        <div
+          className="mx-auto flex flex-col items-start"
+          style={{ maxWidth: "1400px", padding: "0 32px", gap: "48px" }}
+        >
+          {/* Header group */}
+          <div className="flex flex-col items-center w-full" style={{ gap: "16px" }}>
             <h2
               style={{
                 fontFamily: "'Inter', sans-serif",
@@ -462,6 +466,7 @@ export default function Home() {
                 lineHeight: "40px",
                 textAlign: "center",
                 color: "#4285F4",
+                margin: 0,
               }}
             >
               Featured Locations
@@ -474,50 +479,31 @@ export default function Home() {
                 lineHeight: "24px",
                 textAlign: "center",
                 color: "#8E9196",
-                maxWidth: "792px",
+                width: "792px",
+                maxWidth: "100%",
+                margin: 0,
               }}
             >
               Explore our exquisite properties in these premium locations across UAE and Europe.
             </p>
           </div>
 
-          {/* Location cards grid — Dubai wide on top, others below */}
-          <div className="flex flex-col" style={{ gap: "24px" }}>
-            {/* Row 1: Dubai wide card */}
-            <LocationCard
-              name="Dubai, UAE"
-              text="A leading investment market known for premium real estate, global connectivity and strong investor demand."
-              img={imgDubaiUae}
-              height="280px"
-              wide
-            />
-            {/* Row 2: smaller cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: "24px" }}>
-              <LocationCard
-                name="Abu Dhabi, UAE"
-                text="A strategic capital market supported by long-term planning, institutional growth and economic stability."
-                img={imgAbuDhabi}
-                height="280px"
-              />
-              <LocationCard
-                name="Brisbane, Australia"
-                text="A growing Australian market with strong lifestyle demand, infrastructure growth and long-term investment potential."
-                img={imgBrisbane}
-                height="280px"
-              />
-              <LocationCard
-                name="Spain"
-                text="A vibrant Mediterranean market offering exceptional lifestyle properties with strong rental yield potential."
-                img={imgSpain}
-                height="280px"
-              />
-              <LocationCard
-                name="France"
-                text="Europe's most prestigious property market combining cultural heritage with world-class investment opportunities."
-                img={imgFrance}
-                height="280px"
-              />
-            </div>
+          {/* Cards — 3-column CSS grid, Dubai spans 2 cols
+               Row 1: Dubai (span 2) + Abu Dhabi (span 1)
+               Row 2: Spain + France + Italy (each span 1)          */}
+          <div
+            className="w-full"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "24px",
+            }}
+          >
+            <LocationCard name="Dubai, UAE"     count="120 Properties" img={imgDubaiUae} span={2} />
+            <LocationCard name="Abu Dhabi, UAE" count="95 Properties"  img={imgAbuDhabi} />
+            <LocationCard name="Spain"          count="78 Properties"  img={imgSpain} />
+            <LocationCard name="France"         count="62 Properties"  img={imgFrance} />
+            <LocationCard name="Italy"          count="56 Properties"  img={imgItaly} />
           </div>
         </div>
       </section>
@@ -651,39 +637,40 @@ export default function Home() {
 
 function LocationCard({
   name,
-  text,
+  count,
   img,
-  height,
-  wide = false,
+  span = 1,
 }: {
   name: string
-  text: string
+  count: string
   img: string
-  height: string
-  wide?: boolean
+  span?: number
 }) {
   return (
     <div
       className="group relative overflow-hidden"
       style={{
-        height,
-        width: wide ? "100%" : undefined,
+        height: "280px",
+        gridColumn: span > 1 ? `span ${span}` : undefined,
         borderRadius: "16px",
         boxShadow: "0px 20px 25px -5px rgba(0,0,0,0.1), 0px 8px 10px -6px rgba(0,0,0,0.1)",
         backdropFilter: "blur(6px)",
         cursor: "pointer",
+        border: "1px solid rgba(255,255,255,0.3)",
       }}
     >
+      {/* Background image */}
       <img
         src={img}
         alt={name}
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
+      {/* Dark overlay */}
       <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.3)" }} />
-      {/* Bottom overlay */}
+      {/* Text: pinned to bottom, height 100px, padding 24px, gap 4px */}
       <div
-        className="absolute bottom-0 left-0 right-0 flex flex-col items-start"
-        style={{ padding: "24px", gap: "4px" }}
+        className="absolute left-0 right-0 bottom-0 flex flex-col items-start"
+        style={{ height: "100px", padding: "24px", gap: "4px", justifyContent: "flex-end" }}
       >
         <p
           style={{
@@ -692,6 +679,7 @@ function LocationCard({
             fontSize: "20px",
             lineHeight: "28px",
             color: "#FFFFFF",
+            margin: 0,
           }}
         >
           {name}
@@ -702,10 +690,11 @@ function LocationCard({
             fontWeight: 400,
             fontSize: "14px",
             lineHeight: "20px",
-            color: "rgba(255,255,255,0.85)",
+            color: "rgba(255,255,255,0.8)",
+            margin: 0,
           }}
         >
-          {text}
+          {count}
         </p>
       </div>
     </div>
