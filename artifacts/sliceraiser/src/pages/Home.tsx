@@ -12,9 +12,11 @@ import imgPhoneBg from '@/assets/phone-background.png'
 import imgGroup289194 from '@/assets/group-289194.png'
 import imgGroup289195 from '@/assets/group-289195.png'
 import imgGroup289196 from '@/assets/group-289196.png'
-const imgDubaiUae = "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80"
-const imgAbuDhabi = "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80"
-const imgEurope   = "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1600&q=80"
+import imgDubai    from "@/assets/loc-dubai.jpg"
+import imgAbuDhabi from "@/assets/loc-abudhabi.jpg"
+import imgSpain    from "@/assets/loc-spain.jpg"
+import imgFrance   from "@/assets/loc-france.jpg"
+import imgItaly    from "@/assets/loc-italy.jpg"
 
 const features = [
   {
@@ -519,14 +521,14 @@ export default function Home() {
       <section
         className="snap-section"
         data-label="locations"
-        style={{ background: "rgba(241,240,251,0.3)", minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}
+        style={{ background: "#080D1A", minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}
       >
         <div
           className="mx-auto flex flex-col items-center"
-          style={{ maxWidth: "1200px", padding: "0 32px", gap: "48px", width: "100%" }}
+          style={{ maxWidth: "1200px", padding: "0 32px", gap: "40px", width: "100%" }}
         >
-          {/* Header group */}
-          <div className="flex flex-col items-center w-full" style={{ gap: "16px" }}>
+          {/* Header */}
+          <div className="flex flex-col items-center w-full" style={{ gap: "14px" }}>
             <h2
               className="home-section-h2 fade-up"
               style={{
@@ -546,12 +548,11 @@ export default function Home() {
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 400,
-                fontSize: "20px",
-                lineHeight: "24px",
+                fontSize: "18px",
+                lineHeight: "26px",
                 textAlign: "center",
-                color: "#8E9196",
-                width: "792px",
-                maxWidth: "100%",
+                color: "rgba(255,255,255,0.65)",
+                maxWidth: "680px",
                 margin: 0,
               }}
             >
@@ -559,18 +560,23 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Cards — 3 equal columns */}
+          {/* Row 1: Dubai (wide) + Abu Dhabi */}
           <div
-            className="locations-grid fade-up delay-2 w-full"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "24px",
-            }}
+            className="fade-up delay-2 w-full"
+            style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "16px" }}
           >
-            <LocationCard name="Dubai, UAE"     count="120 Properties" img={imgDubaiUae} />
-            <LocationCard name="Abu Dhabi, UAE" count="95 Properties"  img={imgAbuDhabi} />
-            <LocationCard name="Europe"         count="200+ Properties" img={imgEurope} />
+            <LocationCard name="Dubai, UAE"     count="120 Properties" img={imgDubai}    height={280} />
+            <LocationCard name="Abu Dhabi, UAE" count="95 Properties"  img={imgAbuDhabi} height={280} />
+          </div>
+
+          {/* Row 2: Spain + France + Italy */}
+          <div
+            className="fade-up delay-3 w-full"
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}
+          >
+            <LocationCard name="Spain"  count="78 Properties" img={imgSpain}  height={240} />
+            <LocationCard name="France" count="62 Properties" img={imgFrance} height={240} />
+            <LocationCard name="Italy"  count="56 Properties" img={imgItaly}  height={240} />
           </div>
         </div>
       </section>
@@ -773,26 +779,21 @@ function LocationCard({
   name,
   count,
   img,
-  span = 1,
-  extraClass = "",
+  height = 280,
 }: {
   name: string
   count: string
   img: string
-  span?: number
-  extraClass?: string
+  height?: number
 }) {
   return (
     <div
-      className={`location-card group relative overflow-hidden ${extraClass}`}
+      className="location-card group relative overflow-hidden"
       style={{
-        height: "280px",
-        gridColumn: span > 1 ? `span ${span}` : undefined,
-        borderRadius: "16px",
-        boxShadow: "0px 20px 25px -5px rgba(0,0,0,0.1), 0px 8px 10px -6px rgba(0,0,0,0.1)",
-        backdropFilter: "blur(6px)",
+        height: `${height}px`,
+        borderRadius: "14px",
         cursor: "pointer",
-        border: "1px solid rgba(255,255,255,0.3)",
+        border: "1px solid rgba(255,255,255,0.12)",
       }}
     >
       {/* Background image */}
@@ -801,24 +802,39 @@ function LocationCard({
         alt={name}
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
-      {/* Dark overlay */}
-      <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.3)" }} />
-      {/* Text: pinned to bottom, height 100px, padding 24px, gap 4px */}
+      {/* Gradient overlay — stronger at bottom */}
+      <div
+        className="absolute inset-0"
+        style={{ background: "linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.12) 55%, transparent 100%)" }}
+      />
+      {/* Text pinned to bottom-left */}
       <div
         className="absolute left-0 right-0 bottom-0 flex flex-col items-start"
-        style={{ height: "100px", padding: "24px", gap: "4px", justifyContent: "flex-end" }}
+        style={{ padding: "20px 22px", gap: "3px" }}
       >
         <p
           style={{
             fontFamily: "'Inter', sans-serif",
             fontWeight: 700,
             fontSize: "20px",
-            lineHeight: "28px",
+            lineHeight: "26px",
             color: "#FFFFFF",
             margin: 0,
           }}
         >
           {name}
+        </p>
+        <p
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 400,
+            fontSize: "14px",
+            lineHeight: "20px",
+            color: "rgba(255,255,255,0.8)",
+            margin: 0,
+          }}
+        >
+          {count}
         </p>
       </div>
     </div>
