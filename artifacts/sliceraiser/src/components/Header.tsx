@@ -40,23 +40,32 @@ function JurisdictionSelector() {
   };
 
   return (
-    <div className="flex items-center gap-2 shrink-0">
-      <span style={{ fontSize: "11px", color: "#94A3B8", lineHeight: 1.2 }}>
-        Regulatory
+    <div className="flex flex-col shrink-0" style={{ gap: "2px" }}>
+      <span
+        className="flex items-center gap-1"
+        style={{ fontSize: "10px", color: "#94A3B8", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase" }}
+      >
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+          <circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        Location
       </span>
       <div className="relative">
         <select
           value={value}
           onChange={handleChange}
-          aria-label="Regulatory Environment"
-          className="appearance-none cursor-pointer transition-colors"
+          aria-label="Location"
+          className="appearance-none cursor-pointer transition-all hover:border-[#4285F4]"
           style={{
-            backgroundColor: "transparent",
+            backgroundColor: "#F8FAFC",
             border: "1px solid #E2E8F0",
             color: "#122D4D",
             fontSize: "13px",
-            padding: "4px 26px 4px 10px",
-            borderRadius: "6px",
+            fontWeight: 600,
+            padding: "5px 28px 5px 10px",
+            borderRadius: "8px",
+            minWidth: "80px",
           }}
         >
           {jurisdictionSettings.options.map((opt) => (
@@ -67,12 +76,12 @@ function JurisdictionSelector() {
         </select>
         <svg
           className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3"
-          style={{ color: "#122D4D" }}
+          style={{ color: "#4285F4" }}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
         </svg>
       </div>
     </div>
@@ -108,6 +117,39 @@ function Logo() {
   return (
     <Link href="/" className="flex items-center shrink-0">
       <img src={logoImg} alt="Slice Raiser" className="h-[22px] w-auto object-contain" />
+    </Link>
+  );
+}
+
+function NavLink({ href, label, active }: { href: string; label: string; active: boolean }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <Link
+      href={href}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative px-4 py-2 whitespace-nowrap group"
+      style={{
+        fontFamily: "'Inter', sans-serif",
+        fontSize: "14px",
+        lineHeight: "20px",
+        fontWeight: active ? 800 : 500,
+        color: active || hovered ? "#4285F4" : "#122D4D",
+        transition: "color 0.18s ease",
+      }}
+    >
+      {label}
+      {/* underline bar */}
+      <span
+        className="absolute bottom-0 left-4 right-4 rounded-full"
+        style={{
+          height: "2px",
+          backgroundColor: "#4285F4",
+          transform: active || hovered ? "scaleX(1)" : "scaleX(0)",
+          transformOrigin: "left",
+          transition: "transform 0.2s ease",
+        }}
+      />
     </Link>
   );
 }
@@ -161,20 +203,7 @@ export default function Header() {
                   ? false
                   : location === to;
               return (
-                <Link
-                  key={label}
-                  href={to}
-                  className="px-4 py-2 whitespace-nowrap transition-colors"
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "14px",
-                    lineHeight: "20px",
-                    fontWeight: isActive ? 800 : 500,
-                    color: isActive ? "#4285F4" : "#122D4D",
-                  }}
-                >
-                  {label}
-                </Link>
+                <NavLink key={label} href={to} active={isActive} label={label} />
               );
             })}
           </div>
@@ -220,12 +249,12 @@ export default function Header() {
           </div>
 
           {/* Auth buttons */}
-          <div className="flex items-center gap-5 ml-2 shrink-0">
+          <div className="flex items-center gap-3 ml-2 shrink-0">
             <Show when="signed-out">
               <button
                 type="button"
                 onClick={() => openSignIn()}
-                className="flex items-center justify-center transition-opacity hover:opacity-90 whitespace-nowrap"
+                className="flex items-center justify-center whitespace-nowrap"
                 style={{
                   width: "120px",
                   height: "48px",
@@ -237,6 +266,15 @@ export default function Header() {
                   fontWeight: 700,
                   fontSize: "15px",
                   letterSpacing: "-0.01em",
+                  transition: "transform 0.18s ease, box-shadow 0.18s ease",
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 20px rgba(66,133,244,0.45)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
                 }}
               >
                 Log In
@@ -244,7 +282,7 @@ export default function Header() {
               <button
                 type="button"
                 onClick={() => openSignUp()}
-                className="flex items-center justify-center transition-opacity hover:opacity-90 whitespace-nowrap"
+                className="flex items-center justify-center whitespace-nowrap"
                 style={{
                   width: "120px",
                   height: "48px",
@@ -256,6 +294,15 @@ export default function Header() {
                   fontWeight: 700,
                   fontSize: "15px",
                   letterSpacing: "-0.01em",
+                  transition: "transform 0.18s ease, box-shadow 0.18s ease",
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 20px rgba(8,47,111,0.45)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
                 }}
               >
                 Sign Up
