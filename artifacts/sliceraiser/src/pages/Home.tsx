@@ -86,9 +86,13 @@ export default function Home() {
     const getSections = () =>
       Array.from(document.querySelectorAll<HTMLElement>('.snap-section'))
 
-    // Find which section is currently most visible
+    // Find which section is currently most visible.
+    // Returns sections.length when the page is scrolled into the footer zone.
     const currentIndex = () => {
       const sections = getSections()
+      if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 50) {
+        return sections.length // footer zone
+      }
       let best = 0
       let bestDist = Infinity
       sections.forEach((s, i) => {
@@ -100,8 +104,13 @@ export default function Home() {
 
     const goTo = (idx: number) => {
       const sections = getSections()
-      const target = sections[Math.max(0, Math.min(idx, sections.length - 1))]
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      if (idx < 0) return
+      if (idx >= sections.length) {
+        // Scroll past last section to reveal the footer
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+        return
+      }
+      sections[idx].scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
 
     let locked = false
