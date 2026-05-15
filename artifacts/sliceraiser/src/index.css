@@ -60,15 +60,15 @@ body {
 }
 
 .phone-item.phone-visible {
-  animation: phoneRise 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: phoneRise 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .phone-item.phone-visible:nth-child(1) { animation-delay: 0ms; }
-.phone-item.phone-visible:nth-child(2) { animation-delay: 80ms; }
-.phone-item.phone-visible:nth-child(3) { animation-delay: 160ms; }
-.phone-item.phone-visible:nth-child(4) { animation-delay: 240ms; }
-.phone-item.phone-visible:nth-child(5) { animation-delay: 320ms; }
-.phone-item.phone-visible:nth-child(6) { animation-delay: 400ms; }
+.phone-item.phone-visible:nth-child(2) { animation-delay: 200ms; }
+.phone-item.phone-visible:nth-child(3) { animation-delay: 400ms; }
+.phone-item.phone-visible:nth-child(4) { animation-delay: 600ms; }
+.phone-item.phone-visible:nth-child(5) { animation-delay: 800ms; }
+.phone-item.phone-visible:nth-child(6) { animation-delay: 1000ms; }
 
 #root {
   width: 100%;
