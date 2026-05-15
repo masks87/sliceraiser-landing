@@ -49,24 +49,25 @@ function JurisdictionSelector() {
           value={value}
           onChange={handleChange}
           aria-label="Regulatory Environment"
-          className="appearance-none cursor-pointer transition-colors hover:bg-[#1E3A8A]"
+          className="appearance-none cursor-pointer transition-colors"
           style={{
             backgroundColor: "transparent",
-            border: "1px solid #334155",
-            color: "#020817",
+            border: "1px solid #E2E8F0",
+            color: "#122D4D",
             fontSize: "13px",
             padding: "4px 26px 4px 10px",
             borderRadius: "6px",
           }}
         >
           {jurisdictionSettings.options.map((opt) => (
-            <option key={opt.value} value={opt.value} style={{ color: "#020817" }}>
+            <option key={opt.value} value={opt.value} style={{ color: "#122D4D" }}>
               {opt.label}
             </option>
           ))}
         </select>
         <svg
-          className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-[#020817]"
+          className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3"
+          style={{ color: "#122D4D" }}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -89,9 +90,10 @@ function useAuthModal() {
 
 const navLinks = [
   { label: "HOME", to: "/" },
-  { label: "PROPERTIES", to: "/properties" },
-  { label: "EQUITY", to: "/equity" },
+  { label: "PROPERTIES INVESTMENTS", to: "/properties" },
+  { label: "EQUITY INVESTMENTS", to: "/equity" },
   { label: "FIXED INCOME", to: "/fixed-income" },
+  { label: "MARKETPLACE", to: "/properties" },
 ];
 
 const mobileLinks = [
@@ -99,12 +101,12 @@ const mobileLinks = [
   { label: "Properties", to: "/properties" },
   { label: "Equity", to: "/equity" },
   { label: "Fixed Income", to: "/fixed-income" },
+  { label: "Marketplace", to: "/properties" },
 ];
 
 function Logo() {
   return (
-    <Link href="/" className="flex items-center">
-      {/* CMS: logo image — replace logoImg src with CMS logoUrl when ready */}
+    <Link href="/" className="flex items-center shrink-0">
       <img src={logoImg} alt="Slice Raiser" className="h-[22px] w-auto object-contain" />
     </Link>
   );
@@ -118,14 +120,16 @@ function SignedInMenu() {
   return (
     <div className="flex items-center gap-2">
       <div
-        className="w-8 h-8 rounded-full bg-[#082f6f] text-white text-[12px] font-semibold flex items-center justify-center"
+        className="w-8 h-8 rounded-full text-white text-[12px] font-semibold flex items-center justify-center"
+        style={{ backgroundColor: "#082F6F" }}
         title={user?.primaryEmailAddress?.emailAddress ?? ""}
       >
         {initial.toUpperCase()}
       </div>
       <button
         onClick={() => signOut({ redirectUrl: import.meta.env.BASE_URL })}
-        className="text-[12px] font-medium text-[#020817] hover:text-[#4285f4] transition-colors"
+        className="text-[12px] font-medium hover:text-[#4285f4] transition-colors"
+        style={{ color: "#122D4D" }}
       >
         Sign out
       </button>
@@ -140,20 +144,34 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.07)]">
-      <nav className="hidden lg:flex items-center justify-center h-[60px] px-6">
-        <div className="flex items-center gap-3">
+
+      {/* ── Desktop nav (80px height per Figma) ── */}
+      <nav className="hidden lg:flex items-center justify-center h-[80px] px-6 gap-0">
+        <div className="flex items-center gap-4 w-full max-w-[1600px]">
+
           <Logo />
 
-          <div className="flex items-center gap-5 ml-6">
+          {/* Nav links */}
+          <div className="flex items-center ml-4">
             {navLinks.map(({ label, to }) => {
-              const active = to === "/" ? location === "/" : location === to;
+              const isActive =
+                label === "HOME"
+                  ? location === "/"
+                  : label === "MARKETPLACE"
+                  ? false
+                  : location === to;
               return (
                 <Link
                   key={label}
                   href={to}
-                  className={`text-[11px] font-semibold tracking-wide whitespace-nowrap transition-colors ${
-                    active ? "text-[#4285f4]" : "text-[#020817] hover:text-[#4285f4]"
-                  }`}
+                  className="px-4 py-2 whitespace-nowrap transition-colors"
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "14px",
+                    lineHeight: "20px",
+                    fontWeight: isActive ? 800 : 500,
+                    color: isActive ? "#4285F4" : "#122D4D",
+                  }}
                 >
                   {label}
                 </Link>
@@ -161,12 +179,31 @@ export default function Header() {
             })}
           </div>
 
-          <div className="w-px h-8 bg-gray-200 mx-3 shrink-0" />
+          {/* Blue vertical divider */}
+          <div
+            className="shrink-0 mx-2"
+            style={{ width: "1px", height: "36px", backgroundColor: "#4285F4" }}
+          />
 
           <JurisdictionSelector />
 
-          <div className="flex items-center gap-2 border border-gray-200 rounded-lg px-3 py-1.5 w-40 shrink-0">
-            <svg className="w-4 h-4 text-[#8e9196] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {/* Search bar */}
+          <div
+            className="flex items-center gap-2 px-3 shrink-0"
+            style={{
+              width: "160px",
+              height: "40px",
+              backgroundColor: "#F5F5F5",
+              borderRadius: "10px",
+            }}
+          >
+            <svg
+              className="w-4 h-4 shrink-0"
+              style={{ color: "#919295" }}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -177,23 +214,49 @@ export default function Header() {
             <input
               type="text"
               placeholder="Search here"
-              className="text-[12px] text-[#8e9196] bg-transparent outline-none w-full placeholder-[#8e9196]"
+              className="bg-transparent outline-none w-full"
+              style={{ fontSize: "12px", color: "#919295" }}
             />
           </div>
 
-          <div className="flex items-center gap-2">
+          {/* Auth buttons */}
+          <div className="flex items-center gap-5 ml-2 shrink-0">
             <Show when="signed-out">
               <button
                 type="button"
                 onClick={() => openSignIn()}
-                className="bg-[#4285f4] text-white text-[13px] font-medium px-5 py-2 rounded-lg hover:bg-[#3570d4] transition-colors whitespace-nowrap"
+                className="flex items-center justify-center transition-opacity hover:opacity-90 whitespace-nowrap"
+                style={{
+                  width: "120px",
+                  height: "48px",
+                  background:
+                    "linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 100%), #4285F4",
+                  borderRadius: "10px",
+                  color: "#FFFFFF",
+                  fontFamily: "'Montserrat', 'Inter', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "15px",
+                  letterSpacing: "-0.01em",
+                }}
               >
                 Log In
               </button>
               <button
                 type="button"
                 onClick={() => openSignUp()}
-                className="bg-[#082f6f] text-white text-[13px] font-medium px-5 py-2 rounded-lg hover:bg-[#061f4a] transition-colors whitespace-nowrap"
+                className="flex items-center justify-center transition-opacity hover:opacity-90 whitespace-nowrap"
+                style={{
+                  width: "120px",
+                  height: "48px",
+                  background:
+                    "linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 100%), #082F6F",
+                  borderRadius: "10px",
+                  color: "#FFFFFF",
+                  fontFamily: "'Montserrat', 'Inter', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "15px",
+                  letterSpacing: "-0.01em",
+                }}
               >
                 Sign Up
               </button>
@@ -205,6 +268,7 @@ export default function Header() {
         </div>
       </nav>
 
+      {/* ── Mobile nav ── */}
       <nav className="lg:hidden flex items-center justify-between h-14 px-2 sm:px-4 gap-1.5">
         <Logo />
         <div className="flex items-center gap-1 sm:gap-2 shrink-0">
@@ -212,14 +276,16 @@ export default function Header() {
             <button
               type="button"
               onClick={() => openSignIn()}
-              className="bg-[#4285f4] text-white text-[10px] sm:text-[12px] font-medium px-2 sm:px-3 py-1 sm:py-1.5 rounded-md hover:bg-[#3570d4] transition-colors whitespace-nowrap"
+              className="text-white text-[10px] sm:text-[12px] font-medium px-2 sm:px-3 py-1 sm:py-1.5 rounded-md transition-opacity hover:opacity-90 whitespace-nowrap"
+              style={{ backgroundColor: "#4285F4" }}
             >
               Log In
             </button>
             <button
               type="button"
               onClick={() => openSignUp()}
-              className="bg-[#082f6f] text-white text-[10px] sm:text-[12px] font-medium px-2 sm:px-3 py-1 sm:py-1.5 rounded-md hover:bg-[#061f4a] transition-colors whitespace-nowrap"
+              className="text-white text-[10px] sm:text-[12px] font-medium px-2 sm:px-3 py-1 sm:py-1.5 rounded-md transition-opacity hover:opacity-90 whitespace-nowrap"
+              style={{ backgroundColor: "#082F6F" }}
             >
               Sign Up
             </button>
@@ -227,14 +293,25 @@ export default function Header() {
           <Show when="signed-in">
             <SignedInMenu />
           </Show>
-          <button className="p-1 shrink-0" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
-            <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#020817]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button
+            className="p-1 shrink-0"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg
+              className="w-5 h-5 sm:w-6 sm:h-6"
+              style={{ color: "#122D4D" }}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
       </nav>
 
+      {/* Mobile menu drawer */}
       {menuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-100 px-6 py-4 flex flex-col gap-4">
           {mobileLinks.map((link) => (
@@ -242,7 +319,8 @@ export default function Header() {
               key={link.label}
               href={link.to}
               onClick={() => setMenuOpen(false)}
-              className="text-[13px] text-[#020817] hover:text-[#4285f4] transition-colors"
+              className="transition-colors hover:text-[#4285F4]"
+              style={{ fontSize: "13px", color: "#122D4D" }}
             >
               {link.label}
             </Link>
@@ -251,21 +329,17 @@ export default function Header() {
             <div className="flex gap-3 pt-2 border-t border-gray-100">
               <button
                 type="button"
-                onClick={() => {
-                  setMenuOpen(false);
-                  openSignIn();
-                }}
-                className="flex-1 text-center bg-[#4285f4] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#3570d4] transition-colors"
+                onClick={() => { setMenuOpen(false); openSignIn(); }}
+                className="flex-1 text-center text-white text-sm font-medium py-2.5 rounded-lg transition-opacity hover:opacity-90"
+                style={{ backgroundColor: "#4285F4" }}
               >
                 Log In
               </button>
               <button
                 type="button"
-                onClick={() => {
-                  setMenuOpen(false);
-                  openSignUp();
-                }}
-                className="flex-1 text-center bg-[#082f6f] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#061f4a] transition-colors"
+                onClick={() => { setMenuOpen(false); openSignUp(); }}
+                className="flex-1 text-center text-white text-sm font-medium py-2.5 rounded-lg transition-opacity hover:opacity-90"
+                style={{ backgroundColor: "#082F6F" }}
               >
                 Sign Up
               </button>
