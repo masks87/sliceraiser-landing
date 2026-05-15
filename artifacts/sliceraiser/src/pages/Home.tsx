@@ -80,6 +80,77 @@ export default function Home() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Section-by-section scroll hijacking
+  useEffect(() => {
+    const getSections = () =>
+      Array.from(document.querySelectorAll<HTMLElement>('.snap-section'))
+
+    // Find which section is currently most visible
+    const currentIndex = () => {
+      const sections = getSections()
+      let best = 0
+      let bestDist = Infinity
+      sections.forEach((s, i) => {
+        const dist = Math.abs(s.getBoundingClientRect().top)
+        if (dist < bestDist) { bestDist = dist; best = i }
+      })
+      return best
+    }
+
+    const goTo = (idx: number) => {
+      const sections = getSections()
+      const target = sections[Math.max(0, Math.min(idx, sections.length - 1))]
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+
+    let locked = false
+    const lock = () => {
+      locked = true
+      setTimeout(() => { locked = false }, 900)
+    }
+
+    // Wheel
+    const onWheel = (e: WheelEvent) => {
+      if (locked) { e.preventDefault(); return }
+      e.preventDefault()
+      lock()
+      goTo(currentIndex() + (e.deltaY > 0 ? 1 : -1))
+    }
+
+    // Keyboard: arrow down/up, page down/up, space
+    const onKey = (e: KeyboardEvent) => {
+      const keys = ['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', ' ']
+      if (!keys.includes(e.key)) return
+      if (locked) { e.preventDefault(); return }
+      e.preventDefault()
+      lock()
+      const dir = ['ArrowDown', 'PageDown', ' '].includes(e.key) ? 1 : -1
+      goTo(currentIndex() + dir)
+    }
+
+    // Touch
+    let touchStartY = 0
+    const onTouchStart = (e: TouchEvent) => { touchStartY = e.touches[0].clientY }
+    const onTouchEnd = (e: TouchEvent) => {
+      if (locked) return
+      const delta = touchStartY - e.changedTouches[0].clientY
+      if (Math.abs(delta) < 40) return
+      lock()
+      goTo(currentIndex() + (delta > 0 ? 1 : -1))
+    }
+
+    window.addEventListener('wheel', onWheel, { passive: false })
+    window.addEventListener('keydown', onKey)
+    window.addEventListener('touchstart', onTouchStart, { passive: true })
+    window.addEventListener('touchend', onTouchEnd, { passive: true })
+    return () => {
+      window.removeEventListener('wheel', onWheel)
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('touchstart', onTouchStart)
+      window.removeEventListener('touchend', onTouchEnd)
+    }
+  }, [])
+
   useEffect(() => {
     const refs = [phoneClusterRef, phone2ClusterRef]
     const observers = refs.map(ref => {
