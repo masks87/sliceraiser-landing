@@ -63,7 +63,7 @@ function JurisdictionDisclaimer() {
   );
 }
 
-const APP_BAND_BG = "#1E3A8A";
+const APP_BAND_BG = "linear-gradient(135deg, #0A2558 0%, #1E3A8A 60%, #1a3580 100%)";
 const GOLD = "#D4AF37";
 
 function AppleIcon(props: SVGProps<SVGSVGElement>) {
@@ -98,8 +98,8 @@ function StoreButton({
   url: string;
 }) {
   const inner = (
-    <div className="w-full sm:w-auto sm:min-w-[180px] lg:w-[200px] h-[56px] inline-flex items-center justify-center sm:justify-start gap-3 bg-black text-white rounded-xl px-4 py-2 select-none"
-      style={{ border: "1px solid rgba(255,255,255,0.12)" }}
+    <div className="w-[160px] h-[54px] inline-flex items-center justify-start gap-3 bg-black text-white rounded-xl px-4 py-2 select-none"
+      style={{ border: "1px solid rgba(255,255,255,0.16)" }}
     >
       <Icon className="w-7 h-7 shrink-0" />
       <div className="text-left leading-tight min-w-0">
@@ -197,47 +197,34 @@ function AppWaitlistForm() {
 
 function AppDownloadBand() {
   return (
-    <section style={{ backgroundColor: APP_BAND_BG }} className="w-full text-white">
-      <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        <div className="text-center lg:text-left">
-          {/* CMS: appDownloadHeading */}
-          <h2
-            className="text-[24px] font-bold leading-tight"
-            style={{ color: "#FFFFFF" }}
-          >
-            {appDownloadHeading}
-          </h2>
-          {/* CMS: appDownloadSubtext */}
-          <p
-            className="mt-3 text-[15px] leading-[24px] max-w-xl mx-auto lg:mx-0"
-            style={{ color: "rgba(255,255,255,0.9)" }}
-          >
-            {appDownloadSubtext}
-          </p>
-        </div>
-        <div className="flex flex-col items-stretch gap-4 lg:items-end">
-          <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-end w-full">
-            {/* CMS: iosAppText, iosAppUrl */}
-            <StoreButton
-              Icon={AppleIcon}
-              topLine="Download on the"
-              bottomLine="App Store"
-              url={iosAppUrl}
-            />
-            {/* CMS: googlePlayText, googlePlayUrl */}
-            <StoreButton
-              Icon={GooglePlayIcon}
-              topLine="Get it on"
-              bottomLine="Google Play"
-              url={googlePlayUrl}
-            />
+    <>
+      <section style={{ background: APP_BAND_BG }} className="w-full text-white">
+        <div className="max-w-5xl mx-auto px-6 py-14 flex flex-col lg:flex-row items-center gap-10">
+          {/* Left: heading + subtext */}
+          <div className="flex-1 text-center lg:text-left">
+            <h2 className="text-[26px] sm:text-[30px] font-bold leading-tight tracking-tight" style={{ color: "#FFFFFF" }}>
+              {appDownloadHeading}
+            </h2>
+            <p className="mt-3 text-[15px] leading-[26px] max-w-lg mx-auto lg:mx-0" style={{ color: "rgba(255,255,255,0.80)" }}>
+              {appDownloadSubtext}
+            </p>
           </div>
-          <div className="w-full lg:max-w-md">
-            <AppWaitlistForm />
+
+          {/* Right: store buttons + waitlist */}
+          <div className="flex flex-col items-center lg:items-end gap-4 w-full lg:w-auto">
+            <div className="flex flex-row gap-3 flex-wrap justify-center lg:justify-end">
+              <StoreButton Icon={AppleIcon} topLine="Download on the" bottomLine="App Store" url={iosAppUrl} />
+              <StoreButton Icon={GooglePlayIcon} topLine="Get it on" bottomLine="Google Play" url={googlePlayUrl} />
+            </div>
+            <div className="w-full max-w-md">
+              <AppWaitlistForm />
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      {/* Gradient bridge from band → footer */}
+      <div style={{ background: "linear-gradient(to bottom, #1E3A8A 0%, #0F172A 100%)", height: "56px" }} />
+    </>
   );
 }
 
@@ -367,7 +354,7 @@ export default function Footer() {
   return (
     <footer style={{ backgroundColor: BG, fontFamily: INTER }}>
       <AppDownloadBand />
-      <div className="max-w-6xl mx-auto px-6 py-16">
+      <div className="max-w-6xl mx-auto px-6 pt-10 pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
 
           {/* Column 1 Brand */}
