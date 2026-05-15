@@ -660,8 +660,8 @@ export default function Home() {
           style={{ maxWidth: "1400px", padding: "0 32px", gap: "64px", width: "100%" }}
         >
 
-          {/* ── LEFT: 636px column ── */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left" style={{ width: "636px", maxWidth: "100%", gap: "24px", flexShrink: 0 }}>
+          {/* ── LEFT column ── */}
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left" style={{ maxWidth: "636px", gap: "24px" }}>
 
             {/* Heading */}
             <h2 className="home-section-h2 fade-up" style={{
@@ -687,61 +687,45 @@ export default function Home() {
               Our curated real estate investment opportunities offer exceptional returns in high-growth markets. With strategic locations across UAE and Europe, our properties combine luxury living with strong investment potential.
             </p>
 
-            {/* 2 × 2 feature cards — absolute-positioned inside 636 × 388 container */}
-            <div className="feature-cards-abs fade-up delay-2" style={{ position: "relative", width: "636px", maxWidth: "100%", height: "388px" }}>
-
-              {features.map((f, i) => {
-                /* Figma coords: left col = 0→306, right col = 330→636
-                   top row = 0→174, bottom row = 198→372            */
-                const col = i % 2          // 0 = left, 1 = right
-                const row = Math.floor(i / 2) // 0 = top, 1 = bottom
-                return (
-                  <div
-                    key={f.title}
-                    className="feature-card-item flex flex-col items-start"
-                    style={{
-                      position: "absolute",
-                      left:   col === 0 ? 0 : 330,
-                      right:  col === 0 ? 330 : 0,
-                      top:    row === 0 ? 0 : 198,
-                      bottom: row === 0 ? 214 : 16,
-                      padding: "21px",
-                      background: "#FFFFFF",
-                      border: "1px solid #E5E7EB",
-                      boxShadow: "0px 20px 25px -5px rgba(0,0,0,0.1), 0px 8px 10px -6px rgba(0,0,0,0.1)",
-                      backdropFilter: "blur(6px)",
-                      borderRadius: "16px",
-                      boxSizing: "border-box",
-                    }}
-                  >
-                    {/* icon — pb 12px */}
-                    <div style={{ paddingBottom: "12px" }}>{f.icon}</div>
-                    {/* heading — pb 8px */}
-                    <h3 style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontWeight: 600,
-                      fontSize: "18px",
-                      lineHeight: "28px",
-                      color: "#020817",
-                      margin: 0,
-                      paddingBottom: "8px",
-                    }}>
-                      {f.title}
-                    </h3>
-                    {/* desc */}
-                    <p style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontWeight: 400,
-                      fontSize: "14px",
-                      lineHeight: "20px",
-                      color: "#8E9196",
-                      margin: 0,
-                    }}>
-                      {f.desc}
-                    </p>
-                  </div>
-                )
-              })}
+            {/* 2 × 2 feature cards — responsive CSS grid */}
+            <div className="fade-up delay-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", width: "100%" }}>
+              {features.map((f) => (
+                <div
+                  key={f.title}
+                  className="feature-card-item flex flex-col items-start"
+                  style={{
+                    padding: "21px",
+                    background: "#FFFFFF",
+                    border: "1px solid #E5E7EB",
+                    boxShadow: "0px 20px 25px -5px rgba(0,0,0,0.1), 0px 8px 10px -6px rgba(0,0,0,0.1)",
+                    backdropFilter: "blur(6px)",
+                    borderRadius: "16px",
+                  }}
+                >
+                  <div style={{ paddingBottom: "12px" }}>{f.icon}</div>
+                  <h3 style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 600,
+                    fontSize: "18px",
+                    lineHeight: "28px",
+                    color: "#020817",
+                    margin: 0,
+                    paddingBottom: "8px",
+                  }}>
+                    {f.title}
+                  </h3>
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 400,
+                    fontSize: "14px",
+                    lineHeight: "20px",
+                    color: "#8E9196",
+                    margin: 0,
+                  }}>
+                    {f.desc}
+                  </p>
+                </div>
+              ))}
             </div>
 
             {/* CTA button — 273 × 48 */}
@@ -779,62 +763,33 @@ export default function Home() {
             </button>
           </div>
 
-          {/* ── RIGHT: phone cluster — centered wrapper + 741×619 container ── */}
-          <div className="w-full lg:w-auto flex justify-center overflow-hidden flex-shrink-0">
+          {/* ── RIGHT: phone cluster — 505×425 container (scaled 0.68 from Figma) ── */}
+          <div className="w-full lg:w-auto flex justify-center overflow-visible flex-shrink-0">
           <div
             ref={phone2ClusterRef}
             className="phone-cluster-s5-wrap fade-up delay-3"
-            style={{
-              position: "relative",
-              width: "741px",
-              height: "619px",
-              flexShrink: 0,
-            }}
+            style={{ position: "relative", width: "505px", height: "425px", flexShrink: 0 }}
           >
-            {/* Left phone — Group 289196: x=0, y=106, 228×467 */}
+            {/* Left phone — 289196 */}
             <img
               src={imgGroup289196}
               alt="App screenshot"
               className="phone-item"
-              style={{
-                position: "absolute",
-                left: 0,
-                top: 106,
-                width: 228,
-                height: 467,
-                objectFit: "contain",
-                filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.18))",
-              }}
+              style={{ position: "absolute", left: 0, top: 72, width: 155, height: 318, objectFit: "contain", filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.18))" }}
             />
-            {/* Middle phone — Group 289195: x=256, y=163, 229×468 */}
+            {/* Center phone — 289195 (slightly larger, most prominent) */}
             <img
               src={imgGroup289195}
               alt="App screenshot"
               className="phone-item"
-              style={{
-                position: "absolute",
-                left: 256,
-                top: 163,
-                width: 229,
-                height: 468,
-                objectFit: "contain",
-                filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.18))",
-              }}
+              style={{ position: "absolute", left: 168, top: 110, width: 168, height: 340, objectFit: "contain", filter: "drop-shadow(0px 24px 48px rgba(0,0,0,0.22))", zIndex: 2 }}
             />
-            {/* Right phone — Group 289194: x=512, y=12, 228×467 */}
+            {/* Right phone — 289194 */}
             <img
               src={imgGroup289194}
               alt="App screenshot"
               className="phone-item"
-              style={{
-                position: "absolute",
-                left: 512,
-                top: 12,
-                width: 228,
-                height: 467,
-                objectFit: "contain",
-                filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.18))",
-              }}
+              style={{ position: "absolute", left: 348, top: 8, width: 155, height: 318, objectFit: "contain", filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.18))" }}
             />
           </div>
           </div>

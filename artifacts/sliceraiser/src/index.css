@@ -157,8 +157,8 @@ body {
     margin-bottom: calc(-614px * 0.32); /* -197px */
   }
   .phone-cluster-s5-wrap {
-    transform: scale(0.65);
-    margin-bottom: calc(-619px * 0.35); /* -217px */
+    transform: scale(0.72);
+    margin-bottom: calc(-425px * 0.28); /* -119px */
   }
 }
 
@@ -170,7 +170,7 @@ body {
   }
   .phone-cluster-s5-wrap {
     transform: scale(0.52);
-    margin-bottom: calc(-619px * 0.48); /* -297px */
+    margin-bottom: calc(-425px * 0.48); /* -204px */
   }
 }
 
@@ -193,26 +193,9 @@ body {
 }
 
 /* ── Responsive: Section 5 feature cards ─────────────────────────────── */
-@media (max-width: 1023px) {
-  .feature-cards-abs {
-    position: static !important;
-    height: auto !important;
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 12px !important;
-    width: 100% !important;
-  }
-  .feature-card-item {
-    position: static !important;
-    left: auto !important; right: auto !important;
-    top: auto !important; bottom: auto !important;
-  }
-}
-/* Always keep 2 columns — never drop to single column */
 @media (max-width: 640px) {
   .feature-card-item {
     padding: 14px !important;
-    min-height: unset !important;
   }
   .feature-card-item h3 {
     font-size: 13px !important;
