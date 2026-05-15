@@ -1,6 +1,6 @@
 import { useEffect, useState, type ComponentType, type SVGProps } from "react";
 import { Link } from "wouter";
-import { Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Instagram, Linkedin, X, Youtube } from "lucide-react";
 import logoImg from "@/assets/logo.png";
 // CMS: all text/link values read from siteSettings — replace with CMS/API values when ready
 import {
@@ -245,7 +245,7 @@ function TikTokIcon(props: SVGProps<SVGSVGElement>) {
 const ICON_MAP: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
   Instagram,
   LinkedIn: Linkedin,
-  X: Twitter,
+  X: X,
   YouTube: Youtube,
   TikTok: TikTokIcon,
 };
