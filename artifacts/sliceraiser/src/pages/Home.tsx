@@ -490,7 +490,7 @@ export default function Home() {
           </div>
 
           {/* Right: phone cluster — centered wrapper + 668×614px absolute container */}
-          <div className="w-full lg:w-auto flex justify-center overflow-hidden flex-shrink-0">
+          <div className="w-full lg:w-auto flex justify-center overflow-visible flex-shrink-0">
           <div
             ref={phoneClusterRef}
             className="phone-cluster-wrap fade-up delay-3"

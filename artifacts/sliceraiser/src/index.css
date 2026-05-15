@@ -150,6 +150,13 @@ body {
   transform-origin: top center;
 }
 
+/* Medium laptop (1024–1280px) — scale S2 cluster so left column has room */
+@media (min-width: 1024px) and (max-width: 1280px) {
+  .phone-cluster-wrap {
+    zoom: 0.82;
+  }
+}
+
 /* Tablet stacked (641–1023px) */
 @media (min-width: 641px) and (max-width: 1023px) {
   .phone-cluster-wrap {
