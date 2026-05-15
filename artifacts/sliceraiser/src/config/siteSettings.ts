@@ -15,10 +15,10 @@ export const googlePlayText = "Get it on Google Play";
 export const googlePlayUrl = "";
 export const socialLinks: { name: string; href: string }[] = [
   { name: "Instagram", href: "https://www.instagram.com/sliceraiser/" },
-  { name: "LinkedIn", href: "" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/sliceraiser/" },
   { name: "X", href: "" },
-  { name: "YouTube", href: "" },
-  { name: "TikTok", href: "" },
+  { name: "YouTube", href: "https://www.youtube.com/@SliceRaiser" },
+  { name: "TikTok", href: "https://www.tiktok.com/@SliceRaiser" },
 ];
 export const footerLinkGroups: { heading: string; links: { label: string; href: string }[] }[] = [
   {
