@@ -560,23 +560,32 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Row 1: Dubai (wide) + Abu Dhabi */}
-          <div
-            className="fade-up delay-2 w-full"
-            style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "16px" }}
-          >
-            <LocationCard name="Dubai, UAE"     count="120 Properties" img={imgDubai}    height={280} />
-            <LocationCard name="Abu Dhabi, UAE" count="95 Properties"  img={imgAbuDhabi} height={280} />
+          {/* ── Desktop: 5 cards in 2 rows ── */}
+          <div className="hidden lg:flex flex-col w-full" style={{ gap: "16px" }}>
+            {/* Row 1: Dubai (wide) + Abu Dhabi */}
+            <div
+              className="fade-up delay-2 w-full"
+              style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "16px" }}
+            >
+              <LocationCard name="Dubai, UAE"     count="120 Properties" img={imgDubai}    height={280} />
+              <LocationCard name="Abu Dhabi, UAE" count="95 Properties"  img={imgAbuDhabi} height={280} />
+            </div>
+            {/* Row 2: Spain + France + Italy */}
+            <div
+              className="fade-up delay-3 w-full"
+              style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}
+            >
+              <LocationCard name="Spain"  count="78 Properties" img={imgSpain}  height={240} />
+              <LocationCard name="France" count="62 Properties" img={imgFrance} height={240} />
+              <LocationCard name="Italy"  count="56 Properties" img={imgItaly}  height={240} />
+            </div>
           </div>
 
-          {/* Row 2: Spain + France + Italy */}
-          <div
-            className="fade-up delay-3 w-full"
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}
-          >
-            <LocationCard name="Spain"  count="78 Properties" img={imgSpain}  height={240} />
-            <LocationCard name="France" count="62 Properties" img={imgFrance} height={240} />
-            <LocationCard name="Italy"  count="56 Properties" img={imgItaly}  height={240} />
+          {/* ── Mobile: 3 cards only ── */}
+          <div className="flex flex-col lg:hidden w-full fade-up delay-2" style={{ gap: "14px" }}>
+            <LocationCard name="Dubai, UAE"     count="120 Properties" img={imgDubai}    height={200} />
+            <LocationCard name="Abu Dhabi, UAE" count="95 Properties"  img={imgAbuDhabi} height={200} />
+            <LocationCard name="Europe"         count="200+ Properties" img={imgFrance}  height={200} />
           </div>
         </div>
       </section>
