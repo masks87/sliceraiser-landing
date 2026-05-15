@@ -3,13 +3,12 @@ import dashboardImg from '@/assets/dashboard.png'
 
 import imgLuxuryProperty from '@/assets/luxury-property.png'
 
-/* Phone cluster — images added one by one as PNGs are provided */
-// import imgPhone289193 from '@/assets/phone-289193.png'
-// import imgPhone289197 from '@/assets/phone-289197.png'
-// import imgPhone289192 from '@/assets/phone-289192.png'
-// import imgPhoneFrame from '@/assets/phone-frame-1000002023.png'
-// import imgLineGraph from '@/assets/phone-line-graph.png'
-// import imgPhoneBg from '@/assets/phone-background.png'
+import imgPhone289193 from '@/assets/phone-289193.png'
+import imgPhone289197 from '@/assets/phone-289197.png'
+import imgPhone289192 from '@/assets/phone-289192.png'
+import imgPhoneFrame from '@/assets/phone-frame-1000002023.png'
+import imgLineGraph from '@/assets/phone-line-graph.png'
+import imgPhoneBg from '@/assets/phone-background.png'
 const imgDubaiUae = "https://www.figma.com/api/mcp/asset/042e7b36-e60b-4f1a-9670-8c7d2d095147"
 const imgAbuDhabi = "https://www.figma.com/api/mcp/asset/1628a40a-ce8c-4aa2-9a2c-46334f6ffbc1"
 const imgBrisbane = "https://images.unsplash.com/photo-1566734904496-9309bb1798ae?auto=format&fit=crop&w=1600&q=80"
@@ -348,22 +347,22 @@ export default function Home() {
             style={{ position: "relative", width: "668px", height: "614px" }}
           >
             {/* Group 289193 — left:823 top:128 → rel left:91 top:35 */}
-            {/* <img src={imgPhone289193} alt="" style={{ position:"absolute", left:91, top:35, width:176, height:360, objectFit:"contain" }} /> */}
+            <img src={imgPhone289193} alt="" style={{ position:"absolute", left:91, top:35, width:176, height:360, objectFit:"contain" }} />
 
             {/* Group 289197 — left:1023 top:308 → rel left:291 top:215 */}
-            {/* <img src={imgPhone289197} alt="" style={{ position:"absolute", left:291, top:215, width:176, height:360, objectFit:"contain" }} /> */}
+            <img src={imgPhone289197} alt="" style={{ position:"absolute", left:291, top:215, width:176, height:360, objectFit:"contain" }} />
 
             {/* Group 289192 — left:1223 top:114 → rel left:491 top:21 */}
-            {/* <img src={imgPhone289192} alt="" style={{ position:"absolute", left:491, top:21, width:177, height:360, objectFit:"contain" }} /> */}
+            <img src={imgPhone289192} alt="" style={{ position:"absolute", left:491, top:21, width:177, height:360, objectFit:"contain" }} />
 
             {/* Frame 1000002023 — left:1030 top:93 → rel left:298 top:0 */}
-            {/* <img src={imgPhoneFrame} alt="" style={{ position:"absolute", left:298, top:0, width:169, height:187, objectFit:"contain" }} /> */}
+            <img src={imgPhoneFrame} alt="" style={{ position:"absolute", left:298, top:0, width:169, height:187, objectFit:"contain" }} />
 
             {/* Multiple Line Graph — left:732 top:520 → rel left:0 top:427 */}
-            {/* <img src={imgLineGraph} alt="" style={{ position:"absolute", left:0, top:427, width:182, height:187, objectFit:"contain" }} /> */}
+            <img src={imgLineGraph} alt="" style={{ position:"absolute", left:0, top:427, width:182, height:187, objectFit:"contain" }} />
 
             {/* Background — left:1272 top:488 → rel left:540 top:395 */}
-            {/* <img src={imgPhoneBg} alt="" style={{ position:"absolute", left:540, top:395, width:109, height:174, objectFit:"contain" }} /> */}
+            <img src={imgPhoneBg} alt="" style={{ position:"absolute", left:540, top:395, width:109, height:174, objectFit:"contain" }} />
           </div>
         </div>
       </section>
