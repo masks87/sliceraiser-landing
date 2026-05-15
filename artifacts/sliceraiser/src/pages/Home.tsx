@@ -2,11 +2,7 @@ import { useLocation } from 'wouter'
 import dashboardImg from '@/assets/dashboard.png'
 
 import imgLuxuryProperty from '@/assets/luxury-property.png'
-const imgFrame1000002023 = "https://www.figma.com/api/mcp/asset/023f3a49-d6a7-4116-bb4c-6dba771cabfc"
-const imgMultipleLineGraph = "https://www.figma.com/api/mcp/asset/6cf1a34f-0dac-44a7-8703-82a603e88f10"
-const imgGroup289192 = "https://www.figma.com/api/mcp/asset/61fc9281-116e-42cd-9a72-2edb3c71b3db"
-const imgGroup289193 = "https://www.figma.com/api/mcp/asset/1c26a17f-cfda-43f2-acb1-85cb28883fbb"
-const imgGroup289197 = "https://www.figma.com/api/mcp/asset/0b0f748f-1694-44cd-afce-0810215f25d0"
+import imgGroup289199 from '@/assets/group-289199.png'
 const imgDubaiUae = "https://www.figma.com/api/mcp/asset/042e7b36-e60b-4f1a-9670-8c7d2d095147"
 const imgAbuDhabi = "https://www.figma.com/api/mcp/asset/1628a40a-ce8c-4aa2-9a2c-46334f6ffbc1"
 const imgBrisbane = "https://images.unsplash.com/photo-1566734904496-9309bb1798ae?auto=format&fit=crop&w=1600&q=80"
@@ -337,19 +333,16 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right: phone cluster */}
-          <div className="flex-1 flex items-end justify-center gap-3 min-h-[340px] relative w-full">
-            <div className="flex flex-col gap-3 items-center self-start pt-10">
-              <img src={imgFrame1000002023} alt="" className="w-28 rounded-xl shadow-2xl" />
-              <img src={imgMultipleLineGraph} alt="" className="w-32 rounded-xl shadow-2xl" />
-            </div>
-            <div className="flex flex-col gap-3 items-center self-start pt-20">
-              <img src={imgGroup289193} alt="" className="w-28 rounded-xl shadow-2xl" />
-              <img src={imgGroup289197} alt="" className="w-28 rounded-xl shadow-2xl" />
-            </div>
-            <div className="self-start pt-4">
-              <img src={imgGroup289192} alt="" className="w-28 rounded-xl shadow-2xl" />
-            </div>
+          {/* Right: phone cluster — Group 289199, 668×614px */}
+          <div
+            className="flex items-center justify-center shrink-0"
+            style={{ width: "668px", height: "614px" }}
+          >
+            <img
+              src={imgGroup289199}
+              alt="App mockups"
+              style={{ width: "668px", height: "614px", objectFit: "contain" }}
+            />
           </div>
         </div>
       </section>
