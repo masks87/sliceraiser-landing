@@ -389,10 +389,13 @@ export default function Home() {
       </section>
 
       {/* ── Section 3: Featured Properties ── */}
-      <section className="snap-section bg-white py-20 px-6">
-        <div className="mx-auto" style={{ maxWidth: "1400px" }}>
-          {/* Header */}
-          <div className="flex flex-col items-center mb-12" style={{ gap: "16px" }}>
+      <section className="snap-section bg-white" style={{ padding: "80px 24px" }}>
+        <div
+          className="mx-auto flex flex-col items-center"
+          style={{ maxWidth: "1400px", padding: "0 32px", gap: "48px" }}
+        >
+          {/* Header group */}
+          <div className="flex flex-col items-center" style={{ gap: "16px" }}>
             <h2
               style={{
                 fontFamily: "'Inter', sans-serif",
@@ -401,34 +404,45 @@ export default function Home() {
                 lineHeight: "40px",
                 textAlign: "center",
                 color: "#4285F4",
+                margin: 0,
               }}
             >
               Featured Properties
             </h2>
-            <p
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 400,
-                fontSize: "20px",
-                lineHeight: "24px",
-                textAlign: "center",
-                color: "#8E9196",
-                maxWidth: "672px",
-              }}
-            >
-              Explore our handpicked selection of premium properties across luxury locations in UAE and Europe.
-            </p>
+            <div style={{ maxWidth: "672px" }}>
+              <p
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 400,
+                  fontSize: "20px",
+                  lineHeight: "24px",
+                  textAlign: "center",
+                  color: "#8E9196",
+                  margin: 0,
+                  width: "819px",
+                  maxWidth: "100%",
+                }}
+              >
+                Explore our handpicked selection of premium properties across luxury locations in UAE and Europe.
+              </p>
+            </div>
           </div>
-          {/* Dashboard screenshot */}
-          <div
-            className="overflow-hidden"
+
+          {/* Browsers screenshot — 1400×847, drop-shadow, border-radius 20px */}
+          <img
+            src={dashboardImg}
+            alt="SliceRaiser Dashboard"
             style={{
+              width: "100%",
+              maxWidth: "1400px",
+              height: "auto",
+              aspectRatio: "1400 / 847",
+              objectFit: "cover",
               borderRadius: "20px",
               filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.25))",
+              display: "block",
             }}
-          >
-            <img src={dashboardImg} alt="SliceRaiser Dashboard" className="w-full h-auto block" />
-          </div>
+          />
         </div>
       </section>
 
