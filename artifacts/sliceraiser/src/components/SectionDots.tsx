@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const SECTION_LABELS: Record<string, string> = {
   'hero':       'Hero',
@@ -10,20 +10,20 @@ const SECTION_LABELS: Record<string, string> = {
 
 function getVisibleSections(): HTMLElement[] {
   return Array.from(document.querySelectorAll<HTMLElement>('.snap-section'))
-    .filter(s => s.offsetParent !== null)
+    .filter(s => window.getComputedStyle(s).display !== 'none')
 }
 
 export default function SectionDots() {
   const [active, setActive]   = useState(0)
   const [hovered, setHovered] = useState<number | null>(null)
   const [labels, setLabels]   = useState<string[]>([])
+  const observerRef = useRef<IntersectionObserver | null>(null)
 
-  useEffect(() => {
+  const rebuildDots = () => {
+    observerRef.current?.disconnect()
+
     const sections = getVisibleSections()
-    const derived = sections.map(
-      s => SECTION_LABELS[s.dataset.label ?? ''] ?? ''
-    )
-    setLabels(derived)
+    setLabels(sections.map(s => SECTION_LABELS[s.dataset.label ?? ''] ?? ''))
     if (!sections.length) return
 
     const observer = new IntersectionObserver(
@@ -40,7 +40,21 @@ export default function SectionDots() {
     )
 
     sections.forEach(s => observer.observe(s))
-    return () => observer.disconnect()
+    observerRef.current = observer
+  }
+
+  useEffect(() => {
+    // Use rAF to ensure Tailwind responsive classes are computed
+    const frame = requestAnimationFrame(rebuildDots)
+
+    const onResize = () => rebuildDots()
+    window.addEventListener('resize', onResize)
+
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('resize', onResize)
+      observerRef.current?.disconnect()
+    }
   }, [])
 
   const goTo = (idx: number) => {
