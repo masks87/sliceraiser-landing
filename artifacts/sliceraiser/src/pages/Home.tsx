@@ -69,18 +69,18 @@ const fadeUp = {
   visible: (delay = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease, delay },
+    transition: { duration: 0.9, ease, delay },
   }),
 }
 
 const phoneContainer = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.18, delayChildren: 0.08 } },
+  visible: { transition: { staggerChildren: 0.22, delayChildren: 0.1 } },
 }
 
 const phoneItem = {
   hidden: { opacity: 0, y: 36 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1, ease } },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease } },
 }
 
 const cardContainer = {
