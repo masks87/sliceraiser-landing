@@ -509,87 +509,104 @@ export default function Home() {
       </section>
 
       {/* ── Section 5: Invest in Premium Real Estate ── */}
-      <section className="snap-section bg-white py-20 px-6">
+      <section className="snap-section bg-white" style={{ padding: "80px 24px" }}>
+        {/* outer container: flex row, gap 64px, max 1400px, centred */}
         <div
           className="mx-auto flex flex-col lg:flex-row items-center"
-          style={{ maxWidth: "1400px", gap: "64px" }}
+          style={{ maxWidth: "1400px", padding: "0 32px", gap: "64px" }}
         >
-          {/* Left: text + cards + button */}
-          <div className="flex flex-col items-start" style={{ maxWidth: "636px", gap: "24px" }}>
-            <h2
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 700,
-                fontSize: "40px",
-                lineHeight: "40px",
-                color: "#4285F4",
-              }}
-            >
+
+          {/* ── LEFT: 636px column ── */}
+          <div className="flex flex-col items-start" style={{ width: "636px", maxWidth: "100%", gap: "24px", flexShrink: 0 }}>
+
+            {/* Heading */}
+            <h2 style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 700,
+              fontSize: "40px",
+              lineHeight: "40px",
+              color: "#4285F4",
+              margin: 0,
+            }}>
               Invest in Premium Real Estate
             </h2>
-            <p
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 400,
-                fontSize: "20px",
-                lineHeight: "24px",
-                color: "#8E9196",
-              }}
-            >
+
+            {/* Body */}
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 400,
+              fontSize: "20px",
+              lineHeight: "24px",
+              color: "#8E9196",
+              margin: 0,
+            }}>
               Our curated real estate investment opportunities offer exceptional returns in high-growth markets. With strategic locations across UAE and Europe, our properties combine luxury living with strong investment potential.
             </p>
-            {/* 2x2 feature cards */}
-            <div
-              className="grid grid-cols-2 w-full"
-              style={{ gap: "16px" }}
-            >
-              {features.map(f => (
-                <div
-                  key={f.title}
-                  className="flex flex-col items-start"
-                  style={{
-                    padding: "21px",
-                    background: "rgba(255,255,255,0.2)",
-                    border: "1px solid rgba(255,255,255,0.3)",
-                    boxShadow: "0px 20px 25px -5px rgba(0,0,0,0.1), 0px 8px 10px -6px rgba(0,0,0,0.1)",
-                    backdropFilter: "blur(6px)",
-                    borderRadius: "16px",
-                    backgroundColor: "#fff",
-                    borderColor: "#E5E7EB",
-                    gap: "8px",
-                  }}
-                >
-                  <div className="mb-1">{f.icon}</div>
-                  <h3
+
+            {/* 2 × 2 feature cards — absolute-positioned inside 636 × 388 container */}
+            <div style={{ position: "relative", width: "636px", maxWidth: "100%", height: "388px" }}>
+
+              {features.map((f, i) => {
+                /* Figma coords: left col = 0→306, right col = 330→636
+                   top row = 0→174, bottom row = 198→372            */
+                const col = i % 2          // 0 = left, 1 = right
+                const row = Math.floor(i / 2) // 0 = top, 1 = bottom
+                return (
+                  <div
+                    key={f.title}
+                    className="flex flex-col items-start"
                     style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontWeight: 600,
-                      fontSize: "16px",
-                      lineHeight: "28px",
-                      color: "#020817",
+                      position: "absolute",
+                      left:   col === 0 ? 0 : 330,
+                      right:  col === 0 ? 330 : 0,
+                      top:    row === 0 ? 0 : 198,
+                      bottom: row === 0 ? 214 : 16,
+                      padding: "21px",
+                      background: "#FFFFFF",
+                      border: "1px solid #E5E7EB",
+                      boxShadow: "0px 20px 25px -5px rgba(0,0,0,0.1), 0px 8px 10px -6px rgba(0,0,0,0.1)",
+                      backdropFilter: "blur(6px)",
+                      borderRadius: "16px",
+                      boxSizing: "border-box",
                     }}
                   >
-                    {f.title}
-                  </h3>
-                  <p
-                    style={{
+                    {/* icon — pb 12px */}
+                    <div style={{ paddingBottom: "12px" }}>{f.icon}</div>
+                    {/* heading — pb 8px */}
+                    <h3 style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 600,
+                      fontSize: "18px",
+                      lineHeight: "28px",
+                      color: "#020817",
+                      margin: 0,
+                      paddingBottom: "8px",
+                    }}>
+                      {f.title}
+                    </h3>
+                    {/* desc */}
+                    <p style={{
                       fontFamily: "'Inter', sans-serif",
                       fontWeight: 400,
                       fontSize: "14px",
                       lineHeight: "20px",
                       color: "#8E9196",
-                    }}
-                  >
-                    {f.desc}
-                  </p>
-                </div>
-              ))}
+                      margin: 0,
+                    }}>
+                      {f.desc}
+                    </p>
+                  </div>
+                )
+              })}
             </div>
+
+            {/* CTA button — 273 × 48 */}
             <button
               onClick={goProperties}
               style={{
+                width: "273px",
                 height: "48px",
-                padding: "0 24px",
+                padding: "13.5px 24px 14.5px",
                 background: "#4285F4",
                 boxShadow: "0px 4px 6px -1px rgba(0,0,0,0.1), 0px 2px 4px -2px rgba(0,0,0,0.1)",
                 backdropFilter: "blur(2px)",
@@ -597,37 +614,81 @@ export default function Home() {
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 500,
                 fontSize: "14px",
+                lineHeight: "20px",
                 color: "#F8FAFC",
                 border: "none",
                 cursor: "pointer",
                 transition: "transform 0.18s ease, box-shadow 0.18s ease",
                 whiteSpace: "nowrap",
+                flexShrink: 0,
               }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
-                (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 20px rgba(66,133,244,0.4)";
+                (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)"
+                ;(e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 20px rgba(66,133,244,0.4)"
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
-                (e.currentTarget as HTMLButtonElement).style.boxShadow = "0px 4px 6px -1px rgba(0,0,0,0.1)";
+                (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"
+                ;(e.currentTarget as HTMLButtonElement).style.boxShadow = "0px 4px 6px -1px rgba(0,0,0,0.1)"
               }}
             >
               Explore Investment Opportunities
             </button>
           </div>
 
-          {/* Right: phone mockups */}
-          <div className="flex-1 flex items-end justify-center gap-4 min-h-[400px] relative">
-            <div className="self-end">
-              <img src={imgGroup289196} alt="" className="w-36 rounded-2xl shadow-2xl" />
-            </div>
-            <div className="self-start pt-8">
-              <img src={imgGroup289195} alt="" className="w-36 rounded-2xl shadow-2xl" />
-            </div>
-            <div className="self-end">
-              <img src={imgGroup289194} alt="" className="w-36 rounded-2xl shadow-2xl" />
-            </div>
+          {/* ── RIGHT: phone cluster — 741 × 619 container, same absolute-positioning logic as Section 2 ── */}
+          <div
+            style={{
+              position: "relative",
+              width: "741px",
+              height: "619px",
+              flexShrink: 0,
+              maxWidth: "100%",
+            }}
+          >
+            {/* Left phone — Group 289196: x=0, y=106, 228×467 */}
+            <img
+              src={imgGroup289196}
+              alt="App screenshot"
+              style={{
+                position: "absolute",
+                left: 0,
+                top: 106,
+                width: 228,
+                height: 467,
+                objectFit: "contain",
+                filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.18))",
+              }}
+            />
+            {/* Middle phone — Group 289195: x=256, y=163, 229×468 */}
+            <img
+              src={imgGroup289195}
+              alt="App screenshot"
+              style={{
+                position: "absolute",
+                left: 256,
+                top: 163,
+                width: 229,
+                height: 468,
+                objectFit: "contain",
+                filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.18))",
+              }}
+            />
+            {/* Right phone — Group 289194: x=512, y=12, 228×467 */}
+            <img
+              src={imgGroup289194}
+              alt="App screenshot"
+              style={{
+                position: "absolute",
+                left: 512,
+                top: 12,
+                width: 228,
+                height: 467,
+                objectFit: "contain",
+                filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.18))",
+              }}
+            />
           </div>
+
         </div>
       </section>
 
