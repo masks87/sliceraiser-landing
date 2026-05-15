@@ -179,7 +179,7 @@ export default function Home() {
       {/* ── Section 1: Hero ── */}
       <section
         className="snap-section relative flex items-center justify-center overflow-hidden"
-        style={{ minHeight: "600px" }}
+        style={{ minHeight: "100vh" }}
       >
         <img
           ref={heroImgRef}
