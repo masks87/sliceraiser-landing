@@ -371,7 +371,7 @@ export default function Home() {
       </section>
 
       {/* ── Section 2: Build Your Investment Lifestyle ── */}
-      <section className="snap-section bg-white" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
+      <section className="snap-section bg-white overflow-hidden" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
         <div className="mx-auto flex flex-col lg:flex-row items-center" style={{ maxWidth: "1400px", gap: "58px" }}>
           {/* Left: content */}
           <div className="flex flex-col items-start" style={{ maxWidth: "687px", gap: "20px" }}>
@@ -465,7 +465,7 @@ export default function Home() {
                Each slot: position relative to that origin              */}
           <div
             ref={phoneClusterRef}
-            className="shrink-0"
+            className="phone-cluster-wrap shrink-0"
             style={{ position: "relative", width: "668px", height: "614px" }}
           >
             {/* Group 289193 — left:91 top:35 */}
@@ -592,14 +592,14 @@ export default function Home() {
                Row 1: Dubai (span 2) + Abu Dhabi (span 1)
                Row 2: Spain + France + Italy (each span 1)          */}
           <div
-            className="w-full"
+            className="locations-grid w-full"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
               gap: "24px",
             }}
           >
-            <LocationCard name="Dubai, UAE"     count="120 Properties" img={imgDubaiUae} span={2} />
+            <LocationCard name="Dubai, UAE"     count="120 Properties" img={imgDubaiUae} span={2} extraClass="location-span-2" />
             <LocationCard name="Abu Dhabi, UAE" count="95 Properties"  img={imgAbuDhabi} />
             <LocationCard name="Spain"          count="78 Properties"  img={imgSpain} />
             <LocationCard name="France"         count="62 Properties"  img={imgFrance} />
@@ -609,7 +609,7 @@ export default function Home() {
       </section>
 
       {/* ── Section 5: Invest in Premium Real Estate ── */}
-      <section className="snap-section bg-white" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
+      <section className="snap-section bg-white overflow-hidden" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
         {/* outer container: flex row, gap 64px, max 1400px, centred */}
         <div
           className="mx-auto flex flex-col lg:flex-row items-center"
@@ -644,7 +644,7 @@ export default function Home() {
             </p>
 
             {/* 2 × 2 feature cards — absolute-positioned inside 636 × 388 container */}
-            <div style={{ position: "relative", width: "636px", maxWidth: "100%", height: "388px" }}>
+            <div className="feature-cards-abs" style={{ position: "relative", width: "636px", maxWidth: "100%", height: "388px" }}>
 
               {features.map((f, i) => {
                 /* Figma coords: left col = 0→306, right col = 330→636
@@ -654,7 +654,7 @@ export default function Home() {
                 return (
                   <div
                     key={f.title}
-                    className="flex flex-col items-start"
+                    className="feature-card-item flex flex-col items-start"
                     style={{
                       position: "absolute",
                       left:   col === 0 ? 0 : 330,
@@ -738,6 +738,7 @@ export default function Home() {
           {/* ── RIGHT: phone cluster — 741 × 619 container, same absolute-positioning logic as Section 2 ── */}
           <div
             ref={phone2ClusterRef}
+            className="phone-cluster-s5-wrap"
             style={{
               position: "relative",
               width: "741px",
@@ -805,15 +806,17 @@ function LocationCard({
   count,
   img,
   span = 1,
+  extraClass = "",
 }: {
   name: string
   count: string
   img: string
   span?: number
+  extraClass?: string
 }) {
   return (
     <div
-      className="group relative overflow-hidden"
+      className={`group relative overflow-hidden ${extraClass}`}
       style={{
         height: "280px",
         gridColumn: span > 1 ? `span ${span}` : undefined,

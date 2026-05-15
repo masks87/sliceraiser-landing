@@ -33,6 +33,7 @@ export default function SectionDots() {
 
   return (
     <div
+      className="section-dots-nav"
       style={{
         position: 'fixed',
         right: '28px',
