@@ -1,6 +1,6 @@
 import { useEffect, useState, type ComponentType, type SVGProps } from "react";
 import { Link } from "wouter";
-import { Instagram, Linkedin, X, Youtube } from "lucide-react";
+import { Instagram, Linkedin, Youtube } from "lucide-react";
 import logoImg from "@/assets/logo.png";
 // CMS: all text/link values read from siteSettings — replace with CMS/API values when ready
 import {
@@ -241,11 +241,19 @@ function TikTokIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+function XTextIcon({ className }: SVGProps<SVGSVGElement>) {
+  return (
+    <span className={className} style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "15px", lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center" }} aria-hidden>
+      X
+    </span>
+  );
+}
+
 // Icon registry — maps siteSettings social names to lucide/custom icons
 const ICON_MAP: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
   Instagram,
   LinkedIn: Linkedin,
-  X: X,
+  X: XTextIcon as ComponentType<SVGProps<SVGSVGElement>>,
   YouTube: Youtube,
   TikTok: TikTokIcon,
 };
