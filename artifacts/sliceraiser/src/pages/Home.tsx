@@ -271,11 +271,12 @@ export default function Home() {
                 fontSize: "20px",
                 lineHeight: "158.7%",
                 letterSpacing: "-0.03em",
-                color: "#8E9196",
+                color: "#000000",
               }}
             >
               SliceRaiser is built for people who want more than traditional saving. Explore selected property, equity and fixed income opportunities through a platform designed around income potential, capital growth, diversification and ownership mindset.
             </p>
+
             <div className="flex flex-wrap" style={{ gap: "56px" }}>
               <button
                 onClick={goProperties}
