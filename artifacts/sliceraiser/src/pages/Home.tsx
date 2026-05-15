@@ -65,8 +65,20 @@ export default function Home() {
   const goProperties = () => setLocation('/properties')
   const goContact = () => setLocation('/contact')
 
+  const heroImgRef = useRef<HTMLImageElement>(null)
   const phoneClusterRef = useRef<HTMLDivElement>(null)
   const phone2ClusterRef = useRef<HTMLDivElement>(null)
+
+  // Hero parallax — bg image moves at 35% of scroll speed
+  useEffect(() => {
+    const el = heroImgRef.current
+    if (!el) return
+    const onScroll = () => {
+      el.style.transform = `translateY(${window.scrollY * 0.35}px)`
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   useEffect(() => {
     const refs = [phoneClusterRef, phone2ClusterRef]
@@ -99,10 +111,11 @@ export default function Home() {
         style={{ minHeight: "600px" }}
       >
         <img
+          ref={heroImgRef}
           src={imgLuxuryProperty}
           alt="Luxury Property"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ opacity: 0.5 }}
+          className="absolute inset-0 w-full object-cover"
+          style={{ opacity: 0.5, height: "130%", top: "-15%", willChange: "transform" }}
         />
         <div
           className="absolute inset-0"

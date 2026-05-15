@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Show, useClerk, useUser } from "@clerk/react";
 import logoImg from "@/assets/logo.png";
@@ -25,22 +25,37 @@ function writeJurisdictionCookie(value: string) {
 
 function JurisdictionSelector() {
   const [value, setValue] = useState<string>(jurisdictionSettings.defaultJurisdiction);
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setValue(readJurisdictionCookie());
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const next = e.target.value;
+  // Close on outside click
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
+
+  const select = (next: string) => {
     setValue(next);
+    setOpen(false);
     writeJurisdictionCookie(next);
     if (typeof window !== "undefined") {
       window.dispatchEvent(new CustomEvent(JURISDICTION_CHANGE_EVENT, { detail: next }));
     }
   };
 
+  const current = jurisdictionSettings.options.find((o) => o.value === value);
+
   return (
-    <div className="flex flex-col shrink-0" style={{ gap: "2px" }}>
+    <div ref={ref} className="flex flex-col shrink-0" style={{ gap: "2px", position: "relative", zIndex: 50 }}>
+      {/* Label */}
       <span
         className="flex items-center gap-1"
         style={{ fontSize: "10px", color: "#94A3B8", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase" }}
@@ -51,39 +66,93 @@ function JurisdictionSelector() {
         </svg>
         Regulatory
       </span>
-      <div className="relative">
-        <select
-          value={value}
-          onChange={handleChange}
-          aria-label="Regulatory"
-          className="appearance-none cursor-pointer transition-all hover:border-[#4285F4]"
+
+      {/* Trigger button */}
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "6px",
+          backgroundColor: open ? "#EFF6FF" : "#F8FAFC",
+          border: `1px solid ${open ? "#4285F4" : "#E2E8F0"}`,
+          color: "#122D4D",
+          fontSize: "13px",
+          fontWeight: 600,
+          padding: "5px 10px",
+          borderRadius: "8px",
+          minWidth: "90px",
+          cursor: "pointer",
+          transition: "border-color 0.15s, background-color 0.15s",
+          outline: "none",
+        }}
+      >
+        <span>{current?.label ?? value}</span>
+        <svg
+          width="12" height="12" fill="none" stroke="#4285F4" strokeWidth="2.5"
+          viewBox="0 0 24 24"
+          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s ease", flexShrink: 0 }}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {/* Dropdown panel */}
+      {open && (
+        <div
+          role="listbox"
           style={{
-            backgroundColor: "#F8FAFC",
+            position: "absolute",
+            top: "calc(100% + 6px)",
+            left: 0,
+            minWidth: "140px",
+            backgroundColor: "#FFFFFF",
             border: "1px solid #E2E8F0",
-            color: "#122D4D",
-            fontSize: "13px",
-            fontWeight: 600,
-            padding: "5px 28px 5px 10px",
-            borderRadius: "8px",
-            minWidth: "80px",
+            borderRadius: "12px",
+            boxShadow: "0px 8px 24px rgba(0,0,0,0.12), 0px 2px 6px rgba(0,0,0,0.06)",
+            overflow: "hidden",
+            animation: "dropdownFade 0.15s ease",
           }}
         >
-          {jurisdictionSettings.options.map((opt) => (
-            <option key={opt.value} value={opt.value} style={{ color: "#122D4D" }}>
-              {opt.label}
-            </option>
-          ))}
-        </select>
-        <svg
-          className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3"
-          style={{ color: "#4285F4" }}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-        </svg>
-      </div>
+          {jurisdictionSettings.options.map((opt) => {
+            const selected = opt.value === value;
+            return (
+              <div
+                key={opt.value}
+                role="option"
+                aria-selected={selected}
+                onClick={() => select(opt.value)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "9px 14px",
+                  fontSize: "13px",
+                  fontWeight: selected ? 600 : 400,
+                  color: selected ? "#4285F4" : "#122D4D",
+                  backgroundColor: selected ? "#EFF6FF" : "transparent",
+                  cursor: "pointer",
+                  transition: "background-color 0.12s",
+                  gap: "8px",
+                }}
+                onMouseEnter={(e) => { if (!selected) (e.currentTarget as HTMLDivElement).style.backgroundColor = "#F8FAFC"; }}
+                onMouseLeave={(e) => { if (!selected) (e.currentTarget as HTMLDivElement).style.backgroundColor = "transparent"; }}
+              >
+                <span>{opt.label}</span>
+                {selected && (
+                  <svg width="13" height="13" fill="none" stroke="#4285F4" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

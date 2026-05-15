@@ -70,6 +70,11 @@ body {
 .phone-item.phone-visible:nth-child(5) { animation-delay: 800ms; }
 .phone-item.phone-visible:nth-child(6) { animation-delay: 1000ms; }
 
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 #root {
   width: 100%;
   min-height: 100vh;
