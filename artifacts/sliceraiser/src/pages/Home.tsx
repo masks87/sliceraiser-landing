@@ -117,8 +117,11 @@ export default function Home() {
       setTimeout(() => { locked = false }, 900)
     }
 
+    const isMobile = () => window.innerWidth < 1024
+
     // Wheel
     const onWheel = (e: WheelEvent) => {
+      if (isMobile()) return
       if (locked) { e.preventDefault(); return }
       e.preventDefault()
       lock()
@@ -127,6 +130,7 @@ export default function Home() {
 
     // Keyboard: arrow down/up, page down/up, space
     const onKey = (e: KeyboardEvent) => {
+      if (isMobile()) return
       const keys = ['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', ' ']
       if (!keys.includes(e.key)) return
       if (locked) { e.preventDefault(); return }
@@ -140,6 +144,7 @@ export default function Home() {
     let touchStartY = 0
     const onTouchStart = (e: TouchEvent) => { touchStartY = e.touches[0].clientY }
     const onTouchEnd = (e: TouchEvent) => {
+      if (isMobile()) return
       if (locked) return
       const delta = touchStartY - e.changedTouches[0].clientY
       if (Math.abs(delta) < 40) return
