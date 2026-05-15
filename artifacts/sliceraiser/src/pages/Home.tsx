@@ -360,7 +360,7 @@ export default function Home() {
       </section>
 
       {/* ── Section 2: Build Your Investment Lifestyle ── */}
-      <section className="snap-section bg-white py-20 px-6">
+      <section className="snap-section bg-white" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
         <div className="mx-auto flex flex-col lg:flex-row items-center" style={{ maxWidth: "1400px", gap: "58px" }}>
           {/* Left: content */}
           <div className="flex flex-col items-start" style={{ maxWidth: "687px", gap: "20px" }}>
@@ -479,10 +479,10 @@ export default function Home() {
       </section>
 
       {/* ── Section 3: Featured Properties ── */}
-      <section className="snap-section bg-white" style={{ padding: "80px 24px" }}>
+      <section className="snap-section bg-white" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
         <div
           className="mx-auto flex flex-col items-center"
-          style={{ maxWidth: "1400px", padding: "0 32px", gap: "48px" }}
+          style={{ maxWidth: "1100px", padding: "0 32px", gap: "40px", width: "100%" }}
         >
           {/* Header group */}
           <div className="flex flex-col items-center" style={{ gap: "16px" }}>
@@ -518,13 +518,13 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Browsers screenshot — 1400×847, drop-shadow, border-radius 20px */}
+          {/* Browsers screenshot — constrained to fit viewport */}
           <img
             src={dashboardImg}
             alt="SliceRaiser Dashboard"
             style={{
               width: "100%",
-              maxWidth: "1400px",
+              maxWidth: "1036px",
               height: "auto",
               aspectRatio: "1400 / 847",
               objectFit: "cover",
@@ -539,12 +539,11 @@ export default function Home() {
       {/* ── Section 4: Featured Locations ── */}
       <section
         className="snap-section"
-        style={{ background: "rgba(241,240,251,0.3)", padding: "80px 24px" }}
+        style={{ background: "rgba(241,240,251,0.3)", minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}
       >
-        {/* Container — flex col, align-start, padding 0 32px, gap 48px */}
         <div
-          className="mx-auto flex flex-col items-start"
-          style={{ maxWidth: "1400px", padding: "0 32px", gap: "48px" }}
+          className="mx-auto flex flex-col items-center"
+          style={{ maxWidth: "1200px", padding: "0 32px", gap: "48px", width: "100%" }}
         >
           {/* Header group */}
           <div className="flex flex-col items-center w-full" style={{ gap: "16px" }}>
@@ -599,11 +598,11 @@ export default function Home() {
       </section>
 
       {/* ── Section 5: Invest in Premium Real Estate ── */}
-      <section className="snap-section bg-white" style={{ padding: "80px 24px" }}>
+      <section className="snap-section bg-white" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
         {/* outer container: flex row, gap 64px, max 1400px, centred */}
         <div
           className="mx-auto flex flex-col lg:flex-row items-center"
-          style={{ maxWidth: "1400px", padding: "0 32px", gap: "64px" }}
+          style={{ maxWidth: "1400px", padding: "0 32px", gap: "64px", width: "100%" }}
         >
 
           {/* ── LEFT: 636px column ── */}
