@@ -150,18 +150,6 @@ body {
   transform-origin: top center;
 }
 
-/* Desktop — scale down so clusters fit viewport height */
-@media (min-width: 1024px) {
-  .phone-cluster-wrap {
-    transform: scale(0.78);
-    margin-bottom: calc(-614px * 0.22); /* -135px */
-  }
-  .phone-cluster-s5-wrap {
-    transform: scale(0.72);
-    margin-bottom: calc(-619px * 0.28); /* -173px */
-  }
-}
-
 /* Tablet stacked (641–1023px) */
 @media (min-width: 641px) and (max-width: 1023px) {
   .phone-cluster-wrap {
@@ -249,12 +237,16 @@ body {
   .section-dots-nav { display: none !important; }
 }
 
-/* ── Home sections: content-height on mobile (hero keeps 100vh) ──────── */
+/* ── Mobile: content-height + top-align on phone sections ───────────── */
 @media (max-width: 1023px) {
   .snap-section:not(.hero-section) {
     min-height: unset !important;
     padding-top: 56px !important;
     padding-bottom: 56px !important;
+  }
+  /* Phone sections (S2, S5) align from top so scroll always shows top content */
+  .snap-s-phone {
+    align-items: flex-start !important;
   }
 }
 @media (max-width: 640px) {

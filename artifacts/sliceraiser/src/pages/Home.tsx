@@ -388,7 +388,7 @@ export default function Home() {
       </section>
 
       {/* ── Section 2: Build Your Investment Lifestyle ── */}
-      <section className="snap-section bg-white overflow-hidden" style={{ minHeight: "100vh", display: "flex", alignItems: "flex-start", justifyContent: "center", padding: "80px 24px" }}>
+      <section className="snap-section snap-s-phone bg-white overflow-hidden" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
         <div className="mx-auto flex flex-col lg:flex-row items-center" style={{ maxWidth: "1400px", gap: "58px" }}>
           {/* Left: content */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left" style={{ maxWidth: "687px", gap: "20px" }}>
@@ -568,7 +568,7 @@ export default function Home() {
       </section>
 
       {/* ── Section 5: Invest in Premium Real Estate ── */}
-      <section className="snap-section bg-white overflow-hidden" style={{ minHeight: "100vh", display: "flex", alignItems: "flex-start", justifyContent: "center", padding: "80px 24px" }}>
+      <section className="snap-section snap-s-phone bg-white overflow-hidden" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
         {/* outer container: flex row, gap 64px, max 1400px, centred */}
         <div
           className="mx-auto flex flex-col lg:flex-row items-center"
@@ -602,8 +602,8 @@ export default function Home() {
               Our curated real estate investment opportunities offer exceptional returns in high-growth markets. With strategic locations across UAE and Europe, our properties combine luxury living with strong investment potential.
             </p>
 
-            {/* 2 × 2 feature cards — absolute-positioned inside 636 × 310 container */}
-            <div className="feature-cards-abs fade-up delay-2" style={{ position: "relative", width: "636px", maxWidth: "100%", height: "310px" }}>
+            {/* 2 × 2 feature cards — absolute-positioned inside 636 × 388 container */}
+            <div className="feature-cards-abs fade-up delay-2" style={{ position: "relative", width: "636px", maxWidth: "100%", height: "388px" }}>
 
               {features.map((f, i) => {
                 /* Figma coords: left col = 0→306, right col = 330→636
@@ -618,8 +618,8 @@ export default function Home() {
                       position: "absolute",
                       left:   col === 0 ? 0 : 330,
                       right:  col === 0 ? 330 : 0,
-                      top:    row === 0 ? 0 : 160,
-                      bottom: row === 0 ? 170 : 16,
+                      top:    row === 0 ? 0 : 198,
+                      bottom: row === 0 ? 214 : 16,
                       padding: "21px",
                       background: "#FFFFFF",
                       border: "1px solid #E5E7EB",
