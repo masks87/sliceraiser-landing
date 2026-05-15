@@ -185,7 +185,7 @@ const mobileLinks = [
 function Logo() {
   return (
     <Link href="/" className="flex items-center shrink-0">
-      <img src={logoImg} alt="Slice Raiser" className="h-[34px] w-auto object-contain" />
+      <img src={logoImg} alt="Slice Raiser" className="h-[26px] sm:h-[30px] lg:h-[34px] w-auto object-contain" />
     </Link>
   );
 }
@@ -388,83 +388,70 @@ export default function Header() {
       </nav>
 
       {/* ── Mobile nav ── */}
-      <nav className="lg:hidden flex items-center justify-between h-14 px-2 sm:px-4 gap-1.5">
+      <nav className="lg:hidden flex items-center justify-between px-5" style={{ height: "64px" }}>
         <Logo />
-        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
-          <Show when="signed-out">
-            <button
-              type="button"
-              onClick={() => openSignIn()}
-              className="text-white text-[10px] sm:text-[12px] font-medium px-2 sm:px-3 py-1 sm:py-1.5 rounded-md transition-opacity hover:opacity-90 whitespace-nowrap"
-              style={{ backgroundColor: "#4285F4" }}
-            >
-              Log In
-            </button>
-            <button
-              type="button"
-              onClick={() => openSignUp()}
-              className="text-white text-[10px] sm:text-[12px] font-medium px-2 sm:px-3 py-1 sm:py-1.5 rounded-md transition-opacity hover:opacity-90 whitespace-nowrap"
-              style={{ backgroundColor: "#082F6F" }}
-            >
-              Sign Up
-            </button>
-          </Show>
-          <Show when="signed-in">
-            <SignedInMenu />
-          </Show>
-          <button
-            className="p-1 shrink-0"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-5 h-5 sm:w-6 sm:h-6"
-              style={{ color: "#122D4D" }}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
+        {/* Animated hamburger */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+          className="flex flex-col justify-center items-center w-10 h-10 rounded-xl gap-[5px] transition-colors shrink-0"
+          style={{ background: menuOpen ? "#EFF6FF" : "transparent" }}
+        >
+          <span style={{ display: "block", width: "20px", height: "2px", background: "#122D4D", borderRadius: "2px", transition: "transform 0.28s ease", transform: menuOpen ? "rotate(45deg) translateY(7px)" : "none" }} />
+          <span style={{ display: "block", width: "20px", height: "2px", background: "#122D4D", borderRadius: "2px", transition: "opacity 0.28s ease", opacity: menuOpen ? 0 : 1 }} />
+          <span style={{ display: "block", width: "20px", height: "2px", background: "#122D4D", borderRadius: "2px", transition: "transform 0.28s ease", transform: menuOpen ? "rotate(-45deg) translateY(-7px)" : "none" }} />
+        </button>
       </nav>
 
-      {/* Mobile menu drawer */}
+      {/* Mobile drawer + backdrop */}
       {menuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100 px-6 py-4 flex flex-col gap-4">
-          {mobileLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.to}
-              onClick={() => setMenuOpen(false)}
-              className="transition-colors hover:text-[#4285F4]"
-              style={{ fontSize: "13px", color: "#122D4D" }}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Show when="signed-out">
-            <div className="flex gap-3 pt-2 border-t border-gray-100">
-              <button
-                type="button"
-                onClick={() => { setMenuOpen(false); openSignIn(); }}
-                className="flex-1 text-center text-white text-sm font-medium py-2.5 rounded-lg transition-opacity hover:opacity-90"
-                style={{ backgroundColor: "#4285F4" }}
-              >
-                Log In
-              </button>
-              <button
-                type="button"
-                onClick={() => { setMenuOpen(false); openSignUp(); }}
-                className="flex-1 text-center text-white text-sm font-medium py-2.5 rounded-lg transition-opacity hover:opacity-90"
-                style={{ backgroundColor: "#082F6F" }}
-              >
-                Sign Up
-              </button>
+        <>
+          <div
+            className="lg:hidden fixed inset-0 z-40"
+            style={{ top: "64px", background: "rgba(0,0,0,0.22)", backdropFilter: "blur(2px)" }}
+            onClick={() => setMenuOpen(false)}
+          />
+          <div
+            className="lg:hidden fixed left-0 right-0 z-50 bg-white flex flex-col"
+            style={{ top: "64px", padding: "8px 20px 28px", boxShadow: "0 20px 50px rgba(0,0,0,0.13)", animation: "slideDown 0.22s ease" }}
+          >
+            {/* Nav links */}
+            <div className="flex flex-col py-2">
+              {mobileLinks.map((link) => {
+                const isActive = link.to === "/" ? location === "/" : location === link.to;
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.to}
+                    onClick={() => setMenuOpen(false)}
+                    className="flex items-center px-3 py-3.5 rounded-xl transition-colors"
+                    style={{ fontSize: "15px", fontWeight: isActive ? 700 : 500, color: isActive ? "#4285F4" : "#122D4D", background: isActive ? "#EFF6FF" : "transparent" }}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </div>
-          </Show>
-        </div>
+            <div style={{ height: "1px", background: "#F1F5F9", margin: "4px 0 16px" }} />
+            <Show when="signed-out">
+              <div className="flex flex-col gap-3">
+                <button type="button" onClick={() => { setMenuOpen(false); openSignIn(); }}
+                  className="w-full flex items-center justify-center font-semibold rounded-xl transition-opacity hover:opacity-90"
+                  style={{ height: "48px", fontSize: "15px", color: "#fff", background: "#4285F4", border: "none", cursor: "pointer" }}>
+                  Log In
+                </button>
+                <button type="button" onClick={() => { setMenuOpen(false); openSignUp(); }}
+                  className="w-full flex items-center justify-center font-semibold rounded-xl transition-opacity hover:opacity-90"
+                  style={{ height: "48px", fontSize: "15px", color: "#fff", background: "#082F6F", border: "none", cursor: "pointer" }}>
+                  Sign Up
+                </button>
+              </div>
+            </Show>
+            <Show when="signed-in">
+              <div className="px-3"><SignedInMenu /></div>
+            </Show>
+          </div>
+        </>
       )}
     </header>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const LABELS = ['Hero', 'Overview', 'Properties', 'Locations', 'Invest']
+const LABELS = ['Hero', 'Overview', 'Locations', 'Invest']
 
 export default function SectionDots() {
   const [active, setActive] = useState(0)

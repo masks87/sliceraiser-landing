@@ -1,8 +1,6 @@
 import { useLocation } from 'wouter'
 import { useEffect, useRef } from 'react'
 import SectionDots from '@/components/SectionDots'
-import dashboardImg from '@/assets/dashboard.png'
-
 import imgLuxuryProperty from '@/assets/luxury-property.png'
 
 import imgPhone289193 from '@/assets/phone-289193.png'
@@ -16,9 +14,7 @@ import imgGroup289195 from '@/assets/group-289195.png'
 import imgGroup289196 from '@/assets/group-289196.png'
 const imgDubaiUae = "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80"
 const imgAbuDhabi = "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80"
-const imgSpain = "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=900&q=80"
-const imgFrance = "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=80"
-const imgItaly = "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=900&q=80"
+const imgEurope   = "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1600&q=80"
 
 const features = [
   {
@@ -216,6 +212,7 @@ export default function Home() {
           >
             {/* Title — 60px/60px, Inter 700; second line blue */}
             <h1
+              className="home-hero-title"
               style={{
                 width: "100%",
                 fontFamily: "'Inter', sans-serif",
@@ -245,10 +242,10 @@ export default function Home() {
               Explore premium real estate opportunities in UAE and Europe with our curated selection of luxury properties.
             </p>
 
-            {/* CTA row — flex-wrap, row-gap: 0, col-gap: 15.99px, padding-top: 8px */}
+            {/* CTA row */}
             <div
               className="flex flex-wrap justify-center"
-              style={{ rowGap: "0px", columnGap: "15.99px", paddingTop: "8px", paddingBottom: "80px" }}
+              style={{ gap: "16px", paddingTop: "8px", paddingBottom: "80px" }}
             >
               {/* Browse Properties — 172×48px, #4285F4, border-radius 14px */}
               <button
@@ -374,8 +371,9 @@ export default function Home() {
       <section className="snap-section bg-white overflow-hidden" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
         <div className="mx-auto flex flex-col lg:flex-row items-center" style={{ maxWidth: "1400px", gap: "58px" }}>
           {/* Left: content */}
-          <div className="flex flex-col items-start" style={{ maxWidth: "687px", gap: "20px" }}>
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left" style={{ maxWidth: "687px", gap: "20px" }}>
             <h2
+              className="home-section-h2"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
@@ -388,6 +386,7 @@ export default function Home() {
               Build Your SliceRaiser Investment Lifestyle
             </h2>
             <p
+              className="home-section-body"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 400,
@@ -400,7 +399,7 @@ export default function Home() {
               SliceRaiser is built for people who want more than traditional saving. Explore selected property, equity and fixed income opportunities through a platform designed around income potential, capital growth, diversification and ownership mindset.
             </p>
 
-            <div className="flex flex-wrap" style={{ gap: "56px" }}>
+            <div className="flex flex-wrap justify-center lg:justify-start" style={{ gap: "20px" }}>
               <button
                 onClick={goProperties}
                 style={{
@@ -489,64 +488,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Section 3: Featured Properties ── */}
-      <section className="snap-section bg-white" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
-        <div
-          className="mx-auto flex flex-col items-center"
-          style={{ maxWidth: "1100px", padding: "0 32px", gap: "40px", width: "100%" }}
-        >
-          {/* Header group */}
-          <div className="flex flex-col items-center" style={{ gap: "16px" }}>
-            <h2
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 700,
-                fontSize: "40px",
-                lineHeight: "40px",
-                textAlign: "center",
-                color: "#4285F4",
-                margin: 0,
-              }}
-            >
-              Featured Properties
-            </h2>
-            <div style={{ maxWidth: "672px" }}>
-              <p
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 400,
-                  fontSize: "20px",
-                  lineHeight: "24px",
-                  textAlign: "center",
-                  color: "#8E9196",
-                  margin: 0,
-                  width: "819px",
-                  maxWidth: "100%",
-                }}
-              >
-                Explore our handpicked selection of premium properties across luxury locations in UAE and Europe.
-              </p>
-            </div>
-          </div>
-
-          {/* Browsers screenshot — constrained to fit viewport */}
-          <img
-            src={dashboardImg}
-            alt="SliceRaiser Dashboard"
-            style={{
-              width: "100%",
-              maxWidth: "1036px",
-              height: "auto",
-              aspectRatio: "1400 / 847",
-              objectFit: "cover",
-              borderRadius: "20px",
-              filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.25))",
-              display: "block",
-            }}
-          />
-        </div>
-      </section>
-
       {/* ── Section 4: Featured Locations ── */}
       <section
         className="snap-section"
@@ -559,6 +500,7 @@ export default function Home() {
           {/* Header group */}
           <div className="flex flex-col items-center w-full" style={{ gap: "16px" }}>
             <h2
+              className="home-section-h2"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
@@ -572,6 +514,7 @@ export default function Home() {
               Featured Locations
             </h2>
             <p
+              className="home-section-body"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 400,
@@ -588,9 +531,7 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Cards — 3-column CSS grid, Dubai spans 2 cols
-               Row 1: Dubai (span 2) + Abu Dhabi (span 1)
-               Row 2: Spain + France + Italy (each span 1)          */}
+          {/* Cards — 3 equal columns */}
           <div
             className="locations-grid w-full"
             style={{
@@ -599,11 +540,9 @@ export default function Home() {
               gap: "24px",
             }}
           >
-            <LocationCard name="Dubai, UAE"     count="120 Properties" img={imgDubaiUae} span={2} extraClass="location-span-2" />
+            <LocationCard name="Dubai, UAE"     count="120 Properties" img={imgDubaiUae} />
             <LocationCard name="Abu Dhabi, UAE" count="95 Properties"  img={imgAbuDhabi} />
-            <LocationCard name="Spain"          count="78 Properties"  img={imgSpain} />
-            <LocationCard name="France"         count="62 Properties"  img={imgFrance} />
-            <LocationCard name="Italy"          count="56 Properties"  img={imgItaly} />
+            <LocationCard name="Europe"         count="200+ Properties" img={imgEurope} />
           </div>
         </div>
       </section>
@@ -617,10 +556,10 @@ export default function Home() {
         >
 
           {/* ── LEFT: 636px column ── */}
-          <div className="flex flex-col items-start" style={{ width: "636px", maxWidth: "100%", gap: "24px", flexShrink: 0 }}>
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left" style={{ width: "636px", maxWidth: "100%", gap: "24px", flexShrink: 0 }}>
 
             {/* Heading */}
-            <h2 style={{
+            <h2 className="home-section-h2" style={{
               fontFamily: "'Inter', sans-serif",
               fontWeight: 700,
               fontSize: "40px",
@@ -632,7 +571,7 @@ export default function Home() {
             </h2>
 
             {/* Body */}
-            <p style={{
+            <p className="home-section-body" style={{
               fontFamily: "'Inter', sans-serif",
               fontWeight: 400,
               fontSize: "20px",

@@ -221,3 +221,26 @@ body {
 @media (max-width: 640px) {
   .snap-section { padding-top: 40px !important; padding-bottom: 40px !important; }
 }
+
+/* ── Drawer slide-down animation ─────────────────────────────────────── */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive font sizes for home headings ─────────────────────────── */
+@media (max-width: 640px) {
+  .home-hero-title   { font-size: 36px !important; line-height: 1.15 !important; }
+  .home-section-h2   { font-size: 26px !important; line-height: 1.25 !important; }
+  .home-section-body { font-size: 15px !important; line-height: 1.55 !important; }
+}
+@media (min-width: 641px) and (max-width: 1023px) {
+  .home-hero-title   { font-size: 48px !important; line-height: 1.1 !important; }
+  .home-section-h2   { font-size: 32px !important; line-height: 1.2 !important; }
+  .home-section-body { font-size: 17px !important; }
+}
+
+/* ── Section 2 & 5: left col text alignment on mobile ────────────────── */
+@media (max-width: 1023px) {
+  .s2-left-col .section-cta-row { justify-content: center !important; }
+}
