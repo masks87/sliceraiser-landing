@@ -510,11 +510,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Section 4: Featured Locations — laptop only ── */}
+      {/* ── Section 4: Featured Locations ── */}
       <section
-        className="snap-section hidden lg:flex"
+        className="snap-section"
         data-label="locations"
-        style={{ background: "rgba(241,240,251,0.3)", minHeight: "100vh", alignItems: "center", padding: "60px 24px" }}
+        style={{ background: "rgba(241,240,251,0.3)", minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}
       >
         <div
           className="mx-auto flex flex-col items-center"
