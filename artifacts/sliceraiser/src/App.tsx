@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ClerkProvider,
   SignIn,
@@ -234,8 +235,14 @@ function ScrollToTop() {
   );
 }
 
+const pageVariants = {
+  initial: { opacity: 0, y: 14 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] } },
+  exit:    { opacity: 0, y: -10, transition: { duration: 0.18, ease: [0.22, 1, 0.36, 1] } },
+}
+
 function ClerkProviderWithRoutes() {
-  const [, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
 
   return (
     <ClerkProvider
@@ -264,32 +271,43 @@ function ClerkProviderWithRoutes() {
           <Route path="/sign-up/*?" component={SignUpPage} />
           <Route>
             <Layout>
-              <Switch>
-                <Route path="/" component={Home} />
-                <Route path="/properties" component={Opportunities} />
-                <Route path="/properties/:id" component={OpportunityDetail} />
-                <Route path="/equity" component={Equity} />
-                <Route path="/fixed-income" component={FixedIncome} />
-                <Route path="/dashboard" component={ProtectedDashboard} />
-                <Route path="/contact" component={Contact} />
-                <Route path="/legal" component={Legal} />
-                <Route path="/terms" component={Terms} />
-                <Route path="/privacy" component={Privacy} />
-                <Route path="/risk-disclosure" component={RiskDisclosure} />
-                <Route path="/cookie-policy" component={CookiePolicy} />
-                <Route path="/faq" component={Faq} />
-                <Route path="/investor-relations" component={InvestorRelations} />
-                <Route path="/ir" component={InvestorRelations} />
-                <Route path="/about" component={About} />
-                <Route path="/how-it-works" component={HowItWorks} />
-                <Route path="/careers" component={Careers} />
-                <Route>
-                  <div className="max-w-3xl mx-auto px-6 py-20 text-center">
-                    <h1 className="text-3xl font-bold text-[#020817] mb-3">Page not found</h1>
-                    <p className="text-[#8e9196]">The page you're looking for doesn't exist.</p>
-                  </div>
-                </Route>
-              </Switch>
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={location}
+                  variants={pageVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  style={{ width: "100%" }}
+                >
+                  <Switch>
+                    <Route path="/" component={Home} />
+                    <Route path="/properties" component={Opportunities} />
+                    <Route path="/properties/:id" component={OpportunityDetail} />
+                    <Route path="/equity" component={Equity} />
+                    <Route path="/fixed-income" component={FixedIncome} />
+                    <Route path="/dashboard" component={ProtectedDashboard} />
+                    <Route path="/contact" component={Contact} />
+                    <Route path="/legal" component={Legal} />
+                    <Route path="/terms" component={Terms} />
+                    <Route path="/privacy" component={Privacy} />
+                    <Route path="/risk-disclosure" component={RiskDisclosure} />
+                    <Route path="/cookie-policy" component={CookiePolicy} />
+                    <Route path="/faq" component={Faq} />
+                    <Route path="/investor-relations" component={InvestorRelations} />
+                    <Route path="/ir" component={InvestorRelations} />
+                    <Route path="/about" component={About} />
+                    <Route path="/how-it-works" component={HowItWorks} />
+                    <Route path="/careers" component={Careers} />
+                    <Route>
+                      <div className="max-w-3xl mx-auto px-6 py-20 text-center">
+                        <h1 className="text-3xl font-bold text-[#020817] mb-3">Page not found</h1>
+                        <p className="text-[#8e9196]">The page you're looking for doesn't exist.</p>
+                      </div>
+                    </Route>
+                  </Switch>
+                </motion.div>
+              </AnimatePresence>
             </Layout>
           </Route>
         </Switch>
