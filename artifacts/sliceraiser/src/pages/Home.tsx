@@ -66,22 +66,28 @@ export default function Home() {
   const goContact = () => setLocation('/contact')
 
   const phoneClusterRef = useRef<HTMLDivElement>(null)
+  const phone2ClusterRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
-    const container = phoneClusterRef.current
-    if (!container) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          container.querySelectorAll<HTMLElement>('.phone-item').forEach(el => {
-            el.classList.add('phone-visible')
-          })
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.25 }
-    )
-    observer.observe(container)
-    return () => observer.disconnect()
+    const refs = [phoneClusterRef, phone2ClusterRef]
+    const observers = refs.map(ref => {
+      const container = ref.current
+      if (!container) return null
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            container.querySelectorAll<HTMLElement>('.phone-item').forEach(el => {
+              el.classList.add('phone-visible')
+            })
+            observer.disconnect()
+          }
+        },
+        { threshold: 0.25 }
+      )
+      observer.observe(container)
+      return observer
+    })
+    return () => observers.forEach(o => o?.disconnect())
   }, [])
 
   return (
@@ -637,6 +643,7 @@ export default function Home() {
 
           {/* ── RIGHT: phone cluster — 741 × 619 container, same absolute-positioning logic as Section 2 ── */}
           <div
+            ref={phone2ClusterRef}
             style={{
               position: "relative",
               width: "741px",
@@ -649,6 +656,7 @@ export default function Home() {
             <img
               src={imgGroup289196}
               alt="App screenshot"
+              className="phone-item"
               style={{
                 position: "absolute",
                 left: 0,
@@ -663,6 +671,7 @@ export default function Home() {
             <img
               src={imgGroup289195}
               alt="App screenshot"
+              className="phone-item"
               style={{
                 position: "absolute",
                 left: 256,
@@ -677,6 +686,7 @@ export default function Home() {
             <img
               src={imgGroup289194}
               alt="App screenshot"
+              className="phone-item"
               style={{
                 position: "absolute",
                 left: 512,
