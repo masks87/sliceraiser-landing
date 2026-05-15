@@ -1,7 +1,7 @@
 import { useLocation } from 'wouter'
 import dashboardImg from '@/assets/dashboard.png'
 
-const imgLuxuryProperty = "https://www.figma.com/api/mcp/asset/763237e7-9544-47f2-95d3-d99e408f8ad6"
+import imgLuxuryProperty from '@/assets/luxury-property.png'
 const imgFrame1000002023 = "https://www.figma.com/api/mcp/asset/023f3a49-d6a7-4116-bb4c-6dba771cabfc"
 const imgMultipleLineGraph = "https://www.figma.com/api/mcp/asset/6cf1a34f-0dac-44a7-8703-82a603e88f10"
 const imgGroup289192 = "https://www.figma.com/api/mcp/asset/61fc9281-116e-42cd-9a72-2edb3c71b3db"
