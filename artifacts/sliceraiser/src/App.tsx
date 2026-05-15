@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ClerkProvider,
   SignIn,
@@ -183,6 +183,57 @@ function ClerkQueryClientCacheInvalidator() {
   return null;
 }
 
+function ScrollToTop() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 420);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="Back to top"
+      style={{
+        position: "fixed",
+        bottom: "32px",
+        right: "32px",
+        zIndex: 999,
+        width: "44px",
+        height: "44px",
+        borderRadius: "50%",
+        background: "#4285F4",
+        border: "none",
+        cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        boxShadow: "0 4px 16px rgba(66,133,244,0.45)",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0) scale(1)" : "translateY(12px) scale(0.85)",
+        transition: "opacity 0.25s ease, transform 0.25s ease",
+        pointerEvents: visible ? "auto" : "none",
+      }}
+      onMouseEnter={e => {
+        (e.currentTarget as HTMLButtonElement).style.background = "#3570d4";
+        (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 22px rgba(66,133,244,0.6)";
+        (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px) scale(1)";
+      }}
+      onMouseLeave={e => {
+        (e.currentTarget as HTMLButtonElement).style.background = "#4285F4";
+        (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 16px rgba(66,133,244,0.45)";
+        (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0) scale(1)";
+      }}
+    >
+      <svg width="18" height="18" fill="none" stroke="#fff" strokeWidth="2.5" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+      </svg>
+    </button>
+  );
+}
+
 function ClerkProviderWithRoutes() {
   const [, setLocation] = useLocation();
 
@@ -206,6 +257,7 @@ function ClerkProviderWithRoutes() {
     >
       <QueryClientProvider client={queryClient}>
         <ClerkQueryClientCacheInvalidator />
+        <ScrollToTop />
         <CookieConsent />
         <Switch>
           <Route path="/sign-in/*?" component={SignInPage} />
