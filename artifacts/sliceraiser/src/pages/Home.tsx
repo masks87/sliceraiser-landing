@@ -684,18 +684,6 @@ function LocationCard({
         >
           {name}
         </p>
-        <p
-          style={{
-            fontFamily: "'Inter', sans-serif",
-            fontWeight: 400,
-            fontSize: "14px",
-            lineHeight: "20px",
-            color: "rgba(255,255,255,0.8)",
-            margin: 0,
-          }}
-        >
-          {count}
-        </p>
       </div>
     </div>
   )

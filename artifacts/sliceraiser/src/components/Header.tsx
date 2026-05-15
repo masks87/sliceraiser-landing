@@ -49,13 +49,13 @@ function JurisdictionSelector() {
           <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
           <circle cx="12" cy="9" r="2.5"/>
         </svg>
-        Location
+        Regulatory
       </span>
       <div className="relative">
         <select
           value={value}
           onChange={handleChange}
-          aria-label="Location"
+          aria-label="Regulatory"
           className="appearance-none cursor-pointer transition-all hover:border-[#4285F4]"
           style={{
             backgroundColor: "#F8FAFC",
