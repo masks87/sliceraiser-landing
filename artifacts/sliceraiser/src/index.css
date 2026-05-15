@@ -169,15 +169,59 @@ body {
   }
 }
 
-/* Mobile (≤640px) */
+/* Mobile (≤640px) — single centered phone, no scale hacks */
 @media (max-width: 640px) {
+  /* ── Section 2 cluster ── */
   .phone-cluster-wrap {
-    transform: scale(0.52);
-    margin-bottom: calc(-614px * 0.48); /* -295px */
+    transform: none !important;
+    margin-bottom: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start;
   }
+  /* hide side phones, frame, graph and bg card */
+  .phone-cluster-wrap .phone-item:nth-child(1),
+  .phone-cluster-wrap .phone-item:nth-child(3),
+  .phone-cluster-wrap .phone-item:nth-child(4),
+  .phone-cluster-wrap .phone-item:nth-child(5),
+  .phone-cluster-wrap .phone-item:nth-child(6) {
+    display: none !important;
+  }
+  /* center phone (289197) — pull out of absolute flow */
+  .phone-cluster-wrap .phone-item:nth-child(2) {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 220px !important;
+    height: 450px !important;
+    filter: drop-shadow(0px 24px 40px rgba(0,0,0,0.22)) !important;
+  }
+
+  /* ── Section 5 cluster ── */
   .phone-cluster-s5-wrap {
-    transform: scale(0.52);
-    margin-bottom: calc(-425px * 0.48); /* -204px */
+    transform: none !important;
+    margin-bottom: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start;
+  }
+  /* hide left and right phones */
+  .phone-cluster-s5-wrap .phone-item:nth-child(1),
+  .phone-cluster-s5-wrap .phone-item:nth-child(3) {
+    display: none !important;
+  }
+  /* center phone (289195 — SliceRaiser home) */
+  .phone-cluster-s5-wrap .phone-item:nth-child(2) {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 220px !important;
+    height: 450px !important;
+    filter: drop-shadow(0px 24px 40px rgba(0,0,0,0.22)) !important;
   }
 }
 
