@@ -1,20 +1,36 @@
 import { useEffect, useState } from 'react'
 
-const LABELS = ['Hero', 'Overview', 'Locations', 'Invest']
+const SECTION_LABELS: Record<string, string> = {
+  'hero':      'Hero',
+  'overview':  'Overview',
+  'locations': 'Locations',
+  'invest':    'Invest',
+}
+
+function getVisibleSections(): HTMLElement[] {
+  return Array.from(document.querySelectorAll<HTMLElement>('.snap-section'))
+    .filter(s => s.offsetParent !== null)
+}
 
 export default function SectionDots() {
-  const [active, setActive] = useState(0)
+  const [active, setActive]   = useState(0)
   const [hovered, setHovered] = useState<number | null>(null)
+  const [labels, setLabels]   = useState<string[]>([])
 
   useEffect(() => {
-    const sections = Array.from(document.querySelectorAll<HTMLElement>('.snap-section'))
+    const sections = getVisibleSections()
+    const derived = sections.map(
+      s => SECTION_LABELS[s.dataset.label ?? ''] ?? ''
+    )
+    setLabels(derived)
     if (!sections.length) return
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            const idx = sections.indexOf(entry.target as HTMLElement)
+            const visible = getVisibleSections()
+            const idx = visible.indexOf(entry.target as HTMLElement)
             if (idx !== -1) setActive(idx)
           }
         })
@@ -27,9 +43,11 @@ export default function SectionDots() {
   }, [])
 
   const goTo = (idx: number) => {
-    const sections = Array.from(document.querySelectorAll<HTMLElement>('.snap-section'))
+    const sections = getVisibleSections()
     sections[idx]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
+
+  if (!labels.length) return null
 
   return (
     <div
@@ -46,14 +64,13 @@ export default function SectionDots() {
         zIndex: 200,
       }}
     >
-      {LABELS.map((label, i) => (
+      {labels.map((label, i) => (
         <div
           key={i}
           style={{ position: 'relative', display: 'flex', alignItems: 'center' }}
           onMouseEnter={() => setHovered(i)}
           onMouseLeave={() => setHovered(null)}
         >
-          {/* Tooltip label */}
           <div
             style={{
               position: 'absolute',
@@ -75,7 +92,6 @@ export default function SectionDots() {
             {label}
           </div>
 
-          {/* Dot */}
           <button
             onClick={() => goTo(i)}
             aria-label={`Go to ${label}`}

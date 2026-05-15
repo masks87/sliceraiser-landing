@@ -81,6 +81,7 @@ export default function Home() {
   useEffect(() => {
     const getSections = () =>
       Array.from(document.querySelectorAll<HTMLElement>('.snap-section'))
+        .filter(s => s.offsetParent !== null)
 
     // Find which section is currently most visible.
     // Returns sections.length when the page is scrolled into the footer zone.
@@ -205,6 +206,7 @@ export default function Home() {
       {/* ── Section 1: Hero ── */}
       <section
         className="snap-section hero-section relative flex items-center justify-center overflow-hidden"
+        data-label="hero"
         style={{ minHeight: "100vh" }}
       >
         <img
@@ -388,7 +390,7 @@ export default function Home() {
       </section>
 
       {/* ── Section 2: Build Your Investment Lifestyle ── */}
-      <section className="snap-section snap-s-phone bg-white overflow-hidden" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
+      <section className="snap-section snap-s-phone bg-white overflow-hidden" data-label="overview" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
         <div className="mx-auto flex flex-col lg:flex-row items-center" style={{ maxWidth: "1400px", gap: "58px" }}>
           {/* Left: content */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left" style={{ maxWidth: "687px", gap: "20px" }}>
@@ -508,10 +510,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Section 4: Featured Locations ── */}
+      {/* ── Section 4: Featured Locations — laptop only ── */}
       <section
-        className="snap-section"
-        style={{ background: "rgba(241,240,251,0.3)", minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}
+        className="snap-section hidden lg:flex"
+        data-label="locations"
+        style={{ background: "rgba(241,240,251,0.3)", minHeight: "100vh", alignItems: "center", padding: "60px 24px" }}
       >
         <div
           className="mx-auto flex flex-col items-center"
@@ -568,7 +571,7 @@ export default function Home() {
       </section>
 
       {/* ── Section 5: Invest in Premium Real Estate ── */}
-      <section className="snap-section snap-s-phone bg-white overflow-hidden" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
+      <section className="snap-section snap-s-phone bg-white overflow-hidden" data-label="invest" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
         {/* outer container: flex row, gap 64px, max 1400px, centred */}
         <div
           className="mx-auto flex flex-col lg:flex-row items-center"
