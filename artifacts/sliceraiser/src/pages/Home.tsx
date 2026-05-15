@@ -12,6 +12,7 @@ import imgPhoneBg from '@/assets/phone-background.png'
 import imgGroup289194 from '@/assets/group-289194.png'
 import imgGroup289195 from '@/assets/group-289195.png'
 import imgGroup289196 from '@/assets/group-289196.png'
+import imgBrowserMockup from "@assets/Browsers1_1778862431620.png"
 import imgDubai    from "@/assets/loc-dubai.jpg"
 import imgAbuDhabi from "@/assets/loc-abudhabi.jpg"
 import imgSpain    from "@/assets/loc-spain.jpg"
@@ -513,6 +514,67 @@ export default function Home() {
             {/* Background — left:540 top:395 */}
             <img src={imgPhoneBg} alt="" className="phone-item" style={{ position:"absolute", left:540, top:395, width:109, height:174, objectFit:"contain", filter:"drop-shadow(0 8px 20px rgba(0,0,0,0.12))" }} />
           </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Section 3: Featured Properties — desktop only ── */}
+      <section
+        className="snap-section hidden lg:flex"
+        data-label="properties"
+        style={{ background: "#080D1A", minHeight: "100vh", alignItems: "center", padding: "60px 24px" }}
+      >
+        <div
+          className="mx-auto flex flex-col items-center"
+          style={{ maxWidth: "1100px", padding: "0 32px", gap: "40px", width: "100%" }}
+        >
+          {/* Header */}
+          <div className="flex flex-col items-center w-full" style={{ gap: "14px" }}>
+            <h2
+              className="home-section-h2 fade-up"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 700,
+                fontSize: "40px",
+                lineHeight: "40px",
+                textAlign: "center",
+                color: "#4285F4",
+                margin: 0,
+              }}
+            >
+              Featured Properties
+            </h2>
+            <p
+              className="home-section-body fade-up delay-1"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 400,
+                fontSize: "18px",
+                lineHeight: "26px",
+                textAlign: "center",
+                color: "rgba(255,255,255,0.65)",
+                maxWidth: "620px",
+                margin: 0,
+              }}
+            >
+              Explore our handpicked selection of premium properties across luxury locations in UAE and Europe.
+            </p>
+          </div>
+
+          {/* Browser mockup */}
+          <div
+            className="fade-up delay-2 w-full"
+            style={{
+              borderRadius: "16px",
+              overflow: "hidden",
+              boxShadow: "0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08)",
+            }}
+          >
+            <img
+              src={imgBrowserMockup}
+              alt="SliceRaiser platform — Featured Properties"
+              style={{ width: "100%", display: "block", objectFit: "cover" }}
+            />
           </div>
         </div>
       </section>

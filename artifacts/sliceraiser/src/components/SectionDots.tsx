@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 
 const SECTION_LABELS: Record<string, string> = {
-  'hero':      'Hero',
-  'overview':  'Overview',
-  'locations': 'Locations',
-  'invest':    'Invest',
+  'hero':       'Hero',
+  'overview':   'Overview',
+  'properties': 'Properties',
+  'locations':  'Locations',
+  'invest':     'Invest',
 }
 
 function getVisibleSections(): HTMLElement[] {
