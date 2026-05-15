@@ -1,5 +1,6 @@
 import { useLocation } from 'wouter'
 import { useEffect, useRef } from 'react'
+import SectionDots from '@/components/SectionDots'
 import dashboardImg from '@/assets/dashboard.png'
 
 import imgLuxuryProperty from '@/assets/luxury-property.png'
@@ -175,6 +176,7 @@ export default function Home() {
 
   return (
     <div className="bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>
+      <SectionDots />
 
       {/* ── Section 1: Hero ── */}
       <section
