@@ -91,7 +91,7 @@ export default function Home() {
             className="flex flex-col items-center"
             style={{ width: "100%", maxWidth: "768px", gap: "24px" }}
           >
-            {/* Title — 60px/60px, Inter 700, white */}
+            {/* Title — 60px/60px, Inter 700; second line blue */}
             <h1
               style={{
                 width: "100%",
@@ -103,7 +103,8 @@ export default function Home() {
                 color: "#FFFFFF",
               }}
             >
-              Discover Your Perfect Property Investment
+              Discover Your Perfect<br />
+              <span style={{ color: "#4285F4" }}>Property Investment</span>
             </h1>
 
             {/* Subtitle — 20px/28px, Inter 400, white 90% */}
