@@ -10,14 +10,14 @@ import imgPhone289192 from '@/assets/phone-289192.png'
 import imgPhoneFrame from '@/assets/phone-frame-1000002023.png'
 import imgLineGraph from '@/assets/phone-line-graph.png'
 import imgPhoneBg from '@/assets/phone-background.png'
+import imgGroup289194 from '@/assets/group-289194.png'
+import imgGroup289195 from '@/assets/group-289195.png'
+import imgGroup289196 from '@/assets/group-289196.png'
 const imgDubaiUae = "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80"
 const imgAbuDhabi = "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80"
 const imgSpain = "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=900&q=80"
 const imgFrance = "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=80"
 const imgItaly = "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=900&q=80"
-const imgGroup289194 = "https://www.figma.com/api/mcp/asset/abf2831e-ac22-426c-870d-b0d3417deb18"
-const imgGroup289195 = "https://www.figma.com/api/mcp/asset/11c45383-8665-4c12-b134-d66c3dbf3c78"
-const imgGroup289196 = "https://www.figma.com/api/mcp/asset/4ecc83fa-5659-4999-ae99-1e23767b07b0"
 
 const features = [
   {
