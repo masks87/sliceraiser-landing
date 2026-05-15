@@ -388,7 +388,7 @@ export default function Header() {
       </nav>
 
       {/* ── Mobile nav ── */}
-      <nav className="lg:hidden flex items-center justify-between px-5" style={{ height: "64px" }}>
+      <nav className="lg:hidden flex items-center justify-between px-4" style={{ height: "52px" }}>
         <Logo />
         {/* Animated hamburger */}
         <button
@@ -408,12 +408,12 @@ export default function Header() {
         <>
           <div
             className="lg:hidden fixed inset-0 z-40"
-            style={{ top: "64px", background: "rgba(0,0,0,0.22)", backdropFilter: "blur(2px)" }}
+            style={{ top: "52px", background: "rgba(0,0,0,0.22)", backdropFilter: "blur(2px)" }}
             onClick={() => setMenuOpen(false)}
           />
           <div
             className="lg:hidden fixed left-0 right-0 z-50 bg-white flex flex-col"
-            style={{ top: "64px", padding: "8px 20px 28px", boxShadow: "0 20px 50px rgba(0,0,0,0.13)", animation: "slideDown 0.22s ease" }}
+            style={{ top: "52px", padding: "8px 20px 24px", boxShadow: "0 20px 50px rgba(0,0,0,0.13)", animation: "slideDown 0.22s ease" }}
           >
             {/* Nav links */}
             <div className="flex flex-col py-2">

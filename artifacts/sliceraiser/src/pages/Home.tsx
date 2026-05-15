@@ -102,8 +102,9 @@ export default function Home() {
       const sections = getSections()
       if (idx < 0) return
       if (idx >= sections.length) {
-        // Scroll past last section to reveal the footer
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+        // Scroll to just after last section to reveal footer cleanly
+        const last = sections[sections.length - 1]
+        if (last) window.scrollTo({ top: last.offsetTop + last.offsetHeight, behavior: 'smooth' })
         return
       }
       sections[idx].scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -387,7 +388,7 @@ export default function Home() {
       </section>
 
       {/* ── Section 2: Build Your Investment Lifestyle ── */}
-      <section className="snap-section bg-white overflow-hidden" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
+      <section className="snap-section bg-white overflow-hidden" style={{ minHeight: "100vh", display: "flex", alignItems: "flex-start", justifyContent: "center", padding: "80px 24px" }}>
         <div className="mx-auto flex flex-col lg:flex-row items-center" style={{ maxWidth: "1400px", gap: "58px" }}>
           {/* Left: content */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left" style={{ maxWidth: "687px", gap: "20px" }}>
@@ -478,13 +479,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right: phone cluster — 668×614px absolute container
-               Figma bounding box origin: left:732 top:93
-               Each slot: position relative to that origin              */}
+          {/* Right: phone cluster — centered wrapper + 668×614px absolute container */}
+          <div className="w-full lg:w-auto flex justify-center overflow-hidden flex-shrink-0">
           <div
             ref={phoneClusterRef}
-            className="phone-cluster-wrap shrink-0 fade-up delay-3"
-            style={{ position: "relative", width: "668px", height: "614px" }}
+            className="phone-cluster-wrap fade-up delay-3"
+            style={{ position: "relative", width: "668px", height: "614px", flexShrink: 0 }}
           >
             {/* Group 289193 — left:91 top:35 */}
             <img src={imgPhone289193} alt="" className="phone-item" style={{ position:"absolute", left:91, top:35, width:176, height:360, objectFit:"contain", filter:"drop-shadow(0 20px 40px rgba(0,0,0,0.18))" }} />
@@ -503,6 +503,7 @@ export default function Home() {
 
             {/* Background — left:540 top:395 */}
             <img src={imgPhoneBg} alt="" className="phone-item" style={{ position:"absolute", left:540, top:395, width:109, height:174, objectFit:"contain", filter:"drop-shadow(0 8px 20px rgba(0,0,0,0.12))" }} />
+          </div>
           </div>
         </div>
       </section>
@@ -567,7 +568,7 @@ export default function Home() {
       </section>
 
       {/* ── Section 5: Invest in Premium Real Estate ── */}
-      <section className="snap-section bg-white overflow-hidden" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "60px 24px" }}>
+      <section className="snap-section bg-white overflow-hidden" style={{ minHeight: "100vh", display: "flex", alignItems: "flex-start", justifyContent: "center", padding: "80px 24px" }}>
         {/* outer container: flex row, gap 64px, max 1400px, centred */}
         <div
           className="mx-auto flex flex-col lg:flex-row items-center"
@@ -601,8 +602,8 @@ export default function Home() {
               Our curated real estate investment opportunities offer exceptional returns in high-growth markets. With strategic locations across UAE and Europe, our properties combine luxury living with strong investment potential.
             </p>
 
-            {/* 2 × 2 feature cards — absolute-positioned inside 636 × 388 container */}
-            <div className="feature-cards-abs fade-up delay-2" style={{ position: "relative", width: "636px", maxWidth: "100%", height: "388px" }}>
+            {/* 2 × 2 feature cards — absolute-positioned inside 636 × 310 container */}
+            <div className="feature-cards-abs fade-up delay-2" style={{ position: "relative", width: "636px", maxWidth: "100%", height: "310px" }}>
 
               {features.map((f, i) => {
                 /* Figma coords: left col = 0→306, right col = 330→636
@@ -617,8 +618,8 @@ export default function Home() {
                       position: "absolute",
                       left:   col === 0 ? 0 : 330,
                       right:  col === 0 ? 330 : 0,
-                      top:    row === 0 ? 0 : 198,
-                      bottom: row === 0 ? 214 : 16,
+                      top:    row === 0 ? 0 : 160,
+                      bottom: row === 0 ? 170 : 16,
                       padding: "21px",
                       background: "#FFFFFF",
                       border: "1px solid #E5E7EB",
@@ -693,7 +694,8 @@ export default function Home() {
             </button>
           </div>
 
-          {/* ── RIGHT: phone cluster — 741 × 619 container, same absolute-positioning logic as Section 2 ── */}
+          {/* ── RIGHT: phone cluster — centered wrapper + 741×619 container ── */}
+          <div className="w-full lg:w-auto flex justify-center overflow-hidden flex-shrink-0">
           <div
             ref={phone2ClusterRef}
             className="phone-cluster-s5-wrap fade-up delay-3"
@@ -702,7 +704,6 @@ export default function Home() {
               width: "741px",
               height: "619px",
               flexShrink: 0,
-              maxWidth: "100%",
             }}
           >
             {/* Left phone — Group 289196: x=0, y=106, 228×467 */}
@@ -750,6 +751,7 @@ export default function Home() {
                 filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.18))",
               }}
             />
+          </div>
           </div>
 
         </div>
