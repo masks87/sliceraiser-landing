@@ -185,7 +185,7 @@ const mobileLinks = [
 function Logo() {
   return (
     <Link href="/" className="flex items-center shrink-0">
-      <img src={logoImg} alt="Slice Raiser" className="h-[26px] sm:h-[30px] lg:h-[34px] w-auto object-contain" />
+      <img src={logoImg} alt="Slice Raiser" className="h-[16px] sm:h-[18px] lg:h-[22px] w-auto object-contain" />
     </Link>
   );
 }

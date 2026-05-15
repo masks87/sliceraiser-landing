@@ -157,6 +157,24 @@ export default function Home() {
     }
   }, [])
 
+  // Entrance animations — adds .is-visible once element enters viewport
+  useEffect(() => {
+    const els = document.querySelectorAll<HTMLElement>('.fade-up')
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
+    )
+    els.forEach(el => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
   useEffect(() => {
     const refs = [phoneClusterRef, phone2ClusterRef]
     const observers = refs.map(ref => {
@@ -185,7 +203,7 @@ export default function Home() {
 
       {/* ── Section 1: Hero ── */}
       <section
-        className="snap-section relative flex items-center justify-center overflow-hidden"
+        className="snap-section hero-section relative flex items-center justify-center overflow-hidden"
         style={{ minHeight: "100vh" }}
       >
         <img
@@ -212,7 +230,7 @@ export default function Home() {
           >
             {/* Title — 60px/60px, Inter 700; second line blue */}
             <h1
-              className="home-hero-title"
+              className="home-hero-title fade-up"
               style={{
                 width: "100%",
                 fontFamily: "'Inter', sans-serif",
@@ -229,6 +247,7 @@ export default function Home() {
 
             {/* Subtitle — 20px/28px, Inter 400, white 90% */}
             <p
+              className="fade-up delay-1"
               style={{
                 width: "100%",
                 fontFamily: "'Inter', sans-serif",
@@ -244,7 +263,7 @@ export default function Home() {
 
             {/* CTA row */}
             <div
-              className="flex flex-wrap justify-center"
+              className="fade-up delay-2 flex flex-col items-center sm:flex-row sm:flex-wrap sm:justify-center"
               style={{ gap: "16px", paddingTop: "8px", paddingBottom: "80px" }}
             >
               {/* Browse Properties — 172×48px, #4285F4, border-radius 14px */}
@@ -373,7 +392,7 @@ export default function Home() {
           {/* Left: content */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left" style={{ maxWidth: "687px", gap: "20px" }}>
             <h2
-              className="home-section-h2"
+              className="home-section-h2 fade-up"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
@@ -386,7 +405,7 @@ export default function Home() {
               Build Your SliceRaiser Investment Lifestyle
             </h2>
             <p
-              className="home-section-body"
+              className="home-section-body fade-up delay-1"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 400,
@@ -399,7 +418,7 @@ export default function Home() {
               SliceRaiser is built for people who want more than traditional saving. Explore selected property, equity and fixed income opportunities through a platform designed around income potential, capital growth, diversification and ownership mindset.
             </p>
 
-            <div className="flex flex-wrap justify-center lg:justify-start" style={{ gap: "20px" }}>
+            <div className="fade-up delay-2 flex flex-wrap justify-center lg:justify-start" style={{ gap: "20px" }}>
               <button
                 onClick={goProperties}
                 style={{
@@ -464,7 +483,7 @@ export default function Home() {
                Each slot: position relative to that origin              */}
           <div
             ref={phoneClusterRef}
-            className="phone-cluster-wrap shrink-0"
+            className="phone-cluster-wrap shrink-0 fade-up delay-3"
             style={{ position: "relative", width: "668px", height: "614px" }}
           >
             {/* Group 289193 — left:91 top:35 */}
@@ -500,7 +519,7 @@ export default function Home() {
           {/* Header group */}
           <div className="flex flex-col items-center w-full" style={{ gap: "16px" }}>
             <h2
-              className="home-section-h2"
+              className="home-section-h2 fade-up"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
@@ -514,7 +533,7 @@ export default function Home() {
               Featured Locations
             </h2>
             <p
-              className="home-section-body"
+              className="home-section-body fade-up delay-1"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 400,
@@ -533,7 +552,7 @@ export default function Home() {
 
           {/* Cards — 3 equal columns */}
           <div
-            className="locations-grid w-full"
+            className="locations-grid fade-up delay-2 w-full"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
@@ -559,7 +578,7 @@ export default function Home() {
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left" style={{ width: "636px", maxWidth: "100%", gap: "24px", flexShrink: 0 }}>
 
             {/* Heading */}
-            <h2 className="home-section-h2" style={{
+            <h2 className="home-section-h2 fade-up" style={{
               fontFamily: "'Inter', sans-serif",
               fontWeight: 700,
               fontSize: "40px",
@@ -571,7 +590,7 @@ export default function Home() {
             </h2>
 
             {/* Body */}
-            <p className="home-section-body" style={{
+            <p className="home-section-body fade-up delay-1" style={{
               fontFamily: "'Inter', sans-serif",
               fontWeight: 400,
               fontSize: "20px",
@@ -583,7 +602,7 @@ export default function Home() {
             </p>
 
             {/* 2 × 2 feature cards — absolute-positioned inside 636 × 388 container */}
-            <div className="feature-cards-abs" style={{ position: "relative", width: "636px", maxWidth: "100%", height: "388px" }}>
+            <div className="feature-cards-abs fade-up delay-2" style={{ position: "relative", width: "636px", maxWidth: "100%", height: "388px" }}>
 
               {features.map((f, i) => {
                 /* Figma coords: left col = 0→306, right col = 330→636
@@ -677,7 +696,7 @@ export default function Home() {
           {/* ── RIGHT: phone cluster — 741 × 619 container, same absolute-positioning logic as Section 2 ── */}
           <div
             ref={phone2ClusterRef}
-            className="phone-cluster-s5-wrap"
+            className="phone-cluster-s5-wrap fade-up delay-3"
             style={{
               position: "relative",
               width: "741px",
@@ -755,7 +774,7 @@ function LocationCard({
 }) {
   return (
     <div
-      className={`group relative overflow-hidden ${extraClass}`}
+      className={`location-card group relative overflow-hidden ${extraClass}`}
       style={{
         height: "280px",
         gridColumn: span > 1 ? `span ${span}` : undefined,
