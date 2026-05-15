@@ -66,7 +66,10 @@ export default function Home() {
     <div className="bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>
 
       {/* ── Section 1: Hero ── */}
-      <section className="relative flex items-center justify-center overflow-hidden" style={{ minHeight: "600px" }}>
+      <section
+        className="relative flex items-center justify-center overflow-hidden"
+        style={{ minHeight: "600px" }}
+      >
         <img
           src={imgLuxuryProperty}
           alt="Luxury Property"
@@ -77,44 +80,60 @@ export default function Home() {
           className="absolute inset-0"
           style={{ background: "linear-gradient(180deg, rgba(26,31,44,0.8) 0%, rgba(0,0,0,0.9) 100%)" }}
         />
+
+        {/* Content container — padding: 40px 24px 0, gap: 48px, max-width: 1400px */}
         <div
-          className="relative z-10 mx-auto px-6 flex flex-col items-center text-center"
-          style={{ maxWidth: "1400px", padding: "96px 24px 0", gap: "48px" }}
+          className="relative z-10 w-full flex flex-col items-center"
+          style={{ maxWidth: "1400px", padding: "40px 24px 0", gap: "48px" }}
         >
-          {/* Heading + subtitle */}
-          <div className="flex flex-col items-center" style={{ maxWidth: "768px", gap: "24px" }}>
+          {/* Inner container — max-width: 768px, gap: 24px */}
+          <div
+            className="flex flex-col items-center"
+            style={{ width: "100%", maxWidth: "768px", gap: "24px" }}
+          >
+            {/* Title — 60px/60px, Inter 700, white */}
             <h1
               style={{
+                width: "100%",
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
-                fontSize: "clamp(36px, 5vw, 60px)",
+                fontSize: "60px",
                 lineHeight: "60px",
-                color: "#FFFFFF",
                 textAlign: "center",
+                color: "#FFFFFF",
               }}
             >
               Discover Your Perfect Property Investment
             </h1>
+
+            {/* Subtitle — 20px/28px, Inter 400, white 90% */}
             <p
               style={{
+                width: "100%",
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 400,
                 fontSize: "20px",
                 lineHeight: "28px",
-                color: "rgba(255,255,255,0.9)",
                 textAlign: "center",
+                color: "rgba(255,255,255,0.9)",
               }}
             >
               Explore premium real estate opportunities in UAE and Europe with our curated selection of luxury properties.
             </p>
-            {/* CTA buttons */}
-            <div className="flex flex-wrap justify-center" style={{ gap: "16px", paddingTop: "8px", paddingBottom: "80px" }}>
+
+            {/* CTA row — flex-wrap, row-gap: 0, col-gap: 15.99px, padding-top: 8px */}
+            <div
+              className="flex flex-wrap justify-center"
+              style={{ rowGap: "0px", columnGap: "15.99px", paddingTop: "8px", paddingBottom: "80px" }}
+            >
+              {/* Browse Properties — 172×48px, #4285F4, border-radius 14px */}
               <button
                 onClick={goProperties}
                 className="flex items-center justify-center transition-all"
                 style={{
                   width: "172px",
                   height: "48px",
+                  padding: "13.5px 24px 14.5px",
                   background: "#4285F4",
                   boxShadow: "0px 4px 6px -1px rgba(0,0,0,0.1), 0px 2px 4px -2px rgba(0,0,0,0.1)",
                   backdropFilter: "blur(2px)",
@@ -126,10 +145,11 @@ export default function Home() {
                   color: "#F8FAFC",
                   border: "none",
                   cursor: "pointer",
+                  transition: "transform 0.18s ease, box-shadow 0.18s ease",
                 }}
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
-                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 20px rgba(66,133,244,0.4)";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 20px rgba(66,133,244,0.45)";
                 }}
                 onMouseLeave={e => {
                   (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
@@ -138,12 +158,15 @@ export default function Home() {
               >
                 Browse Properties
               </button>
+
+              {/* Investment Opportunities — 221×50px, #082F6F, border-radius 14px */}
               <button
                 onClick={goProperties}
                 className="flex items-center justify-center transition-all"
                 style={{
                   width: "221px",
                   height: "50px",
+                  padding: "14.5px 25px 15.5px",
                   background: "#082F6F",
                   boxShadow: "0px 4px 6px -1px rgba(0,0,0,0.1), 0px 2px 4px -2px rgba(0,0,0,0.1)",
                   backdropFilter: "blur(2px)",
@@ -155,10 +178,11 @@ export default function Home() {
                   color: "#FFFFFF",
                   border: "none",
                   cursor: "pointer",
+                  transition: "transform 0.18s ease, box-shadow 0.18s ease",
                 }}
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
-                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 20px rgba(8,47,111,0.4)";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 20px rgba(8,47,111,0.45)";
                 }}
                 onMouseLeave={e => {
                   (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
@@ -167,6 +191,56 @@ export default function Home() {
               >
                 Investment Opportunities
               </button>
+            </div>
+          </div>
+
+          {/* Search filter form — hidden per Figma (display: none), kept in DOM for future activation */}
+          <div
+            style={{
+              display: "none",
+              width: "100%",
+              maxWidth: "896px",
+              height: "126px",
+              background: "#082F6F",
+              border: "1px solid rgba(255,255,255,0.3)",
+              borderRadius: "16px",
+              padding: "25px",
+              boxSizing: "border-box",
+            }}
+          >
+            <div className="flex flex-row items-start" style={{ gap: "16px", width: "100%", height: "76px" }}>
+              {/* Location */}
+              <div className="flex flex-col items-start" style={{ width: "199.5px", gap: "9.5px", paddingTop: "2.5px" }}>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: "14px", lineHeight: "20px", color: "#FFFFFF" }}>Location</span>
+                <div style={{ width: "199.5px", height: "44px", background: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.3)", backdropFilter: "blur(6px)", borderRadius: "16px", padding: "11px 33px 11px 21px", display: "flex", alignItems: "center" }}>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "20px", color: "#FFFFFF" }}>Any Location</span>
+                </div>
+              </div>
+              {/* Property Type */}
+              <div className="flex flex-col items-start" style={{ width: "199.5px", gap: "9.5px", paddingTop: "2.5px" }}>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: "14px", lineHeight: "20px", color: "#FFFFFF" }}>Property Type</span>
+                <div style={{ width: "199.5px", height: "44px", background: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.3)", backdropFilter: "blur(6px)", borderRadius: "16px", padding: "11px 33px 11px 21px", display: "flex", alignItems: "center" }}>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "20px", color: "#FFFFFF" }}>Any Type</span>
+                </div>
+              </div>
+              {/* Price Range */}
+              <div className="flex flex-col items-start" style={{ width: "199.5px", gap: "9.5px", paddingTop: "2.5px" }}>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: "14px", lineHeight: "20px", color: "#FFFFFF" }}>Price Range</span>
+                <div style={{ width: "199.5px", height: "44px", background: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.3)", backdropFilter: "blur(6px)", borderRadius: "16px", padding: "11px 33px 11px 21px", display: "flex", alignItems: "center" }}>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: "16px", lineHeight: "20px", color: "#FFFFFF" }}>Any Price</span>
+                </div>
+              </div>
+              {/* Search button */}
+              <div className="flex flex-row items-end justify-center" style={{ width: "199.5px", height: "76px" }}>
+                <button
+                  onClick={goProperties}
+                  className="flex items-center justify-center"
+                  style={{ width: "199.5px", height: "40px", background: "#4285F4", boxShadow: "0px 4px 6px -1px rgba(0,0,0,0.1), 0px 2px 4px -2px rgba(0,0,0,0.1)", backdropFilter: "blur(2px)", borderRadius: "14px", gap: "8px", fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: "14px", lineHeight: "20px", color: "#F8FAFC", border: "none", cursor: "pointer" }}
+                >
+                  <svg width="16" height="16" fill="none" stroke="#F8FAFC" strokeWidth="1.33" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path strokeLinecap="round" d="M21 21l-4.35-4.35"/></svg>
+                  Search
+                </button>
+              </div>
             </div>
           </div>
         </div>
