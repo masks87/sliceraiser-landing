@@ -1,4 +1,5 @@
 import { useLocation } from 'wouter'
+import { useEffect, useRef } from 'react'
 import dashboardImg from '@/assets/dashboard.png'
 
 import imgLuxuryProperty from '@/assets/luxury-property.png'
@@ -63,6 +64,25 @@ export default function Home() {
   const [, setLocation] = useLocation()
   const goProperties = () => setLocation('/properties')
   const goContact = () => setLocation('/contact')
+
+  const phoneClusterRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const container = phoneClusterRef.current
+    if (!container) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          container.querySelectorAll<HTMLElement>('.phone-item').forEach(el => {
+            el.classList.add('phone-visible')
+          })
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.25 }
+    )
+    observer.observe(container)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div className="bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>
@@ -343,26 +363,27 @@ export default function Home() {
                Figma bounding box origin: left:732 top:93
                Each slot: position relative to that origin              */}
           <div
+            ref={phoneClusterRef}
             className="shrink-0"
             style={{ position: "relative", width: "668px", height: "614px" }}
           >
-            {/* Group 289193 — left:823 top:128 → rel left:91 top:35 */}
-            <img src={imgPhone289193} alt="" style={{ position:"absolute", left:91, top:35, width:176, height:360, objectFit:"contain" }} />
+            {/* Group 289193 — left:91 top:35 */}
+            <img src={imgPhone289193} alt="" className="phone-item" style={{ position:"absolute", left:91, top:35, width:176, height:360, objectFit:"contain", filter:"drop-shadow(0 20px 40px rgba(0,0,0,0.18))" }} />
 
-            {/* Group 289197 — left:1023 top:308 → rel left:291 top:215 */}
-            <img src={imgPhone289197} alt="" style={{ position:"absolute", left:291, top:215, width:176, height:360, objectFit:"contain" }} />
+            {/* Group 289197 — left:291 top:215 */}
+            <img src={imgPhone289197} alt="" className="phone-item" style={{ position:"absolute", left:291, top:215, width:176, height:360, objectFit:"contain", filter:"drop-shadow(0 20px 40px rgba(0,0,0,0.18))" }} />
 
-            {/* Group 289192 — left:1223 top:114 → rel left:491 top:21 */}
-            <img src={imgPhone289192} alt="" style={{ position:"absolute", left:491, top:21, width:177, height:360, objectFit:"contain" }} />
+            {/* Group 289192 — left:491 top:21 */}
+            <img src={imgPhone289192} alt="" className="phone-item" style={{ position:"absolute", left:491, top:21, width:177, height:360, objectFit:"contain", filter:"drop-shadow(0 20px 40px rgba(0,0,0,0.18))" }} />
 
-            {/* Frame 1000002023 — left:1030 top:93 → rel left:298 top:0 */}
-            <img src={imgPhoneFrame} alt="" style={{ position:"absolute", left:298, top:0, width:169, height:187, objectFit:"contain" }} />
+            {/* Frame 1000002023 — left:298 top:0 */}
+            <img src={imgPhoneFrame} alt="" className="phone-item" style={{ position:"absolute", left:298, top:0, width:169, height:187, objectFit:"contain", filter:"drop-shadow(0 12px 24px rgba(0,0,0,0.14))" }} />
 
-            {/* Multiple Line Graph — left:732 top:520 → rel left:0 top:427 */}
-            <img src={imgLineGraph} alt="" style={{ position:"absolute", left:0, top:427, width:182, height:187, objectFit:"contain" }} />
+            {/* Multiple Line Graph — left:0 top:427 */}
+            <img src={imgLineGraph} alt="" className="phone-item" style={{ position:"absolute", left:0, top:427, width:182, height:187, objectFit:"contain", filter:"drop-shadow(0 8px 20px rgba(0,0,0,0.12))" }} />
 
-            {/* Background — left:1272 top:488 → rel left:540 top:395 */}
-            <img src={imgPhoneBg} alt="" style={{ position:"absolute", left:540, top:395, width:109, height:174, objectFit:"contain" }} />
+            {/* Background — left:540 top:395 */}
+            <img src={imgPhoneBg} alt="" className="phone-item" style={{ position:"absolute", left:540, top:395, width:109, height:174, objectFit:"contain", filter:"drop-shadow(0 8px 20px rgba(0,0,0,0.12))" }} />
           </div>
         </div>
       </section>
