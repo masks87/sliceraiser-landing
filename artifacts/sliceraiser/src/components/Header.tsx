@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Show, useClerk, useUser } from "@clerk/react";
-import logoImg from "@/assets/logo.png";
+import logoImg from "@/assets/logo.svg";
 import { jurisdictionSettings } from "@/config/siteSettings";
 
 const JURISDICTION_CHANGE_EVENT = "sr-jurisdiction-change";
@@ -185,7 +185,7 @@ const mobileLinks = [
 function Logo() {
   return (
     <Link href="/" className="flex items-center shrink-0">
-      <img src={logoImg} alt="Slice Raiser" className="h-[22px] w-auto object-contain" />
+      <img src={logoImg} alt="Slice Raiser" className="h-[34px] w-auto object-contain" />
     </Link>
   );
 }
