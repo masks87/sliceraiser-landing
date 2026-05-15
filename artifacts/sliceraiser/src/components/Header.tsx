@@ -214,38 +214,41 @@ export default function Header() {
             style={{ width: "1px", height: "36px", backgroundColor: "#4285F4" }}
           />
 
-          <JurisdictionSelector />
+          {/* Location + Search — grouped and bottom-aligned so select & bar sit on the same line */}
+          <div className="flex items-end gap-3 shrink-0">
+            <JurisdictionSelector />
 
-          {/* Search bar */}
-          <div
-            className="flex items-center gap-2 px-3 shrink-0"
-            style={{
-              width: "160px",
-              height: "40px",
-              backgroundColor: "#F5F5F5",
-              borderRadius: "10px",
-            }}
-          >
-            <svg
-              className="w-4 h-4 shrink-0"
-              style={{ color: "#919295" }}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            {/* Search bar */}
+            <div
+              className="flex items-center gap-2 px-3"
+              style={{
+                width: "160px",
+                height: "34px",
+                backgroundColor: "#F5F5F5",
+                borderRadius: "10px",
+              }}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              <svg
+                className="w-4 h-4 shrink-0"
+                style={{ color: "#919295" }}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+              <input
+                type="text"
+                placeholder="Search here"
+                className="bg-transparent outline-none w-full"
+                style={{ fontSize: "12px", color: "#919295" }}
               />
-            </svg>
-            <input
-              type="text"
-              placeholder="Search here"
-              className="bg-transparent outline-none w-full"
-              style={{ fontSize: "12px", color: "#919295" }}
-            />
+            </div>
           </div>
 
           {/* Auth buttons */}
