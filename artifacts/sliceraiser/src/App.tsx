@@ -235,10 +235,12 @@ function ScrollToTop() {
   );
 }
 
+const pageEase = [0.22, 1, 0.36, 1] as const
+
 const pageVariants = {
   initial: { opacity: 0, y: 14 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] } },
-  exit:    { opacity: 0, y: -10, transition: { duration: 0.18, ease: [0.22, 1, 0.36, 1] } },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.28, ease: pageEase } },
+  exit:    { opacity: 0, y: -10, transition: { duration: 0.18, ease: pageEase } },
 }
 
 function ClerkProviderWithRoutes() {
