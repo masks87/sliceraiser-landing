@@ -1,4 +1,5 @@
 import { useEffect, useState, type ComponentType, type SVGProps } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { Instagram, Linkedin, Youtube } from "lucide-react";
 import logoImg from "@/assets/logo.png";
@@ -17,6 +18,25 @@ import {
   copyrightText,
   jurisdictionSettings,
 } from "@/config/siteSettings";
+
+// ── Backend site-settings hook ───────────────────────────────────────────────
+type SiteSettingRow = { key: string; value: string | number | boolean };
+
+function useSiteSettings(): Record<string, string> {
+  const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+  const { data } = useQuery<SiteSettingRow[]>({
+    queryKey: ["public-site-settings"],
+    queryFn: async () => {
+      const res = await fetch(`${basePath}/api/public/site-settings`);
+      if (!res.ok) throw new Error("site-settings fetch failed");
+      return res.json() as Promise<SiteSettingRow[]>;
+    },
+    staleTime: 5 * 60 * 1_000,
+    retry: 1,
+  });
+  if (!data) return {};
+  return Object.fromEntries(data.map((s) => [s.key, String(s.value)]));
+}
 
 const JURISDICTION_CHANGE_EVENT = "sr-jurisdiction-change";
 
@@ -196,16 +216,23 @@ function AppWaitlistForm() {
 }
 
 function AppDownloadBand() {
+  const settings = useSiteSettings();
+  const heading = settings.platform_tagline ?? appDownloadHeading;
+  const appMsg = settings.app_status_message;
+  const subtext = appMsg
+    ? `${appMsg} Join the waitlist and be the first to know when we launch.`
+    : appDownloadSubtext;
+
   return (
     <>
       <section style={{ backgroundColor: APP_BAND_BG }} className="w-full text-white">
         <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="text-center lg:text-left">
             <h2 className="text-[24px] font-bold leading-tight" style={{ color: "#FFFFFF" }}>
-              {appDownloadHeading}
+              {heading}
             </h2>
             <p className="mt-3 text-[15px] leading-[24px] max-w-xl mx-auto lg:mx-0" style={{ color: "rgba(255,255,255,0.9)" }}>
-              {appDownloadSubtext}
+              {subtext}
             </p>
           </div>
           <div className="flex flex-col items-stretch gap-4 lg:items-end">
