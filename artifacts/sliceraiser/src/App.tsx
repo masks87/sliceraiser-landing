@@ -88,7 +88,7 @@ const clerkAppearance = {
     headerTitle:
       "text-[#020817] font-bold text-[22px] tracking-tight text-center",
     headerSubtitle: "text-[#8e9196] text-[13px] text-center",
-    socialButtons: "gap-2",
+    socialButtons: "!flex !flex-col w-full gap-2",
     socialButtonsBlockButton:
       "border border-gray-200 hover:!bg-[#f7f9ff] hover:!border-[#4285f4]/40 text-[#020817] rounded-xl h-11 transition-colors shadow-none",
     socialButtonsBlockButtonText: "text-[#020817] font-medium text-[13.5px]",
